@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>렌티 - 월세 수납 자동화 베타</title>
+    <title>렌티 - 임대인을 위한 월세 수납 자동화 앱</title>
     <meta
       name="description"
-      content="렌티는 임대인을 위한 월세 수납 확인, 납입 이력 관리, 연체 알림 베타 서비스입니다."
+      content="렌티는 임대인을 위한 월세 수납 확인, 납입 이력 관리, 연체 알림 서비스입니다."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
@@ -100,7 +100,7 @@
 
       .hero {
         background: var(--navy);
-        padding: 90px 40px 80px;
+        padding: 149px 40px 80px;
         text-align: center;
         position: relative;
         overflow: hidden;
@@ -119,26 +119,6 @@
           transparent 70%
         );
         pointer-events: none;
-      }
-      .hero-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        background: rgba(37, 99, 235, 0.18);
-        color: #93c5fd;
-        border: 1px solid rgba(59, 130, 246, 0.35);
-        border-radius: 100px;
-        padding: 5px 14px;
-        font-size: 13px;
-        font-weight: 500;
-        margin-bottom: 28px;
-        letter-spacing: 0.3px;
-        position: relative;
-        z-index: 1;
-      }
-      .hero-badge::before {
-        content: "🚀";
-        font-size: 13px;
       }
       h1 {
         font-size: 52px;
@@ -313,10 +293,11 @@
       }
       .section-label {
         color: var(--blue);
-        font-size: 12px;
+        font-size: 16px;
         font-weight: 800;
+        line-height: 1.45;
         letter-spacing: 0;
-        margin-bottom: 12px;
+        margin-bottom: 14px;
       }
       h2 {
         color: var(--navy);
@@ -574,6 +555,18 @@
         padding: 90px 40px;
         text-align: center;
       }
+      .beta-section .section-label {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 34px;
+        padding: 7px 14px;
+        border: 1px solid rgba(147, 197, 253, 0.34);
+        border-radius: 999px;
+        background: rgba(147, 197, 253, 0.12);
+        color: #93c5fd;
+        margin-bottom: 18px;
+      }
       .beta-section h2 {
         color: #fff;
         font-size: 40px;
@@ -614,8 +607,8 @@
           0 14px 34px rgba(2, 6, 23, 0.18);
       }
       .btn-beta {
-        background: #fff;
-        color: var(--navy);
+        background: #60a5fa;
+        color: #fff;
         border: none;
         border-radius: 12px;
         padding: 15px 24px;
@@ -624,11 +617,16 @@
         cursor: pointer;
         white-space: nowrap;
         flex-shrink: 0;
-        box-shadow: none;
-        transition: background 0.2s;
+        box-shadow: 0 16px 34px rgba(37, 99, 235, 0.34);
+        transition:
+          background 0.2s,
+          box-shadow 0.2s,
+          transform 0.2s;
       }
       .btn-beta:hover {
-        background: #eff6ff;
+        background: #3b82f6;
+        box-shadow: 0 18px 38px rgba(37, 99, 235, 0.42);
+        transform: translateY(-1px);
       }
       .btn-beta:disabled {
         cursor: wait;
@@ -777,7 +775,7 @@
           font-size: 13px;
         }
         .hero {
-          padding: 72px 20px 66px;
+          padding: 131px 20px 66px;
         }
         h1 {
           font-size: 36px;
@@ -894,17 +892,16 @@
     </nav>
 
     <section class="hero">
-      <div class="hero-badge">베타 테스터 모집 중</div>
-      <h1>월세 수납, 이제<br /><em>한 눈에 확인하세요</em></h1>
+      <h1>매달 월세 입금 확인,<br /><em>직접 하고 계신가요?</em></h1>
       <p class="hero-sub">
-        임차인이 늘어날수록 은행 앱 확인은 한계에 부딪힙니다.<br />렌티가 월세
-        입금을 자동으로 추적하고, 연체를 즉시 알려드립니다.
+        이제 월세 입금 내역을 일일이 확인하지 않아도 됩니다. 렌티가 매달 입금을
+        자동으로 확인하고, 연체가 발생하면 바로 알려드립니다.
       </p>
       <div class="hero-cta-group">
         <a class="btn-primary" href="#beta">무료 베타 신청하기</a>
         <a class="btn-ghost" href="#how">어떻게 작동하나요?</a>
       </div>
-      <p class="hero-note">신용카드 불필요 · 베타 기간 완전 무료</p>
+      <p class="hero-note">신용카드 등록 불필요 · 베타 기간 완전 무료</p>
       <div class="hero-showcase" aria-label="렌티 앱 화면">
         <div class="phone-shell">
           <div class="phone-frame hero-phone-frame">
@@ -930,8 +927,8 @@
             <span class="pain-icon" aria-hidden="true">📱</span>
             <h3>매달 계좌를 몇 번이나 확인하세요?</h3>
             <p>
-              월세 들어올 때쯤이면 계좌 열어보고, 누가 보낸 건지 명단
-              맞춰보고···. 임차인이 많아질수록 번거로워집니다.
+              월세 들어올 때쯤이면 계좌 열어보고, 누가 보낸 건지 명단 맞춰보고..
+              임차인이 많아질수록 번거로워집니다.
             </p>
           </div>
           <div class="pain-card">
@@ -948,7 +945,7 @@
             <span class="pain-icon" aria-hidden="true">💬</span>
             <h3>매번 보내는 안내 메시지, 일이 됩니다</h3>
             <p>
-              임차인마다 따로 연락하고, 며칠 뒤 또 확인 메시지 보내고···. 안내
+              임차인마다 따로 연락하고, 며칠 뒤 또 확인 메시지 보내고.. 안내
               자체가 또 하나의 업무가 됩니다.
             </p>
           </div>
@@ -981,7 +978,7 @@
               >
                 <source
                   id="previewSource"
-                  src="assets/tenant-add.m4v"
+                  src="assets/building-view.m4v"
                   type="video/mp4"
                 />
               </video>
@@ -997,11 +994,11 @@
               type="button"
               role="tab"
               aria-selected="true"
-              data-video="assets/tenant-add.m4v"
-              data-title="한 번 등록하면, 매달 자동으로"
-              data-description="임차인·호실·월세·납입일만 입력하면 다음 달부터 렌티가 알아서 납부 확인 기준을 잡습니다."
+              data-video="assets/building-view.m4v"
+              data-title="내 건물이 잘 있는지, 한눈에"
+              data-description="보유한 건물의 모든 세대가 한 화면에 보입니다. 어느 층에 문제가 있는지 바로 알 수 있습니다."
             >
-              세입자 등록
+              전체 현황
             </button>
             <button
               class="preview-tab"
@@ -1019,19 +1016,19 @@
               type="button"
               role="tab"
               aria-selected="false"
-              data-video="assets/building-view.m4v"
-              data-title="내 건물이 잘 있는지, 한눈에"
-              data-description="보유한 건물의 모든 세대가 한 화면에 보입니다. 어느 층에 문제가 있는지 바로 알 수 있습니다."
+              data-video="assets/tenant-add.m4v"
+              data-title="한 번 등록하면, 매달 자동으로"
+              data-description="임차인·호실·월세·납입일만 입력하세요. 다음 달부터 입금 확인은 렌티가 합니다."
             >
-              전체 현황
+              세입자 등록
             </button>
           </div>
         </div>
         <div class="preview-copy" aria-live="polite">
-          <h3 id="previewTitle">한 번 등록하면, 매달 자동으로</h3>
+          <h3 id="previewTitle">내 건물이 잘 있는지, 한눈에</h3>
           <p id="previewDescription">
-            임차인 정보를 한 번 입력해두면, 매달 누가 냈는지 따로 확인하지
-            않아도 됩니다.
+            보유한 건물의 모든 세대가 한 화면에 보입니다. 어느 층에 문제가
+            있는지 바로 알 수 있습니다.
           </p>
         </div>
       </div>
@@ -1045,8 +1042,8 @@
             <h2>렌티가 대신하는<br />반복 업무</h2>
           </div>
           <p class="section-desc">
-            입금 확인 → 기록 → 연체 알림 → 미납 안내까지. 매달 직접 하던 일을
-            렌티가 대신합니다.
+            입금 확인 → 기록 → 연체 알림 → 미납 안내까지.<br />매달 직접 하던
+            일을 렌티가 대신합니다.
           </p>
         </div>
         <div class="feature-grid">
@@ -1103,10 +1100,12 @@
     </section>
 
     <section class="beta-section" id="beta">
+      <div class="section-label">베타 테스터 모집</div>
       <h2>"이번 달 월세 들어왔나?"<br />더 이상 묻지 마세요</h2>
       <p class="section-desc">
-        초기 베타 테스터에게는 정식 출시 후에도 특별한 혜택을 드립니다.<br />
-        이메일 주소만 남겨주시면, 베타 시작과 함께 가장 먼저 안내해드리겠습니다.
+        지금 베타에 참여하시면, 초기 사용자로서 정식 출시 후에도 혜택이
+        이어집니다.<br />
+        이메일만 남겨주시면 베타 신청이 완료됩니다.
       </p>
       <form
         class="email-form"
@@ -1138,14 +1137,9 @@
         </button>
       </form>
       <p class="form-message" id="formMessage" aria-live="polite">
-        제출 시 베타 안내 연락 수신에 동의한 것으로 간주됩니다.
+        이메일 제출 시 베타 안내 연락 수신에 동의한 것으로 간주되며, 이외의
+        용도로는 사용되지 않습니다.
       </p>
-      <p class="privacy-note">베타 안내 목적으로 이메일만 수집합니다.</p>
-      <div class="perks">
-        <div class="perk">베타 기간 완전 무료</div>
-        <div class="perk">정식 출시 시 할인 혜택</div>
-        <div class="perk">기능 제안 우선 반영</div>
-      </div>
     </section>
 
     <footer>
