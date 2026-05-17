@@ -533,17 +533,9 @@
   }
 
   .beta-section {
-    background: var(--navy);
-    color: #fff;
-    padding: 86px 40px;
-  }
-  .beta-inner {
-    width: min(960px, 100%);
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 430px;
-    gap: 52px;
-    align-items: center;
+    background: linear-gradient(135deg, var(--navy) 0%, #1A3878 100%);
+    padding: 90px 40px;
+    text-align: center;
   }
   .beta-section h2 {
     color: #fff;
@@ -551,70 +543,87 @@
     margin-bottom: 16px;
   }
   .beta-section .section-desc {
-    color: #B6C2D4;
-    margin-bottom: 24px;
-  }
-  .trust-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    color: #B6C2D4;
-    font-size: 13px;
-  }
-  .trust-row span {
-    border: 1px solid rgba(255,255,255,0.14);
-    border-radius: 999px;
-    padding: 6px 10px;
-  }
-  .form-panel {
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 10px;
-    background: rgba(255,255,255,0.06);
-    padding: 22px;
+    color: #94A3B8;
+    margin: 0 auto 40px;
   }
   .email-form {
-    display: grid;
+    display: flex;
     gap: 10px;
+    justify-content: center;
+    max-width: 460px;
+    margin: 0 auto 16px;
   }
   .email-input {
-    width: 100%;
-    min-height: 50px;
-    padding: 0 15px;
-    border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.18);
-    background: #fff;
+    flex: 1;
+    padding: 15px 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.72);
+    background: rgba(255,255,255,0.96);
     color: var(--text);
     font-size: 15px;
     outline: none;
+    box-shadow: 0 14px 34px rgba(2,6,23,0.18);
     transition: border-color 0.2s, box-shadow 0.2s;
   }
-  .email-input::placeholder { color: #98A2B3; }
+  .email-input::placeholder { color: #7C8798; }
   .email-input:focus {
     border-color: #93C5FD;
-    box-shadow: 0 0 0 3px rgba(147,197,253,0.18);
+    box-shadow: 0 0 0 3px rgba(147,197,253,0.3), 0 14px 34px rgba(2,6,23,0.18);
   }
   .btn-beta {
-    width: 100%;
-    background: #fff;
-    background-color: #fff;
-    color: var(--navy);
-    border: 1px solid #fff;
+    background: #2563EB;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.38);
+    border-radius: 12px;
+    padding: 15px 24px;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    box-shadow: 0 16px 34px rgba(37,99,235,0.34);
+    transition: background 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
   }
-  .btn-beta:hover { background: #EAF2FF; border-color: #EAF2FF; }
+  .btn-beta:hover {
+    background: #1D4ED8;
+    border-color: rgba(255,255,255,0.52);
+    box-shadow: 0 18px 40px rgba(37,99,235,0.42);
+    transform: translateY(-1px);
+  }
   .btn-beta:disabled { cursor: wait; opacity: 0.72; }
   .form-message {
     min-height: 22px;
-    margin: 12px 0 0;
-    color: #B6C2D4;
+    margin: 10px auto 0;
+    color: #94A3B8;
     font-size: 13px;
   }
   .form-message.success { color: #86EFAC; }
   .form-message.error { color: #FCA5A5; }
   .privacy-note {
-    margin-top: 8px;
-    color: #91A2BA;
+    max-width: 560px;
+    margin: 8px auto 0;
+    color: #64748B;
     font-size: 12px;
     line-height: 1.6;
+  }
+  .perks {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 32px;
+  }
+  .perk {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #94A3B8;
+    font-size: 14px;
+  }
+  .perk::before {
+    content: '✓';
+    color: #34D399;
+    font-weight: 700;
   }
 
   footer {
@@ -648,7 +657,7 @@
   }
   @media (max-width: 900px) {
     nav { padding: 0 24px; }
-    .pain-layout, .how-layout, .beta-inner {
+    .pain-layout, .how-layout {
       grid-template-columns: 1fr;
     }
     .section { padding: 74px 24px; }
@@ -660,7 +669,6 @@
     .preview-panel { order: 1; }
     .feature-head { display: block; }
     .feature-head .section-desc { margin-top: 12px; }
-    .beta-inner { gap: 30px; }
   }
   @media (max-width: 640px) {
     nav { height: 58px; padding: 0 18px; }
@@ -713,7 +721,8 @@
     .feature-top { margin-bottom: 22px; }
     .beta-section { padding: 62px 18px; }
     .beta-section h2 { font-size: 30px; }
-    .form-panel { padding: 16px; }
+    .email-form { flex-direction: column; }
+    .btn-beta { width: 100%; }
     footer {
       padding: 28px 18px;
       flex-direction: column;
@@ -910,27 +919,21 @@
 </section>
 
 <section class="beta-section" id="beta">
-  <div class="beta-inner">
-    <div>
-      <h2>지금 베타 테스터로<br>먼저 경험해보세요</h2>
-      <p class="section-desc">초기 베타에서는 실제 임대 관리 흐름에 맞춰 수납 확인 화면과 알림 기능을 함께 다듬습니다.</p>
-      <div class="trust-row" aria-label="베타 신청 정보">
-        <span>신용카드 불필요</span>
-        <span>베타 기간 무료</span>
-        <span>이메일만 수집</span>
-      </div>
-    </div>
-    <div class="form-panel">
-      <form class="email-form" id="signupForm" action="https://formspree.io/f/xnjrabrw" method="POST" novalidate>
-        <label class="sr-only" for="emailInput">이메일 주소</label>
-        <input class="email-input" type="email" placeholder="이메일 주소를 입력하세요" id="emailInput" name="email" autocomplete="email" required>
-        <input type="hidden" name="_subject" value="렌티 베타 신청">
-        <input class="honeypot" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
-        <button class="btn-beta" id="submitButton" type="submit">신청하기</button>
-      </form>
-      <p class="form-message" id="formMessage" aria-live="polite">제출 시 베타 안내 연락 수신에 동의한 것으로 간주됩니다.</p>
-      <p class="privacy-note">베타 안내 목적으로 이메일만 수집합니다.</p>
-    </div>
+  <h2>지금 베타 테스터로<br>먼저 경험해보세요</h2>
+  <p class="section-desc">초기 베타 테스터에게는 정식 출시 후에도 특별 혜택을 드립니다.<br>임대 관리의 새로운 기준, 렌티와 함께 만들어가세요.</p>
+  <form class="email-form" id="signupForm" action="https://formspree.io/f/xnjrabrw" method="POST" novalidate>
+    <label class="sr-only" for="emailInput">이메일 주소</label>
+    <input class="email-input" type="email" placeholder="이메일 주소를 입력하세요" id="emailInput" name="email" autocomplete="email" required>
+    <input type="hidden" name="_subject" value="렌티 베타 신청">
+    <input class="honeypot" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+    <button class="btn-beta" id="submitButton" type="submit">신청하기</button>
+  </form>
+  <p class="form-message" id="formMessage" aria-live="polite">제출 시 베타 안내 연락 수신에 동의한 것으로 간주됩니다.</p>
+  <p class="privacy-note">베타 안내 목적으로 이메일만 수집합니다.</p>
+  <div class="perks">
+    <div class="perk">베타 기간 완전 무료</div>
+    <div class="perk">정식 출시 시 할인 혜택</div>
+    <div class="perk">기능 제안 우선 반영</div>
   </div>
 </section>
 
