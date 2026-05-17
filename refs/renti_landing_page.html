@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --navy: #0F1F3D;
+    --navy-mid: #1A3259;
+    --blue: #2563EB;
+    --blue-light: #EFF6FF;
+    --teal: #0EA5E9;
+    --green: #10B981;
+    --text: #111827;
+    --text-muted: #6B7280;
+    --border: #E5E7EB;
+    --bg: #FAFAFA;
+    --white: #FFFFFF;
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+  body {
+    font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo { font-size: 22px; font-weight: 800; color: var(--navy); letter-spacing: -0.5px; }
+  .logo span { color: var(--blue); }
+  .nav-cta {
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: inherit;
+  }
+  .nav-cta:hover { background: var(--blue); }
+
+  .hero {
+    background: var(--navy);
+    padding: 90px 40px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; left: 50%;
+    transform: translateX(-50%);
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(37,99,235,0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(37,99,235,0.18);
+    color: #93C5FD;
+    border: 1px solid rgba(59,130,246,0.35);
+    border-radius: 100px;
+    padding: 5px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 28px;
+    letter-spacing: 0.3px;
+  }
+  .hero-badge::before { content: '🚀'; font-size: 13px; }
+  h1 {
+    font-size: 52px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.18;
+    letter-spacing: -1.5px;
+    margin-bottom: 20px;
+  }
+  h1 em { font-style: normal; color: #60A5FA; }
+  .hero-sub {
+    font-size: 18px;
+    color: #94A3B8;
+    max-width: 520px;
+    margin: 0 auto 40px;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+  .hero-cta-group {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  /* 수정된 버튼 스타일 */
+  .btn-primary {
+    background: #fff;
+    color: var(--navy);
+    border: none;
+    border-radius: 14px;
+    padding: 18px 38px;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    letter-spacing: -0.3px;
+  }
+  .btn-primary:hover { background: #F0F6FF; transform: translateY(-1px); }
+
+  .btn-ghost {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    border: 1.5px solid rgba(255,255,255,0.5);
+    border-radius: 14px;
+    padding: 18px 32px;
+    font-size: 17px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.18); border-color: #fff; }
+
+  .hero-note { margin-top: 18px; font-size: 13px; color: #64748B; }
+
+  .section { padding: 80px 40px; }
+  .section-inner { max-width: 900px; margin: 0 auto; }
+  .section-label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 12px;
+  }
+  h2 {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    color: var(--navy);
+  }
+  .section-desc {
+    font-size: 17px;
+    color: var(--text-muted);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+  }
+
+  .pain-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .pain-card {
+    background: #FFF8F7;
+    border: 1px solid #FEE2E2;
+    border-radius: var(--radius);
+    padding: 28px 24px;
+  }
+  .pain-icon { font-size: 28px; margin-bottom: 14px; display: block; }
+  .pain-card h3 { font-size: 16px; font-weight: 700; color: #991B1B; margin-bottom: 8px; letter-spacing: -0.3px; }
+  .pain-card p { font-size: 14px; color: #6B7280; line-height: 1.65; }
+
+  .section-alt { background: var(--bg); }
+  .steps { display: flex; flex-direction: column; gap: 0; position: relative; }
+  .step {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    width: 44px; height: 44px;
+    background: var(--navy);
+    color: #fff;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 800;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .step-body h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 6px; letter-spacing: -0.4px; }
+  .step-body p { font-size: 15px; color: var(--text-muted); line-height: 1.65; }
+
+  .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .feature-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 30px 28px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .feature-card:hover { border-color: #BFDBFE; box-shadow: 0 4px 24px rgba(37,99,235,0.07); }
+  .feature-icon { font-size: 26px; margin-bottom: 14px; display: block; }
+  .feature-card h3 { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 8px; letter-spacing: -0.3px; }
+  .feature-card p { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+  .feature-tag {
+    display: inline-block;
+    background: var(--blue-light);
+    color: var(--blue);
+    border-radius: 6px;
+    padding: 3px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 12px;
+  }
+
+  .beta-section { background: linear-gradient(135deg, var(--navy) 0%, #1A3878 100%); padding: 90px 40px; text-align: center; }
+  .beta-section h2 { color: #fff; font-size: 40px; margin-bottom: 16px; }
+  .beta-section .section-desc { color: #94A3B8; margin: 0 auto 40px; }
+  .email-form { display: flex; gap: 10px; justify-content: center; max-width: 460px; margin: 0 auto 16px; }
+  .email-input {
+    flex: 1;
+    padding: 15px 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    font-size: 15px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .email-input::placeholder { color: #64748B; }
+  .email-input:focus { border-color: rgba(96,165,250,0.6); }
+  .btn-beta {
+    background: #fff;
+    color: var(--navy);
+    border: none;
+    border-radius: 12px;
+    padding: 15px 24px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background 0.2s;
+  }
+  .btn-beta:hover { background: #EFF6FF; }
+  .perks { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
+  .perk { display: flex; align-items: center; gap: 7px; font-size: 14px; color: #94A3B8; }
+  .perk::before { content: '✓'; color: #34D399; font-weight: 700; }
+
+  footer {
+    background: var(--navy);
+    padding: 36px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  footer .logo { font-size: 18px; }
+  footer p { font-size: 13px; color: #475569; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">렌<span>티</span></div>
+  <button class="nav-cta" onclick="document.getElementById('beta').scrollIntoView({behavior:'smooth'})">베타 신청하기</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">베타 테스터 모집 중</div>
+  <h1>월세 수납, 이제<br><em>한 눈에 확인하세요</em></h1>
+  <p class="hero-sub">
+    임차인이 늘어날수록 은행 앱 확인은 한계에 부딪힙니다.<br>렌티가 월세 입금을 자동으로 추적하고, 연체를 즉시 알려드립니다.
+  </p>
+  <div class="hero-cta-group">
+    <button class="btn-primary" onclick="document.getElementById('beta').scrollIntoView({behavior:'smooth'})">무료 베타 신청하기</button>
+    <button class="btn-ghost" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">어떻게 작동하나요?</button>
+  </div>
+  <p class="hero-note">신용카드 불필요 · 베타 기간 완전 무료</p>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="section-label">지금 이런 불편함, 겪고 계신가요?</div>
+    <h2>임대인이라면<br>누구나 겪는 문제</h2>
+    <div class="pain-cards">
+      <div class="pain-card">
+        <span class="pain-icon">📱</span>
+        <h3>매달 은행 앱을 켜고 또 켜고</h3>
+        <p>임차인마다 입금 내역을 일일이 확인하느라 매월 초가 가장 바쁜 날이 됩니다.</p>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">😰</span>
+        <h3>혹시 이번 달에 안 들어왔나?</h3>
+        <p>임차인 수가 늘어날수록 놓치는 건 시간 문제. 연체를 뒤늦게 발견하면 이미 늦습니다.</p>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">😤</span>
+        <h3>연체 독촉, 말 꺼내기 어렵다</h3>
+        <p>연체 사실을 직접 언급해야 하는 불편함. 관계가 어색해질까 봐 망설이게 됩니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="how">
+  <div class="section-inner">
+    <div class="section-label">서비스 소개</div>
+    <h2>렌티는 이렇게<br>작동합니다</h2>
+    <p class="section-desc">복잡한 설정 없이 3단계로 시작하세요.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>임차인 정보 등록</h3>
+          <p>임차인 이름, 월세 금액, 납입일을 한 번만 입력하세요. 이후 모든 것은 렌티가 관리합니다.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>입금 자동 감지</h3>
+          <p>납입일이 되면 렌티가 계좌 입금 여부를 자동으로 확인합니다. 더 이상 매월 은행 앱을 켤 필요가 없습니다.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>수납 현황 한눈에 확인 & 연체 알림</h3>
+          <p>전체 임차인의 납입 현황을 대시보드로 확인하세요. 미납 발생 시 즉시 알림을 받아볼 수 있습니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="section-label">주요 기능</div>
+    <h2>임대 관리의<br>모든 것을 한 곳에</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="feature-icon">🔔</span>
+        <h3>실시간 연체 알림</h3>
+        <p>납입일 초과 즉시 알림을 받아보세요. 카카오톡, 문자, 앱 푸시 등 원하는 채널로 받을 수 있습니다.</p>
+        <span class="feature-tag">출시 예정</span>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📊</span>
+        <h3>수납 현황 대시보드</h3>
+        <p>전체 임차인의 납입 현황을 한 화면에서 확인. 이번 달 수납 완료율과 예상 수입을 한눈에 파악하세요.</p>
+        <span class="feature-tag">베타 포함</span>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📋</span>
+        <h3>수납 이력 자동 기록</h3>
+        <p>모든 납입 내역이 자동으로 기록되어 임차인별 납입 이력을 언제든지 조회할 수 있습니다.</p>
+        <span class="feature-tag">베타 포함</span>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">💬</span>
+        <h3>임차인 알림 발송</h3>
+        <p>연체 임차인에게 직접 말하기 불편하다면, 렌티가 대신 납입 안내 메시지를 발송해드립니다.</p>
+        <span class="feature-tag">출시 예정</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="beta-section" id="beta">
+  <h2>지금 베타 테스터로<br>먼저 경험해보세요</h2>
+  <p class="section-desc">초기 베타 테스터에게는 정식 출시 후에도 특별 혜택을 드립니다.<br>임대 관리의 새로운 기준, 렌티와 함께 만들어가세요.</p>
+  <div class="email-form">
+    <input class="email-input" type="email" placeholder="이메일 주소를 입력하세요" id="emailInput">
+    <button class="btn-beta" onclick="handleSignup()">신청하기</button>
+  </div>
+  <div class="perks">
+    <div class="perk">베타 기간 완전 무료</div>
+    <div class="perk">정식 출시 시 할인 혜택</div>
+    <div class="perk">기능 제안 우선 반영</div>
+  </div>
+</section>
+
+<footer>
+  <div class="logo" style="color:#fff">렌<span style="color:#60A5FA">티</span></div>
+  <p>© 2025 Renti. 임대인을 위한 월세 수납 자동화 서비스.</p>
+</footer>
+
+<script>
+function handleSignup() {
+  const email = document.getElementById('emailInput').value;
+  if (!email || !email.includes('@')) {
+    alert('올바른 이메일 주소를 입력해주세요.');
+    return;
+  }
+  alert('베타 신청이 완료되었습니다! 빠르게 연락드리겠습니다 🎉');
+  document.getElementById('emailInput').value = '';
+}
+</script>
+</body>
+</html>
