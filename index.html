@@ -81,60 +81,68 @@
 
   .hero {
     background: var(--navy);
-    color: #fff;
-    min-height: calc(100vh - 64px);
-    padding: 76px 40px 54px;
-    display: flex;
-    align-items: center;
+    padding: 90px 40px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
   }
-  .hero-inner {
-    width: min(1180px, 100%);
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 430px;
-    gap: 70px;
-    align-items: center;
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; left: 50%;
+    transform: translateX(-50%);
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(37,99,235,0.25) 0%, transparent 70%);
+    pointer-events: none;
   }
-  .hero-kicker {
+  .hero-badge {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 22px;
-    color: #BFDBFE;
+    gap: 6px;
+    background: rgba(37,99,235,0.18);
+    color: #93C5FD;
+    border: 1px solid rgba(59,130,246,0.35);
+    border-radius: 100px;
+    padding: 5px 14px;
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 500;
+    margin-bottom: 28px;
+    letter-spacing: 0.3px;
+    position: relative;
+    z-index: 1;
   }
-  .hero-kicker::before {
-    content: '';
-    width: 7px;
-    height: 7px;
-    border-radius: 999px;
-    background: #60A5FA;
-  }
+  .hero-badge::before { content: '🚀'; font-size: 13px; }
   h1 {
-    max-width: 610px;
-    color: #fff;
-    font-size: 56px;
+    font-size: 52px;
     font-weight: 800;
-    line-height: 1.12;
-    letter-spacing: 0;
-    margin-bottom: 22px;
+    color: #fff;
+    line-height: 1.18;
+    letter-spacing: -1.5px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
   }
+  h1 em { font-style: normal; color: #60A5FA; }
   .hero-sub {
-    max-width: 560px;
-    color: #B6C2D4;
     font-size: 18px;
-    line-height: 1.75;
-    margin-bottom: 34px;
+    color: #94A3B8;
+    max-width: 520px;
+    margin: 0 auto 40px;
+    font-weight: 400;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
   }
-  .hero-actions {
+  .hero-cta-group {
     display: flex;
+    gap: 12px;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
     flex-wrap: wrap;
-    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
   }
-  .btn-primary, .btn-ghost, .btn-beta {
+  .btn-beta {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -147,35 +155,60 @@
     transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
   }
   .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     background: #fff;
-    background-color: #fff;
     color: var(--navy);
-    border: 1px solid #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 14px;
+    padding: 18px 38px;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: -0.3px;
   }
-  .btn-primary:hover { background: #EAF2FF; border-color: #EAF2FF; transform: translateY(-1px); }
+  .btn-primary:hover { background: #F0F6FF; transform: translateY(-1px); }
   .btn-ghost {
-    background: transparent;
-    background-color: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.1);
     color: #fff;
-    border: 1px solid rgba(255,255,255,0.34);
+    text-decoration: none;
+    border: 1.5px solid rgba(255,255,255,0.5);
+    border-radius: 14px;
+    padding: 18px 32px;
+    font-size: 17px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
   }
-  .btn-ghost:hover { border-color: rgba(255,255,255,0.72); background: rgba(255,255,255,0.06); }
-  .hero-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    color: #91A2BA;
+  .btn-ghost:hover { background: rgba(255,255,255,0.18); border-color: #fff; }
+  .hero-note {
+    margin-top: 18px;
     font-size: 13px;
-  }
-  .hero-meta span {
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 999px;
-    padding: 5px 10px;
+    color: #64748B;
+    position: relative;
+    z-index: 1;
   }
   .hero-showcase {
     display: grid;
     place-items: center;
+    margin-top: 42px;
+    position: relative;
+    z-index: 1;
   }
+  .hero-showcase .hero-phone-frame {
+    aspect-ratio: 454 / 575;
+    border-bottom-width: 0;
+    border-radius: 36px 36px 0 0;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
+  }
+  .hero-showcase .hero-phone-image { object-position: top center; }
   .phone-shell {
     position: relative;
     width: min(100%, 344px);
@@ -607,7 +640,6 @@
   }
 
   @media (max-width: 1080px) {
-    .hero-inner { grid-template-columns: 1fr 360px; gap: 42px; }
     h1 { font-size: 48px; }
     .how-layout { grid-template-columns: 390px 1fr; gap: 42px; }
     .feature-grid { grid-template-columns: repeat(2, 1fr); }
@@ -616,16 +648,9 @@
   }
   @media (max-width: 900px) {
     nav { padding: 0 24px; }
-    .hero {
-      min-height: 0;
-      padding: 64px 24px 56px;
-    }
-    .hero-inner, .pain-layout, .how-layout, .beta-inner {
+    .pain-layout, .how-layout, .beta-inner {
       grid-template-columns: 1fr;
     }
-    .hero-inner { gap: 44px; }
-    .hero-copy { max-width: 680px; }
-    .hero-showcase { justify-items: center; }
     .section { padding: 74px 24px; }
     .board-grid { min-height: auto; }
     .app-stage {
@@ -641,12 +666,12 @@
     nav { height: 58px; padding: 0 18px; }
     .logo { font-size: 20px; }
     .nav-cta { padding: 8px 12px; font-size: 13px; }
-    .hero { padding: 50px 18px 48px; }
-    h1 { font-size: 36px; line-height: 1.18; }
+    .hero { padding: 72px 20px 66px; }
+    h1 { font-size: 36px; letter-spacing: -1px; }
     .hero-sub { font-size: 16px; }
-    .hero-actions { display: grid; grid-template-columns: 1fr; }
-    .btn-primary, .btn-ghost { width: 100%; }
-    .hero-meta { gap: 6px; }
+    .hero-sub br { display: none; }
+    .hero-cta-group { flex-direction: column; }
+    .btn-primary, .btn-ghost { width: min(100%, 320px); }
     .phone-shell { width: min(100%, 306px); }
     .section { padding: 62px 18px; }
     h2 { font-size: 30px; }
@@ -706,26 +731,20 @@
 </nav>
 
 <section class="hero">
-  <div class="hero-inner">
-    <div class="hero-copy">
-      <div class="hero-kicker">임대인을 위한 수납 확인 베타</div>
-      <h1>월세 입금 확인, 매달 반복하지 않게</h1>
-      <p class="hero-sub">렌티는 건물과 호실별 납부 기준을 정리하고, 매월 확인해야 하는 입금 상태를 한 화면에서 추적하도록 돕습니다.</p>
-      <div class="hero-actions">
-        <a class="btn-primary" href="#beta">베타 신청하기</a>
-        <a class="btn-ghost" href="#how">앱 화면 보기</a>
-      </div>
-      <div class="hero-meta" aria-label="베타 신청 안내">
-        <span>신용카드 불필요</span>
-        <span>베타 기간 무료</span>
-        <span>이메일만 수집</span>
-      </div>
-    </div>
-    <div class="hero-showcase" aria-label="렌티 앱 화면">
-      <div class="phone-shell">
-        <div class="phone-frame">
-          <img class="phone-image" src="refs/push%20noti.png" alt="Android One UI 푸시 알림 화면">
-        </div>
+  <div class="hero-badge">베타 테스터 모집 중</div>
+  <h1>월세 수납, 이제<br><em>한 눈에 확인하세요</em></h1>
+  <p class="hero-sub">
+    임차인이 늘어날수록 은행 앱 확인은 한계에 부딪힙니다.<br>렌티가 월세 입금을 자동으로 추적하고, 연체를 즉시 알려드립니다.
+  </p>
+  <div class="hero-cta-group">
+    <a class="btn-primary" href="#beta">무료 베타 신청하기</a>
+    <a class="btn-ghost" href="#how">어떻게 작동하나요?</a>
+  </div>
+  <p class="hero-note">신용카드 불필요 · 베타 기간 완전 무료</p>
+  <div class="hero-showcase" aria-label="렌티 앱 화면">
+    <div class="phone-shell">
+      <div class="phone-frame hero-phone-frame">
+        <img class="phone-image hero-phone-image" src="refs/push%20noti.png" alt="Android One UI 푸시 알림 화면">
       </div>
     </div>
   </div>
