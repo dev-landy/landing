@@ -218,28 +218,61 @@
     display: block;
     background: #F4F6FA;
   }
-  .steps { display: flex; flex-direction: column; gap: 0; position: relative; }
-  .step {
-    display: grid;
-    grid-template-columns: 56px 1fr;
-    gap: 20px;
-    align-items: flex-start;
-    padding: 28px 0;
-    border-bottom: 1px solid var(--border);
+  .preview-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
   }
-  .step:last-child { border-bottom: none; }
-  .step-num {
-    width: 44px; height: 44px;
+  .preview-panel .section-desc {
+    margin-bottom: 28px;
+  }
+  .preview-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .preview-tab {
+    min-width: 0;
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--text-muted);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s;
+  }
+  .preview-tab:hover {
+    border-color: #BFDBFE;
+    color: var(--blue);
+  }
+  .preview-tab.is-active {
     background: var(--navy);
+    border-color: var(--navy);
     color: #fff;
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px; font-weight: 800;
-    flex-shrink: 0; margin-top: 2px;
+    box-shadow: 0 8px 20px rgba(15,31,61,0.14);
   }
-  .step-body h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 6px; letter-spacing: -0.4px; }
-  .step-body p { font-size: 15px; color: var(--text-muted); line-height: 1.65; }
-
+  .preview-copy {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 24px 0;
+    min-height: 148px;
+  }
+  .preview-copy h3 {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--navy);
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .preview-copy p {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 460px;
+  }
   .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .feature-card {
     background: var(--white);
@@ -350,6 +383,7 @@
     .pain-cards, .feature-grid { grid-template-columns: 1fr; }
     .how-layout { grid-template-columns: 1fr; gap: 36px; }
     .phone-frame { width: min(100%, 326px); }
+    .preview-panel { max-width: 620px; margin: 0 auto; }
     h1 { font-size: 42px; }
   }
   @media (max-width: 640px) {
@@ -358,9 +392,18 @@
     .hero { padding: 72px 20px 66px; }
     h1 { font-size: 36px; letter-spacing: -1px; }
     .hero-sub { font-size: 16px; }
+    .hero-sub br { display: none; }
+    .hero-cta-group { flex-direction: column; }
+    .btn-primary, .btn-ghost { width: min(100%, 320px); }
     .section { padding: 64px 20px; }
     h2 { font-size: 30px; }
     .section-desc { font-size: 16px; margin-bottom: 34px; }
+    .phone-frame { width: min(100%, 306px); min-height: auto; }
+    .phone-video { height: 590px; }
+    .preview-tabs { gap: 7px; }
+    .preview-tab { flex: 1 1 calc(50% - 7px); padding: 10px 8px; font-size: 13px; }
+    .preview-copy { min-height: 170px; }
+    .preview-copy h3 { font-size: 20px; }
     .email-form { flex-direction: column; }
     .btn-beta { width: 100%; }
     footer { flex-direction: column; gap: 12px; align-items: flex-start; }
@@ -414,36 +457,22 @@
 <section class="section section-alt" id="how">
   <div class="section-inner how-layout">
     <div class="phone-frame" aria-label="렌티 호실 화면 미리보기">
-      <video class="phone-video" autoplay muted loop playsinline>
-        <source src="refs/호실 뷰.mov" type="video/quicktime">
+      <video class="phone-video" id="previewVideo" autoplay muted loop playsinline preload="metadata">
+        <source id="previewSource" src="assets/building-view.m4v" type="video/mp4">
       </video>
     </div>
-    <div>
+    <div class="preview-panel">
       <div class="section-label">서비스 소개</div>
       <h2>호실을 등록하면<br>납입 상태가 정리됩니다</h2>
-      <p class="section-desc">복잡한 설정 없이 임차인과 호실 정보를 등록하고, 매월 확인해야 할 상태를 한 화면에서 추적하세요.</p>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div class="step-body">
-            <h3>임차인과 호실 등록</h3>
-            <p>호실, 임차인, 월세 금액, 납입일을 입력해 매월 관리 기준을 만듭니다.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div class="step-body">
-            <h3>수납 상태 확인</h3>
-            <p>완납, 확인 필요, 미납 상태를 구분해 이번 달 확인 업무를 줄입니다.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <div class="step-body">
-            <h3>연체 알림과 안내 준비</h3>
-            <p>납입일 이후 확인이 필요한 호실을 놓치지 않도록 알림과 안내 흐름을 제공합니다.</p>
-          </div>
-        </div>
+      <p class="section-desc">복잡한 설정 없이 건물과 호실 정보를 등록하고, 매월 확인해야 할 상태를 한 화면에서 추적하세요.</p>
+      <div class="preview-tabs" role="tablist" aria-label="렌티 앱 미리보기 선택">
+        <button class="preview-tab is-active" type="button" role="tab" aria-selected="true" data-video="assets/building-view.m4v" data-title="건물별 수납 현황 확인" data-description="등록한 건물과 관리 중인 호실을 한눈에 보고, 이번 달 수납 흐름을 빠르게 파악합니다.">건물 보기</button>
+        <button class="preview-tab" type="button" role="tab" aria-selected="false" data-video="assets/payment-list.m4v" data-title="호실별 납부 목록 정리" data-description="완납, 확인 필요, 미납 상태를 호실별로 구분해 은행 앱 대조 시간을 줄입니다.">납부 목록</button>
+        <button class="preview-tab" type="button" role="tab" aria-selected="false" data-video="assets/tenant-add.m4v" data-title="임차인과 납입 기준 등록" data-description="임차인, 호실, 월세 금액, 납입일을 입력하면 매월 확인할 관리 기준이 만들어집니다.">임차인 추가</button>
+      </div>
+      <div class="preview-copy" aria-live="polite">
+        <h3 id="previewTitle">건물별 수납 현황 확인</h3>
+        <p id="previewDescription">등록한 건물과 관리 중인 호실을 한눈에 보고, 이번 달 수납 흐름을 빠르게 파악합니다.</p>
       </div>
     </div>
   </div>
@@ -507,11 +536,46 @@
 </footer>
 
 <script>
+const previewVideo = document.getElementById('previewVideo');
+const previewSource = document.getElementById('previewSource');
+const previewTitle = document.getElementById('previewTitle');
+const previewDescription = document.getElementById('previewDescription');
+const previewTabs = document.querySelectorAll('.preview-tab');
 const form = document.getElementById('signupForm');
 const emailInput = document.getElementById('emailInput');
 const submitButton = document.getElementById('submitButton');
 const formMessage = document.getElementById('formMessage');
 const defaultMessage = formMessage.textContent;
+
+previewTabs.forEach((tab) => {
+  tab.addEventListener('click', () => {
+    previewTabs.forEach((item) => {
+      item.classList.remove('is-active');
+      item.setAttribute('aria-selected', 'false');
+    });
+
+    tab.classList.add('is-active');
+    tab.setAttribute('aria-selected', 'true');
+    previewTitle.textContent = tab.dataset.title;
+    previewDescription.textContent = tab.dataset.description;
+
+    const playFromStart = () => {
+      try {
+        previewVideo.currentTime = 0;
+      } catch (error) {}
+
+      previewVideo.play().catch(() => {});
+    };
+
+    if (previewSource.getAttribute('src') !== tab.dataset.video) {
+      previewSource.setAttribute('src', tab.dataset.video);
+      previewVideo.addEventListener('loadedmetadata', playFromStart, { once: true });
+      previewVideo.load();
+    } else {
+      playFromStart();
+    }
+  });
+});
 
 function setFormMessage(type, message) {
   formMessage.className = 'form-message';
