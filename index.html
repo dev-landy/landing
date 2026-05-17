@@ -276,118 +276,59 @@
     line-height: 1.75;
   }
 
-  .pain-layout {
+  .pain-header {
+    margin-bottom: 34px;
+  }
+  .pain-cards {
     display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    gap: 56px;
-    align-items: center;
-  }
-  .pain-checklist {
-    display: grid;
-    gap: 14px;
-    margin-top: 34px;
-  }
-  .pain-check {
-    display: grid;
-    grid-template-columns: 34px 1fr;
-    gap: 12px;
-    align-items: start;
-    color: var(--text-muted);
-    font-size: 15px;
-  }
-  .pain-check span {
-    width: 34px;
-    height: 34px;
-    border: 1px solid var(--line-strong);
-    border-radius: 8px;
-    display: grid;
-    place-items: center;
-    color: var(--navy);
-    font-size: 13px;
-    font-weight: 800;
-  }
-  .pain-check strong {
-    display: block;
-    color: var(--text);
-    font-size: 16px;
-    margin-bottom: 2px;
-  }
-  .reconcile-board {
+    grid-template-columns: repeat(3, 1fr);
     border: 1px solid var(--line);
     border-radius: 10px;
     background: #fff;
     overflow: hidden;
-    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
   }
-  .board-top {
-    padding: 18px 20px;
-    border-bottom: 1px solid var(--line);
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    align-items: center;
+  .pain-card {
+    min-height: 236px;
+    padding: 28px 26px 26px;
+    border-right: 1px solid var(--line);
+    position: relative;
   }
-  .board-title {
-    color: var(--navy);
-    font-size: 15px;
-    font-weight: 800;
+  .pain-card:last-child { border-right: 0; }
+  .pain-card::before {
+    content: '';
+    position: absolute;
+    left: 26px;
+    top: 0;
+    width: 42px;
+    height: 3px;
+    background: var(--red);
   }
-  .board-date { color: var(--text-muted); font-size: 13px; font-weight: 600; }
-  .board-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 380px;
-  }
-  .ledger, .rooms { padding: 18px; }
-  .ledger { border-right: 1px solid var(--line); background: #FBFCFE; }
-  .mock-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-    color: var(--text-muted);
+  .pain-index {
+    display: block;
+    margin-bottom: 18px;
+    color: #B91C1C;
     font-size: 12px;
     font-weight: 800;
+    letter-spacing: 0;
   }
-  .ledger-list, .room-list { display: grid; gap: 8px; }
-  .ledger-item, .room-item {
-    background: #fff;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 12px;
+  .pain-icon {
+    display: block;
+    margin-bottom: 18px;
+    font-size: 28px;
+    line-height: 1;
   }
-  .ledger-item {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 8px;
-    align-items: center;
-  }
-  .person { color: var(--text); font-size: 14px; font-weight: 800; }
-  .memo { color: var(--text-muted); font-size: 12px; margin-top: 2px; }
-  .amount { color: var(--navy); font-size: 13px; font-weight: 800; white-space: nowrap; }
-  .room-item {
-    display: grid;
-    grid-template-columns: 54px 1fr auto;
-    gap: 10px;
-    align-items: center;
-  }
-  .room-no {
+  .pain-card h3 {
     color: var(--navy);
-    font-size: 13px;
+    font-size: 19px;
     font-weight: 800;
+    line-height: 1.42;
+    margin-bottom: 12px;
   }
-  .room-name { color: var(--text); font-size: 13px; font-weight: 700; }
-  .room-due { color: var(--text-muted); font-size: 12px; }
-  .status {
-    border-radius: 999px;
-    padding: 4px 8px;
-    font-size: 11px;
-    font-weight: 800;
-    white-space: nowrap;
+  .pain-card p {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.7;
   }
-  .status.done { background: #ECFDF3; color: var(--green); }
-  .status.check { background: #FFF7ED; color: var(--amber); }
-  .status.miss { background: #FEF2F2; color: var(--red); }
 
   .how-layout {
     width: min(1120px, 100%);
@@ -484,24 +425,10 @@
     font-size: 13px;
     font-weight: 800;
   }
-  .line-icon {
-    width: 34px;
-    height: 34px;
-    border: 1px solid var(--line-strong);
-    border-radius: 8px;
-    position: relative;
+  .feature-icon {
+    font-size: 28px;
+    line-height: 1;
   }
-  .line-icon::before, .line-icon::after {
-    content: '';
-    position: absolute;
-    left: 8px;
-    right: 8px;
-    height: 2px;
-    border-radius: 999px;
-    background: var(--navy);
-  }
-  .line-icon::before { top: 11px; }
-  .line-icon::after { top: 19px; width: 12px; }
   .feature-card h3 {
     color: var(--navy);
     font-size: 18px;
@@ -657,11 +584,18 @@
   }
   @media (max-width: 900px) {
     nav { padding: 0 24px; }
-    .pain-layout, .how-layout {
+    .how-layout {
       grid-template-columns: 1fr;
     }
     .section { padding: 74px 24px; }
-    .board-grid { min-height: auto; }
+    .pain-header { margin-bottom: 28px; }
+    .pain-cards { grid-template-columns: 1fr; }
+    .pain-card {
+      min-height: auto;
+      border-right: 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .pain-card:last-child { border-bottom: 0; }
     .app-stage {
       min-height: 660px;
       order: 2;
@@ -684,14 +618,10 @@
     .section { padding: 62px 18px; }
     h2 { font-size: 30px; }
     .section-desc { font-size: 16px; }
-    .pain-check { grid-template-columns: 30px 1fr; }
-    .pain-check span { width: 30px; height: 30px; }
-    .board-top { align-items: flex-start; flex-direction: column; gap: 4px; }
-    .board-grid { grid-template-columns: 1fr; }
-    .ledger { border-right: 0; border-bottom: 1px solid var(--line); }
-    .ledger, .rooms { padding: 14px; }
-    .room-item { grid-template-columns: 46px 1fr; }
-    .room-item .status { grid-column: 2; justify-self: start; margin-top: 2px; }
+    .pain-card { padding: 24px 20px 22px; }
+    .pain-card::before { left: 20px; }
+    .pain-index { margin-bottom: 16px; }
+    .pain-icon { margin-bottom: 16px; }
     .app-stage {
       min-height: auto;
       display: block;
@@ -760,81 +690,29 @@
 </section>
 
 <section class="section">
-  <div class="section-inner pain-layout">
-    <div>
-      <div class="section-label">월초 확인 업무</div>
+  <div class="section-inner">
+    <div class="pain-header">
+      <div class="section-label">지금 이런 불편함, 겪고 계신가요?</div>
       <h2>임대인이라면<br>누구나 겪는 문제</h2>
-      <p class="section-desc">은행 입금 내역과 호실 목록을 번갈아 보면서 이름, 금액, 미납 여부를 맞추는 일은 매달 같은 방식으로 반복됩니다.</p>
-      <div class="pain-checklist">
-        <div class="pain-check">
-          <span>01</span>
-          <div><strong>입금자명 확인</strong>임차인 이름과 실제 입금자명이 다를 때마다 따로 기억해야 합니다.</div>
-        </div>
-        <div class="pain-check">
-          <span>02</span>
-          <div><strong>호실별 금액 대조</strong>월세, 관리비, 일부 입금 여부를 호실 목록과 다시 맞춰봅니다.</div>
-        </div>
-        <div class="pain-check">
-          <span>03</span>
-          <div><strong>미납 여부 기록</strong>확인한 내용을 메모장이나 엑셀에 옮기고 다음 연락 대상을 정리합니다.</div>
-        </div>
-      </div>
     </div>
-    <div class="reconcile-board" aria-label="월초 입금 확인 업무 예시">
-      <div class="board-top">
-        <div>
-          <div class="board-title">월초 수납 확인</div>
-          <div class="board-date">2026년 5월 임대료</div>
-        </div>
-        <span class="status check">확인 중</span>
+    <div class="pain-cards">
+      <div class="pain-card">
+        <span class="pain-index">01</span>
+        <span class="pain-icon" aria-hidden="true">📱</span>
+        <h3>매달 은행 앱을 켜고 또 켜고</h3>
+        <p>임차인마다 입금 내역을 일일이 확인하느라 매월 초가 가장 바쁜 날이 됩니다.</p>
       </div>
-      <div class="board-grid">
-        <div class="ledger">
-          <div class="mock-heading"><span>은행 입금 내역</span><span>최근 4건</span></div>
-          <div class="ledger-list">
-            <div class="ledger-item">
-              <div><div class="person">김민준</div><div class="memo">5월 월세</div></div>
-              <div class="amount">720,000원</div>
-            </div>
-            <div class="ledger-item">
-              <div><div class="person">302호</div><div class="memo">입금자명 확인 필요</div></div>
-              <div class="amount">650,000원</div>
-            </div>
-            <div class="ledger-item">
-              <div><div class="person">박서연</div><div class="memo">관리비 포함</div></div>
-              <div class="amount">780,000원</div>
-            </div>
-            <div class="ledger-item">
-              <div><div class="person">이도윤</div><div class="memo">일부 입금</div></div>
-              <div class="amount">400,000원</div>
-            </div>
-          </div>
-        </div>
-        <div class="rooms">
-          <div class="mock-heading"><span>호실별 확인 상태</span><span>4개 호실</span></div>
-          <div class="room-list">
-            <div class="room-item">
-              <div class="room-no">201호</div>
-              <div><div class="room-name">김민준</div><div class="room-due">720,000원</div></div>
-              <span class="status done">완료</span>
-            </div>
-            <div class="room-item">
-              <div class="room-no">302호</div>
-              <div><div class="room-name">최하늘</div><div class="room-due">650,000원</div></div>
-              <span class="status check">대조 필요</span>
-            </div>
-            <div class="room-item">
-              <div class="room-no">401호</div>
-              <div><div class="room-name">박서연</div><div class="room-due">780,000원</div></div>
-              <span class="status done">완료</span>
-            </div>
-            <div class="room-item">
-              <div class="room-no">503호</div>
-              <div><div class="room-name">이도윤</div><div class="room-due">720,000원</div></div>
-              <span class="status miss">미납</span>
-            </div>
-          </div>
-        </div>
+      <div class="pain-card">
+        <span class="pain-index">02</span>
+        <span class="pain-icon" aria-hidden="true">😰</span>
+        <h3>혹시 이번 달에 안 들어왔나?</h3>
+        <p>임차인 수가 늘어날수록 놓치는 건 시간 문제. 연체를 뒤늦게 발견하면 이미 늦습니다.</p>
+      </div>
+      <div class="pain-card">
+        <span class="pain-index">03</span>
+        <span class="pain-icon" aria-hidden="true">😤</span>
+        <h3>연체 독촉, 말 꺼내기 어렵다</h3>
+        <p>연체 사실을 직접 언급해야 하는 불편함. 관계가 어색해질까 봐 망설이게 됩니다.</p>
       </div>
     </div>
   </div>
@@ -881,7 +759,7 @@
       <div class="feature-card">
         <div class="feature-top">
           <span class="feature-num">01</span>
-          <span class="line-icon" aria-hidden="true"></span>
+          <span class="feature-icon" aria-hidden="true">📊</span>
         </div>
         <h3>수납 현황 대시보드</h3>
         <p>전체 호실의 납입 상태와 이번 달 수납 완료율을 한 화면에서 확인합니다.</p>
@@ -890,7 +768,7 @@
       <div class="feature-card">
         <div class="feature-top">
           <span class="feature-num">02</span>
-          <span class="line-icon" aria-hidden="true"></span>
+          <span class="feature-icon" aria-hidden="true">📋</span>
         </div>
         <h3>수납 이력 기록</h3>
         <p>확인한 납입 내역을 임차인별로 남겨 다음 달 확인 기준으로 활용합니다.</p>
@@ -899,7 +777,7 @@
       <div class="feature-card">
         <div class="feature-top">
           <span class="feature-num">03</span>
-          <span class="line-icon" aria-hidden="true"></span>
+          <span class="feature-icon" aria-hidden="true">🔔</span>
         </div>
         <h3>연체 알림</h3>
         <p>납입일이 지난 호실을 놓치지 않도록 확인이 필요한 대상을 알려줍니다.</p>
@@ -908,7 +786,7 @@
       <div class="feature-card">
         <div class="feature-top">
           <span class="feature-num">04</span>
-          <span class="line-icon" aria-hidden="true"></span>
+          <span class="feature-icon" aria-hidden="true">💬</span>
         </div>
         <h3>임차인 안내 발송</h3>
         <p>미납 안내가 필요한 임차인에게 보낼 메시지 흐름을 준비합니다.</p>
