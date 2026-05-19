@@ -548,14 +548,14 @@
         color: #94a3b8;
         margin: 0 auto 40px;
       }
-      .email-form {
+      .phone-form {
         display: flex;
         gap: 10px;
         justify-content: center;
         max-width: 460px;
         margin: 0 auto 16px;
       }
-      .email-input {
+      .phone-input {
         flex: 1;
         padding: 15px 18px;
         border-radius: 12px;
@@ -569,10 +569,10 @@
           border-color 0.2s,
           box-shadow 0.2s;
       }
-      .email-input::placeholder {
+      .phone-input::placeholder {
         color: #7c8798;
       }
-      .email-input:focus {
+      .phone-input:focus {
         border-color: #93c5fd;
         box-shadow:
           0 0 0 3px rgba(147, 197, 253, 0.3),
@@ -865,7 +865,7 @@
         .beta-section h2 {
           font-size: 30px;
         }
-        .email-form {
+        .phone-form {
           flex-direction: column;
         }
         .btn-beta {
@@ -990,8 +990,8 @@
               <span class="mobile-preview-label">입금 확인</span>
               <h3>호실별 상태를 색상으로 한눈에</h3>
               <p>
-                완납·확인 필요·미납을 색상으로 구분해 보여줍니다. 누가 입금을
-                안 했는지 바로 보입니다.
+                완납·확인 필요·미납을 색상으로 구분해 보여줍니다. 누가 입금을 안
+                했는지 바로 보입니다.
               </p>
             </div>
             <div class="phone-shell">
@@ -1104,23 +1104,25 @@
       <p class="section-desc">
         지금 베타에 참여하시면, 초기 사용자로서 정식 출시 후에도 무료 혜택이
         이어집니다.<br />
-        이메일만 남겨주시면 베타 신청이 완료됩니다.
+        전화번호를 남겨주시면 베타 신청이 완료됩니다.
       </p>
       <form
-        class="email-form"
+        class="phone-form"
         id="signupForm"
         action="https://formspree.io/f/xnjrabrw"
         method="POST"
         novalidate
       >
-        <label class="sr-only" for="emailInput">이메일 주소</label>
+        <label class="sr-only" for="phoneInput">전화번호</label>
         <input
-          class="email-input"
-          type="email"
-          placeholder="이메일 주소를 입력하세요"
-          id="emailInput"
-          name="email"
-          autocomplete="email"
+          class="phone-input"
+          type="tel"
+          placeholder="전화번호를 입력하세요"
+          id="phoneInput"
+          name="phone"
+          autocomplete="tel"
+          inputmode="tel"
+          pattern="01[016789]-?[0-9]{3,4}-?[0-9]{4}"
           required
         />
         <input type="hidden" name="_subject" value="랜디 베타 신청" />
@@ -1136,7 +1138,7 @@
         </button>
       </form>
       <p class="form-message" id="formMessage" aria-live="polite">
-        이메일 제출 시 베타 안내 연락 수신에 동의한 것으로 간주되며, 이외의
+        전화번호 제출 시 베타 안내 연락 수신에 동의한 것으로 간주되며, 이외의
         용도로는 사용되지 않습니다.
       </p>
     </section>
@@ -1150,7 +1152,7 @@
 
     <script>
       const form = document.getElementById("signupForm");
-      const emailInput = document.getElementById("emailInput");
+      const phoneInput = document.getElementById("phoneInput");
       const submitButton = document.getElementById("submitButton");
       const formMessage = document.getElementById("formMessage");
       const defaultMessage = formMessage.textContent;
@@ -1164,9 +1166,9 @@
       form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
-        if (!emailInput.validity.valid) {
-          setFormMessage("error", "올바른 이메일 주소를 입력해주세요.");
-          emailInput.focus();
+        if (!phoneInput.validity.valid) {
+          setFormMessage("error", "올바른 전화번호를 입력해주세요.");
+          phoneInput.focus();
           return;
         }
 
@@ -1186,7 +1188,7 @@
           form.reset();
           setFormMessage(
             "success",
-            "베타 신청이 완료되었습니다. 안내 메일을 보내드리겠습니다.",
+            "베타 신청이 완료되었습니다. 안내 연락을 드리겠습니다.",
           );
         } catch (error) {
           setFormMessage(
@@ -1199,7 +1201,7 @@
         }
       });
 
-      emailInput.addEventListener("input", () => {
+      phoneInput.addEventListener("input", () => {
         if (!formMessage.classList.contains("success")) {
           setFormMessage("", defaultMessage);
         }
