@@ -658,8 +658,7 @@
         color: #73849d;
         font-size: 13px;
       }
-      .sr-only,
-      .honeypot {
+      .sr-only {
         position: absolute;
         width: 1px;
         height: 1px;
@@ -1109,7 +1108,7 @@
       <form
         class="phone-form"
         id="signupForm"
-        action="https://formspree.io/f/xnjrabrw"
+        action="/api/beta-signup"
         method="POST"
         novalidate
       >
@@ -1124,14 +1123,6 @@
           inputmode="tel"
           pattern="01[016789]-?[0-9]{3,4}-?[0-9]{4}"
           required
-        />
-        <input type="hidden" name="_subject" value="랜디 베타 신청" />
-        <input
-          class="honeypot"
-          type="text"
-          name="_gotcha"
-          tabindex="-1"
-          autocomplete="off"
         />
         <button class="btn-beta" id="submitButton" type="submit">
           신청하기
@@ -1166,6 +1157,8 @@
       form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
+        const phone = phoneInput.value.trim();
+
         if (!phoneInput.validity.valid) {
           setFormMessage("error", "올바른 전화번호를 입력해주세요.");
           phoneInput.focus();
@@ -1179,11 +1172,14 @@
         try {
           const response = await fetch(form.action, {
             method: "POST",
-            body: new FormData(form),
-            headers: { Accept: "application/json" },
+            body: JSON.stringify({ phone }),
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
           });
 
-          if (!response.ok) throw new Error("Formspree submission failed");
+          if (!response.ok) throw new Error("Beta signup failed");
 
           form.reset();
           setFormMessage(
