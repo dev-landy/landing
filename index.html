@@ -403,87 +403,60 @@
       .how-layout {
         width: min(1120px, 100%);
         display: grid;
-        grid-template-columns: 440px 1fr;
+        grid-template-columns: 1fr;
         grid-template-areas:
-          "stage panel"
-          "stage copy";
-        gap: 24px 62px;
-        align-items: center;
-      }
-      .app-stage {
-        grid-area: stage;
-        position: relative;
-        min-height: 690px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 30px;
-      }
-      .app-stage .phone-shell {
-        width: 322px;
-        z-index: 1;
+          "panel"
+          "mobile";
+        gap: 44px;
+        align-items: start;
       }
       .preview-panel {
         grid-area: panel;
-        align-self: end;
+        align-self: start;
+        max-width: 620px;
       }
       .preview-panel .section-desc {
         margin-bottom: 0;
       }
-      .preview-tabs {
-        position: relative;
-        z-index: 2;
+      .mobile-preview-list {
+        grid-area: mobile;
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 6px;
-        width: min(100%, 322px);
-        padding: 4px;
-        margin-bottom: 0;
-        border: 1px solid var(--line);
-        border-radius: 10px;
-        background: #fff;
+        gap: 56px;
       }
-      .preview-tab {
-        min-width: 78px;
-        border: 0;
-        background: transparent;
-        color: var(--text-muted);
-        border-radius: 7px;
-        padding: 10px 14px;
+      .mobile-preview-item {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 322px;
+        gap: 56px;
+        align-items: center;
+      }
+      .mobile-preview-copy {
+        width: 100%;
+        max-width: 460px;
+        padding-left: 18px;
+        border-left: 2px solid var(--line-strong);
+      }
+      .mobile-preview-label {
+        display: block;
+        margin-bottom: 6px;
+        color: var(--blue);
         font-size: 14px;
         font-weight: 800;
-        cursor: pointer;
-        transition:
-          background 0.2s,
-          color 0.2s;
       }
-      .preview-tab:hover {
-        color: var(--blue);
-      }
-      .preview-tab.is-active {
-        background: var(--navy);
-        color: #fff;
-      }
-      .preview-copy {
-        grid-area: copy;
-        align-self: start;
-        max-width: 520px;
-        border-top: 1px solid var(--line);
-        padding-top: 24px;
-        min-height: 142px;
-      }
-      .preview-copy h3 {
+      .mobile-preview-copy h3 {
         color: var(--navy);
-        font-size: 23px;
+        font-size: 24px;
         font-weight: 800;
         line-height: 1.35;
-        margin-bottom: 8px;
+        margin: 0;
       }
-      .preview-copy p {
+      .mobile-preview-copy p {
+        margin-top: 10px;
         color: var(--text-muted);
-        font-size: 15px;
-        line-height: 1.75;
+        font-size: 16px;
+        line-height: 1.7;
+      }
+      .mobile-preview-item .phone-shell {
+        width: 322px;
       }
 
       .feature-head {
@@ -696,8 +669,14 @@
           font-size: 48px;
         }
         .how-layout {
-          grid-template-columns: 390px 1fr;
-          gap: 24px 42px;
+          gap: 42px;
+        }
+        .mobile-preview-item {
+          grid-template-columns: minmax(0, 1fr) 306px;
+          gap: 42px;
+        }
+        .mobile-preview-item .phone-shell {
+          width: 306px;
         }
         .feature-grid {
           grid-template-columns: repeat(2, 1fr);
@@ -717,8 +696,7 @@
           grid-template-columns: 1fr;
           grid-template-areas:
             "panel"
-            "stage"
-            "copy";
+            "mobile";
           gap: 30px;
         }
         .section {
@@ -738,14 +716,38 @@
         .pain-card:last-child {
           border-bottom: 0;
         }
-        .app-stage {
-          min-height: auto;
+        .mobile-preview-list {
+          gap: 46px;
+          width: min(100%, 390px);
+          margin: 0 auto;
         }
-        .preview-panel {
-          align-self: start;
+        .mobile-preview-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 18px;
+          text-align: left;
         }
-        .preview-copy {
+        .mobile-preview-copy {
           max-width: none;
+          padding-left: 16px;
+        }
+        .mobile-preview-label {
+          margin-bottom: 4px;
+          font-size: 13px;
+        }
+        .mobile-preview-copy h3 {
+          font-size: 18px;
+          line-height: 1.4;
+        }
+        .mobile-preview-copy p {
+          margin-top: 6px;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 1.55;
+        }
+        .mobile-preview-item .phone-shell {
+          width: min(100%, 306px);
         }
         .feature-head {
           display: block;
@@ -821,24 +823,6 @@
         }
         .pain-icon {
           margin-bottom: 16px;
-        }
-        .app-stage {
-          gap: 28px;
-          text-align: center;
-        }
-        .app-stage .phone-shell {
-          margin: 0 auto;
-        }
-        .preview-tabs {
-          width: min(100%, 306px);
-        }
-        .preview-tab {
-          min-width: 0;
-          padding: 10px 8px;
-          font-size: 13px;
-        }
-        .preview-copy {
-          min-height: 160px;
         }
         .feature-grid {
           grid-template-columns: 1fr;
@@ -961,72 +945,79 @@
             자동으로 확인합니다.
           </p>
         </div>
-        <div class="app-stage">
-          <div class="phone-shell">
-            <div class="phone-frame" aria-label="랜디 앱 화면 미리보기">
-              <video
-                class="phone-video"
-                id="previewVideo"
-                autoplay
-                muted
-                loop
-                playsinline
-                preload="metadata"
-              >
-                <source
-                  id="previewSource"
-                  src="assets/building-view.m4v"
-                  type="video/mp4"
-                />
-              </video>
+        <div class="mobile-preview-list" aria-label="랜디 앱 기능 영상 목록">
+          <article class="mobile-preview-item">
+            <div class="mobile-preview-copy">
+              <span class="mobile-preview-label">전체 현황</span>
+              <h3>내 건물이 잘 있는지, 한눈에</h3>
+              <p>
+                보유한 건물의 모든 세대가 한 화면에 보입니다. 어느 층에 문제가
+                있는지 바로 알 수 있습니다.
+              </p>
             </div>
-          </div>
-          <div
-            class="preview-tabs"
-            role="tablist"
-            aria-label="랜디 앱 미리보기 선택"
-          >
-            <button
-              class="preview-tab is-active"
-              type="button"
-              role="tab"
-              aria-selected="true"
-              data-video="assets/building-view.m4v"
-              data-title="1. 내 건물이 잘 있는지, 한눈에"
-              data-description="보유한 건물의 모든 세대가 한 화면에 보입니다. 어느 층에 문제가 있는지 바로 알 수 있습니다."
-            >
-              전체 현황
-            </button>
-            <button
-              class="preview-tab"
-              type="button"
-              role="tab"
-              aria-selected="false"
-              data-video="assets/payment-list.m4v"
-              data-title="2. 호실별 상태를 색상으로 한눈에"
-              data-description="완납·확인 필요·미납을 색상으로 구분해 보여줍니다. 누가 입금을 안 했는지 바로 보입니다."
-            >
-              입금 확인
-            </button>
-            <button
-              class="preview-tab"
-              type="button"
-              role="tab"
-              aria-selected="false"
-              data-video="assets/tenant-add.m4v"
-              data-title="3. 한 번 등록하면, 매달 자동으로"
-              data-description="임차인·호실·월세·납입일만 입력하세요. 다음 달부터 입금 확인은 랜디가 합니다."
-            >
-              세입자 등록
-            </button>
-          </div>
-        </div>
-        <div class="preview-copy" aria-live="polite">
-          <h3 id="previewTitle">1. 내 건물이 잘 있는지, 한눈에</h3>
-          <p id="previewDescription">
-            보유한 건물의 모든 세대가 한 화면에 보입니다. 어느 층에 문제가
-            있는지 바로 알 수 있습니다.
-          </p>
+            <div class="phone-shell">
+              <div class="phone-frame" aria-label="전체 현황 앱 화면 영상">
+                <video
+                  class="phone-video"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                >
+                  <source src="assets/building-view.m4v" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </article>
+          <article class="mobile-preview-item">
+            <div class="mobile-preview-copy">
+              <span class="mobile-preview-label">입금 확인</span>
+              <h3>호실별 상태를 색상으로 한눈에</h3>
+              <p>
+                완납·확인 필요·미납을 색상으로 구분해 보여줍니다. 누가 입금을
+                안 했는지 바로 보입니다.
+              </p>
+            </div>
+            <div class="phone-shell">
+              <div class="phone-frame" aria-label="입금 확인 앱 화면 영상">
+                <video
+                  class="phone-video"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                >
+                  <source src="assets/payment-list.m4v" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </article>
+          <article class="mobile-preview-item">
+            <div class="mobile-preview-copy">
+              <span class="mobile-preview-label">세입자 등록</span>
+              <h3>한 번 등록하면, 매달 자동으로</h3>
+              <p>
+                임차인·호실·월세·납입일만 입력하세요. 다음 달부터 입금 확인은
+                랜디가 합니다.
+              </p>
+            </div>
+            <div class="phone-shell">
+              <div class="phone-frame" aria-label="세입자 등록 앱 화면 영상">
+                <video
+                  class="phone-video"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                >
+                  <source src="assets/tenant-add.m4v" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -1143,48 +1134,11 @@
     </footer>
 
     <script>
-      const previewVideo = document.getElementById("previewVideo");
-      const previewSource = document.getElementById("previewSource");
-      const previewTitle = document.getElementById("previewTitle");
-      const previewDescription = document.getElementById("previewDescription");
-      const previewTabs = document.querySelectorAll(".preview-tab");
       const form = document.getElementById("signupForm");
       const emailInput = document.getElementById("emailInput");
       const submitButton = document.getElementById("submitButton");
       const formMessage = document.getElementById("formMessage");
       const defaultMessage = formMessage.textContent;
-
-      previewTabs.forEach((tab) => {
-        tab.addEventListener("click", () => {
-          previewTabs.forEach((item) => {
-            item.classList.remove("is-active");
-            item.setAttribute("aria-selected", "false");
-          });
-
-          tab.classList.add("is-active");
-          tab.setAttribute("aria-selected", "true");
-          previewTitle.textContent = tab.dataset.title;
-          previewDescription.textContent = tab.dataset.description;
-
-          const playFromStart = () => {
-            try {
-              previewVideo.currentTime = 0;
-            } catch (error) {}
-
-            previewVideo.play().catch(() => {});
-          };
-
-          if (previewSource.getAttribute("src") !== tab.dataset.video) {
-            previewSource.setAttribute("src", tab.dataset.video);
-            previewVideo.addEventListener("loadedmetadata", playFromStart, {
-              once: true,
-            });
-            previewVideo.load();
-          } else {
-            playFromStart();
-          }
-        });
-      });
 
       function setFormMessage(type, message) {
         formMessage.className = "form-message";
