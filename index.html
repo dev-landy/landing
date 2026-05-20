@@ -146,12 +146,20 @@
         font-weight: 800;
         line-height: 1;
         text-decoration: none;
-        transform: translateX(-50%);
+        opacity: 0;
+        pointer-events: none;
+        transform: translate(-50%, 18px);
         transition:
           background 0.2s,
           border-color 0.2s,
           box-shadow 0.2s,
+          opacity 0.24s,
           transform 0.2s;
+      }
+      .floating-beta-cta.is-visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(-50%);
       }
       .floating-beta-cta:hover {
         background: #1d4ed8;
@@ -967,6 +975,9 @@
           min-height: 52px;
           padding: 0 20px;
           font-size: 15px;
+          transform: translateY(18px);
+        }
+        .floating-beta-cta.is-visible {
           transform: none;
         }
         .floating-beta-cta:hover {
@@ -1355,6 +1366,9 @@
       const phoneInput = document.getElementById("phoneInput");
       const submitButton = document.getElementById("submitButton");
       const formMessage = document.getElementById("formMessage");
+      const floatingBetaCta = document.querySelector(".floating-beta-cta");
+      const firstContentSection = document.querySelector(".hero + .section");
+      const betaSection = document.getElementById("beta");
       const defaultMessage = formMessage.textContent;
       let phoneInputStarted = false;
       let phoneFormViewed = false;
@@ -1388,6 +1402,18 @@
           });
         });
       });
+
+      function updateFloatingCta() {
+        if (!floatingBetaCta || !firstContentSection || !betaSection) return;
+        const showCta =
+          firstContentSection.getBoundingClientRect().top <=
+            window.innerHeight - 80 &&
+          betaSection.getBoundingClientRect().top > window.innerHeight - 120;
+        floatingBetaCta.classList.toggle("is-visible", showCta);
+      }
+      updateFloatingCta();
+      window.addEventListener("scroll", updateFloatingCta, { passive: true });
+      window.addEventListener("resize", updateFloatingCta);
 
       if ("IntersectionObserver" in window) {
         const betaObserver = new IntersectionObserver(
