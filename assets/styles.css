@@ -56,13 +56,29 @@ nav {
   justify-content: space-between;
 }
 .logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   font-size: 22px;
   font-weight: 800;
   color: var(--navy);
   letter-spacing: 0;
+  line-height: 1;
 }
-.logo span {
-  color: var(--blue);
+.logo-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  color: #1e3a8a;
+}
+.logo-mark svg {
+  width: 32px;
+  height: 32px;
+}
+.logo-word {
+  color: var(--navy);
 }
 .nav-cta {
   display: inline-flex;
@@ -1143,8 +1159,11 @@ footer .logo {
 .footer-logo {
   color: #fff;
 }
-.footer-logo span {
+.footer-logo .logo-mark {
   color: #60a5fa;
+}
+.footer-logo .logo-word {
+  color: #fff;
 }
 .footer-info {
   display: grid;

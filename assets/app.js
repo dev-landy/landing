@@ -31,6 +31,9 @@ function setFormMessage(type, message) {
 }
 
 function startNotificationFlow(flow) {
+  if (flow.dataset.flowStarted === "true") return;
+  flow.dataset.flowStarted = "true";
+
   const amountEl = flow.querySelector("[data-countup]");
   if (!amountEl) return;
 
@@ -79,7 +82,31 @@ function startNotificationFlow(flow) {
   replay();
 }
 
-notificationFlows.forEach(startNotificationFlow);
+function setupNotificationFlowStart(flow) {
+  const amountEl = flow.querySelector("[data-countup]");
+  if (amountEl) amountEl.textContent = "0";
+
+  if (!("IntersectionObserver" in window)) {
+    startNotificationFlow(flow);
+    return;
+  }
+
+  const flowObserver = new IntersectionObserver(
+    (entries, observer) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      startNotificationFlow(flow);
+      observer.disconnect();
+    },
+    {
+      rootMargin: "0px 0px -12% 0px",
+      threshold: 0.28,
+    },
+  );
+
+  flowObserver.observe(flow);
+}
+
+notificationFlows.forEach(setupNotificationFlowStart);
 
 document.querySelectorAll('a[href="#beta"]').forEach((link) => {
   link.addEventListener("click", () => {
