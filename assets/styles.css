@@ -78,7 +78,7 @@ nav {
   height: 32px;
 }
 .logo-word {
-  color: var(--navy);
+  color: #1e3a8a;
 }
 .nav-cta {
   display: inline-flex;
@@ -401,22 +401,24 @@ h1 em {
 }
 .hero-lock-time {
   display: grid;
-  gap: 5px;
-  padding: 6px 24px 24px;
+  justify-items: center;
+  gap: 8px;
+  padding: 18px 24px 28px;
   color: #fff;
+  text-align: center;
 }
 .hero-lock-time span {
-  font-family: "SF Pro Display", "Pretendard", system-ui, sans-serif;
-  font-size: 80px;
+  font-family: "Pretendard", "SF Pro Display", system-ui, sans-serif;
+  font-size: 70px;
   font-weight: 400;
-  line-height: 1;
+  line-height: 0.96;
   letter-spacing: 0;
 }
 .hero-lock-time small {
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 600;
   line-height: 1.35;
-  opacity: 0.92;
+  opacity: 0.88;
 }
 .hero-notification-stack {
   display: grid;
@@ -1022,8 +1024,13 @@ h2 {
 }
 
 .beta-section {
-  background: linear-gradient(135deg, var(--navy) 0%, #1a3878 100%);
-  padding: 90px 40px;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(70% 32% at 50% 11%, rgba(96, 165, 250, 0.18), transparent 68%),
+    radial-gradient(72% 34% at 50% 72%, rgba(147, 197, 253, 0.13), transparent 66%),
+    linear-gradient(180deg, var(--navy) 0%, #173472 38%, #25428e 68%, #203b82 100%);
+  padding: 90px 40px 72px;
   text-align: center;
 }
 .beta-section .section-label {
@@ -1143,6 +1150,49 @@ h2 {
   border-radius: 50%;
   background: #34d399;
   flex: 0 0 auto;
+}
+
+.brand-identity {
+  position: relative;
+  min-height: 500px;
+  margin-top: 92px;
+  padding: 46px 40px 0;
+  color: #fff;
+}
+.brand-identity-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  min-height: 392px;
+  text-align: center;
+}
+.brand-identity-mark {
+  display: grid;
+  place-items: center;
+  width: 112px;
+  height: 112px;
+  color: rgba(255, 255, 255, 0.96);
+}
+.brand-identity-mark svg {
+  width: 104px;
+  height: 104px;
+}
+.brand-identity-name {
+  margin-top: 8px;
+  color: #fff;
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0;
+}
+.brand-identity-tagline {
+  margin-top: 36px;
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.45;
 }
 
 footer {
@@ -1353,7 +1403,7 @@ footer .logo {
     );
   }
   .hero-lock-time span {
-    font-size: 74px;
+    font-size: 64px;
   }
   .hero-notification-stack {
     padding: 0 10px;
@@ -1433,7 +1483,7 @@ footer .logo {
     margin-bottom: 22px;
   }
   .beta-section {
-    padding: 62px 18px;
+    padding: 62px 18px 58px;
   }
   .beta-section h2 {
     font-size: 26px;
@@ -1443,6 +1493,30 @@ footer .logo {
   }
   .btn-beta {
     width: 100%;
+  }
+  .brand-identity {
+    min-height: 460px;
+    margin-top: 72px;
+    padding: 38px 18px 0;
+  }
+  .brand-identity-inner {
+    min-height: 384px;
+  }
+  .brand-identity-mark {
+    width: 88px;
+    height: 88px;
+  }
+  .brand-identity-mark svg {
+    width: 84px;
+    height: 84px;
+  }
+  .brand-identity-name {
+    margin-top: 8px;
+    font-size: 42px;
+  }
+  .brand-identity-tagline {
+    margin-top: 30px;
+    font-size: 14px;
   }
   .floating-beta-cta {
     right: 18px;
