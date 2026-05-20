@@ -127,6 +127,42 @@
         outline: 3px solid rgba(37, 99, 235, 0.28);
         outline-offset: 3px;
       }
+      .floating-beta-cta {
+        position: fixed;
+        left: 50%;
+        bottom: calc(20px + env(safe-area-inset-bottom));
+        z-index: 140;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 54px;
+        padding: 0 30px;
+        border: 1px solid #1d4ed8;
+        border-radius: 999px;
+        background: var(--blue);
+        color: #fff;
+        box-shadow: 0 14px 30px rgba(37, 99, 235, 0.28);
+        font-size: 16px;
+        font-weight: 800;
+        line-height: 1;
+        text-decoration: none;
+        transform: translateX(-50%);
+        transition:
+          background 0.2s,
+          border-color 0.2s,
+          box-shadow 0.2s,
+          transform 0.2s;
+      }
+      .floating-beta-cta:hover {
+        background: #1d4ed8;
+        border-color: #1e40af;
+        box-shadow: 0 16px 36px rgba(37, 99, 235, 0.34);
+        transform: translate(-50%, -2px);
+      }
+      .floating-beta-cta:focus-visible {
+        outline: 3px solid rgba(37, 99, 235, 0.28);
+        outline-offset: 4px;
+      }
 
       .hero {
         background: var(--navy);
@@ -697,7 +733,7 @@
 
       footer {
         background: var(--navy);
-        padding: 34px 40px;
+        padding: 34px 40px calc(110px + env(safe-area-inset-bottom));
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -923,8 +959,21 @@
         .btn-beta {
           width: 100%;
         }
+        .floating-beta-cta {
+          right: 18px;
+          left: 18px;
+          bottom: calc(14px + env(safe-area-inset-bottom));
+          width: auto;
+          min-height: 52px;
+          padding: 0 20px;
+          font-size: 15px;
+          transform: none;
+        }
+        .floating-beta-cta:hover {
+          transform: translateY(-2px);
+        }
         footer {
-          padding: 28px 18px;
+          padding: 28px 18px calc(94px + env(safe-area-inset-bottom));
           flex-direction: column;
           gap: 10px;
           align-items: flex-start;
@@ -1269,7 +1318,7 @@
         <input
           class="phone-input"
           type="tel"
-          placeholder="전화번호를 입력하세요"
+          placeholder="전화번호를 입력해주세요"
           id="phoneInput"
           name="phone"
           autocomplete="tel"
@@ -1293,6 +1342,13 @@
       </div>
       <p>© 2026 Landy. 임대인을 위한 월세 수납 자동화 서비스.</p>
     </footer>
+
+    <a
+      class="floating-beta-cta"
+      href="#beta"
+      data-beta-location="floating_bottom"
+      >무료 베타 신청하기</a
+    >
 
     <script>
       const form = document.getElementById("signupForm");
