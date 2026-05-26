@@ -908,13 +908,38 @@ h2 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 9px;
   min-height: 34px;
   padding: 7px 14px;
   border: 1px solid rgba(147, 197, 253, 0.34);
   border-radius: 999px;
   background: rgba(147, 197, 253, 0.12);
   color: #93c5fd;
+  font-size: 14px;
+  line-height: 1;
   margin-bottom: 18px;
+}
+.beta-status-copy,
+.beta-status-divider,
+.beta-status-state {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.beta-status-copy,
+.beta-status-state {
+  white-space: nowrap;
+}
+.beta-status-divider {
+  width: 1px;
+  height: 13px;
+  background: rgba(147, 197, 253, 0.34);
+}
+.beta-status-state {
+  color: #dbeafe;
+  font-size: 12px;
+  font-weight: 800;
 }
 .beta-section h2 {
   color: #fff;
