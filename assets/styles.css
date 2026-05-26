@@ -897,7 +897,10 @@ h2 {
 .beta-section {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, var(--navy) 0%, #1a3878 100%);
+  background:
+    radial-gradient(68% 34% at 50% 12%, rgba(96, 165, 250, 0.18), transparent 68%),
+    radial-gradient(76% 42% at 50% 78%, rgba(147, 197, 253, 0.11), transparent 70%),
+    linear-gradient(135deg, var(--navy) 0%, #142e63 48%, #1f3a7c 100%);
   padding: 90px 40px;
   text-align: center;
 }
@@ -928,6 +931,9 @@ h2 {
 .beta-section .section-desc strong {
   color: #fff;
   font-weight: 700;
+}
+.mobile-only {
+  display: none;
 }
 .beta-perks {
   display: grid;
@@ -1472,6 +1478,9 @@ footer .logo {
   }
   .section-desc {
     font-size: 16px;
+  }
+  .mobile-only {
+    display: block;
   }
   .pain-card {
     padding: 24px 20px 22px;
