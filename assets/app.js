@@ -110,6 +110,8 @@ form.addEventListener("submit", async (event) => {
 
     form.reset();
     phoneInputStarted = false;
+    phoneInput.disabled = true;
+    submitButton.disabled = true;
     sendAnalyticsEvent("beta_apply_success", {
       method: "phone",
     });
@@ -126,8 +128,10 @@ form.addEventListener("submit", async (event) => {
       "신청을 완료하지 못했습니다. 잠시 후 다시 시도해주세요.",
     );
   } finally {
-    submitButton.disabled = false;
-    setSubmitButtonText("신청하기");
+    if (!formMessage.classList.contains("success")) {
+      submitButton.disabled = false;
+      setSubmitButtonText("신청하기");
+    }
   }
 });
 
