@@ -1,6 +1,7 @@
 const form = document.getElementById("signupForm");
 const phoneInput = document.getElementById("phoneInput");
 const submitButton = document.getElementById("submitButton");
+const submitButtonLabel = submitButton.querySelector("[data-submit-label]");
 const formMessage = document.getElementById("formMessage");
 const floatingBetaCta = document.querySelector(".floating-beta-cta");
 const firstContentSection = document.querySelector(".hero + .section");
@@ -27,6 +28,14 @@ function setFormMessage(type, message) {
   formMessage.className = "form-message";
   if (type) formMessage.classList.add(type);
   formMessage.textContent = message;
+}
+
+function setSubmitButtonText(message) {
+  if (submitButtonLabel) {
+    submitButtonLabel.textContent = message;
+  } else {
+    submitButton.textContent = message;
+  }
 }
 
 document.querySelectorAll('a[href="#beta"]').forEach((link) => {
@@ -81,7 +90,7 @@ form.addEventListener("submit", async (event) => {
   }
 
   submitButton.disabled = true;
-  submitButton.textContent = "신청 중";
+  setSubmitButtonText("신청 중");
   setFormMessage("", "신청 정보를 전송하고 있습니다.");
   sendAnalyticsEvent("beta_apply_submit", {
     method: "phone",
@@ -118,7 +127,7 @@ form.addEventListener("submit", async (event) => {
     );
   } finally {
     submitButton.disabled = false;
-    submitButton.textContent = "신청하기";
+    setSubmitButtonText("신청하기");
   }
 });
 

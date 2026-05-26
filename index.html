@@ -10,10 +10,50 @@
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>랜디 - 임대인을 위한 월세 수납 자동화 앱</title>
+    <title>랜디 | 임대인을 위한 월세 수납 자동화 앱</title>
     <meta
       name="description"
-      content="랜디는 임대인을 위한 월세 수납 확인, 납입 이력 관리, 연체 알림 서비스입니다."
+      content="랜디는 소규모 임대인을 위한 월세 입금 확인, 임대료 수납 관리, 납입 이력 기록, 연체 알림 자동화 앱입니다."
+    />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#0b1730" />
+    <link rel="canonical" href="https://rentlog-landing.vercel.app/" />
+    <link rel="icon" href="/assets/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:site_name" content="랜디" />
+    <meta
+      property="og:title"
+      content="랜디 | 임대인을 위한 월세 수납 자동화 앱"
+    />
+    <meta
+      property="og:description"
+      content="월세 입금 확인, 임대료 수납 관리, 연체 알림을 랜디가 자동으로 정리합니다."
+    />
+    <meta property="og:url" content="https://rentlog-landing.vercel.app/" />
+    <meta
+      property="og:image"
+      content="https://rentlog-landing.vercel.app/assets/og-image.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="랜디 월세 수납 자동화 앱 소개 이미지"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="랜디 | 임대인을 위한 월세 수납 자동화 앱"
+    />
+    <meta
+      name="twitter:description"
+      content="소규모 임대인의 월세 입금 확인과 연체 알림을 자동화합니다."
+    />
+    <meta
+      name="twitter:image"
+      content="https://rentlog-landing.vercel.app/assets/og-image.png"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
@@ -21,6 +61,88 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://rentlog-landing.vercel.app/#organization",
+            "name": "랜디",
+            "alternateName": "Landy",
+            "url": "https://rentlog-landing.vercel.app/",
+            "email": "support.landy@gmail.com",
+            "logo": "https://rentlog-landing.vercel.app/assets/icon.svg"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://rentlog-landing.vercel.app/#website",
+            "name": "랜디",
+            "url": "https://rentlog-landing.vercel.app/",
+            "publisher": {
+              "@id": "https://rentlog-landing.vercel.app/#organization"
+            },
+            "inLanguage": "ko-KR"
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://rentlog-landing.vercel.app/#app",
+            "name": "랜디",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Android, iOS",
+            "url": "https://rentlog-landing.vercel.app/",
+            "description": "소규모 임대인을 위한 월세 입금 확인, 임대료 수납 관리, 납입 이력 기록, 연체 알림 자동화 앱입니다.",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "KRW",
+              "description": "베타 기간 무료"
+            },
+            "publisher": {
+              "@id": "https://rentlog-landing.vercel.app/#organization"
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://rentlog-landing.vercel.app/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "랜디는 어떤 임대인에게 적합한가요?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "원룸, 오피스텔, 상가처럼 여러 호실의 월세 입금 확인과 임대료 수납 관리를 반복하는 소규모 임대인에게 적합합니다."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "월세 미납은 어떻게 확인하나요?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "임차인과 호실, 월세, 납입일을 등록하면 랜디가 매달 납입 상태를 정리하고 미납 또는 확인 필요 상태를 알려줍니다."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "임차인에게 미납 안내를 보낼 수 있나요?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "미납 안내 문구를 직접 작성하지 않아도 정해진 템플릿을 바탕으로 임차인에게 부담 없이 안내할 수 있도록 준비하고 있습니다."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "베타 기간에는 비용이 있나요?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "베타 기간에는 모든 기능을 무료로 사용할 수 있으며, 전화번호를 남기면 베타 안내 연락을 받을 수 있습니다."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <nav>
@@ -53,6 +175,10 @@
     </nav>
 
     <section class="hero">
+      <p class="hero-beta-chip">
+        <span>선착순 100명 한정</span>
+        <strong>베타 모집 중</strong>
+      </p>
       <p class="hero-eyebrow">임대인을 위한 자동화 솔루션</p>
       <h1>매달 월세 입금 확인,<br /><em>직접 하고 계신가요?</em></h1>
       <p class="hero-sub">
@@ -65,7 +191,7 @@
         >
         <a class="btn-ghost" href="#how">어떻게 작동하나요?</a>
       </div>
-      <p class="hero-note">베타 기간 모든 기능 무료</p>
+      <p class="hero-note">전화번호만 남기면 신청 완료</p>
       <div class="hero-showcase" aria-label="랜디 앱 화면">
         <div class="phone-shell">
           <div class="phone-frame hero-phone-frame">
@@ -194,6 +320,7 @@
                   loop
                   playsinline
                   preload="metadata"
+                  poster="assets/poster-building-view.png"
                 >
                   <source src="assets/building-view.m4v" type="video/mp4" />
                 </video>
@@ -218,6 +345,7 @@
                   loop
                   playsinline
                   preload="metadata"
+                  poster="assets/poster-payment-list.png"
                 >
                   <source src="assets/payment-list.m4v" type="video/mp4" />
                 </video>
@@ -242,6 +370,7 @@
                   loop
                   playsinline
                   preload="metadata"
+                  poster="assets/poster-tenant-add.png"
                 >
                   <source src="assets/tenant-add.m4v" type="video/mp4" />
                 </video>
@@ -308,6 +437,9 @@
               은행 앱을 켤 필요가 없습니다. 전체 호실의 납입 상태와 이번 달
               수납률이 첫 화면에 정리되어 있습니다.
             </p>
+            <a class="feature-link" href="/features/rent-collection.html"
+              >월세 수납 관리 보기</a
+            >
           </div>
           <div class="feature-card">
             <div class="feature-top">
@@ -334,6 +466,9 @@
               임차인별 납입 내역이 자동으로 쌓입니다. 누가 매번 늦는지, 누가
               항상 제때 내는지 한눈에 보입니다.
             </p>
+            <a class="feature-link" href="/features/small-landlord-app.html"
+              >임대관리 앱 보기</a
+            >
           </div>
           <div class="feature-card">
             <div class="feature-top">
@@ -357,6 +492,9 @@
               납입일이 지나면 알림을 보내드립니다. 더 이상 "이번 달 받았던가?"
               고민할 필요가 없습니다.
             </p>
+            <a class="feature-link" href="/features/contract-expiry.html"
+              >계약 만기 알림 보기</a
+            >
           </div>
           <div class="feature-card">
             <div class="feature-top">
@@ -383,115 +521,220 @@
               미납 안내 문구를 직접 작성하지 않아도 됩니다. 정해진 템플릿으로
               부담 없이 보낼 수 있게 됩니다.
             </p>
+            <a class="feature-link" href="/features/overdue-notice.html"
+              >월세 미납 안내 보기</a
+            >
           </div>
         </div>
       </div>
     </section>
 
+    <section class="section section-alt" id="faq">
+      <div class="section-inner">
+        <div class="faq-head">
+          <div class="section-label">자주 묻는 질문</div>
+          <h2>월세 수납 관리 전에<br />가장 많이 묻는 질문</h2>
+          <p class="section-desc">
+            랜디는 월세 입금 확인, 임대료 수납 체크, 미납 안내처럼 매달 반복되는
+            임대관리 업무를 줄이는 데 집중합니다.
+          </p>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary>랜디는 어떤 임대인에게 적합한가요?</summary>
+            <p>
+              원룸, 오피스텔, 상가처럼 여러 호실의 월세 입금 확인과 임대료 수납
+              관리를 반복하는 소규모 임대인에게 적합합니다.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>월세 미납은 어떻게 확인하나요?</summary>
+            <p>
+              임차인과 호실, 월세, 납입일을 등록하면 랜디가 매달 납입 상태를
+              정리하고 미납 또는 확인 필요 상태를 알려줍니다.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>임차인에게 미납 안내를 보낼 수 있나요?</summary>
+            <p>
+              미납 안내 문구를 직접 작성하지 않아도 정해진 템플릿을 바탕으로
+              임차인에게 부담 없이 안내할 수 있도록 준비하고 있습니다.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>베타 기간에는 비용이 있나요?</summary>
+            <p>
+              베타 기간에는 모든 기능을 무료로 사용할 수 있으며, 전화번호를
+              남기면 베타 안내 연락을 받을 수 있습니다.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <section class="beta-section" id="beta">
-      <div class="section-label">베타 테스터 모집</div>
+      <div class="section-label">선착순 100명 한정 모집</div>
       <h2>"이번 달 월세 들어왔나?"<br />더 이상 묻지 마세요</h2>
       <p class="section-desc">
-        지금 베타에 참여하시면, 초기 사용자로서 정식 출시 후에도 무료 혜택이
-        이어집니다.<br />
-        전화번호를 남겨주시면 베타 신청이 완료됩니다.
+        베타 1기는 단 100명.
+        <strong>첫 3개월 무료 + 이후 1년간 80% 할인</strong> 혜택이 함께
+        제공됩니다.
       </p>
-      <form
-        class="phone-form"
-        id="signupForm"
-        action="/api/beta-signup"
-        method="POST"
-        novalidate
-      >
-        <label class="sr-only" for="phoneInput">전화번호</label>
-        <input
-          class="phone-input"
-          type="tel"
-          placeholder="전화번호를 입력해주세요"
-          id="phoneInput"
-          name="phone"
-          autocomplete="tel"
-          inputmode="tel"
-          pattern="01[016789]-?[0-9]{3,4}-?[0-9]{4}"
-          required
-        />
-        <button class="btn-beta" id="submitButton" type="submit">
-          신청하기
-        </button>
-      </form>
+
+      <div class="beta-perks">
+        <div class="beta-perk">
+          <div class="beta-perk-top">
+            <span class="beta-perk-icon" aria-hidden="true">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="20 12 20 22 4 22 4 12"></polyline>
+                <rect x="2" y="7" width="20" height="5"></rect>
+                <line x1="12" y1="22" x2="12" y2="7"></line>
+                <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+                <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+              </svg>
+            </span>
+            <span class="beta-perk-num">01</span>
+          </div>
+          <h4>초기 사용자 혜택</h4>
+          <p>
+            베타 1기에 한해 정식 출시 후 3개월 무료, 이어서 1년간 80%
+            할인된 가격으로 사용하실 수 있습니다.
+          </p>
+        </div>
+        <div class="beta-perk">
+          <div class="beta-perk-top">
+            <span class="beta-perk-icon" aria-hidden="true">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+                ></path>
+              </svg>
+            </span>
+            <span class="beta-perk-num">02</span>
+          </div>
+          <h4>1:1 도입 지원</h4>
+          <p>임차인 등록·계좌 연동까지 운영팀이 직접 도와드립니다.</p>
+        </div>
+        <div class="beta-perk">
+          <div class="beta-perk-top">
+            <span class="beta-perk-icon" aria-hidden="true">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M20 7L9 18l-5-5"></path>
+              </svg>
+            </span>
+            <span class="beta-perk-num">03</span>
+          </div>
+          <h4>신규 기능 우선 사용</h4>
+          <p>
+            연체 알림·임차인 안내 등 출시 예정 기능을 가장 먼저 만나보실 수
+            있습니다.
+          </p>
+        </div>
+      </div>
+
+      <div class="form-wrap">
+        <div class="form-nudge">
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <polyline points="19 12 12 19 5 12"></polyline>
+          </svg>
+          전화번호 한 줄이면 신청 완료
+        </div>
+        <form
+          class="email-form"
+          id="signupForm"
+          action="/api/beta-signup"
+          method="POST"
+          novalidate
+        >
+          <label class="sr-only" for="phoneInput">전화번호</label>
+          <div class="email-input-wrap">
+            <span class="mail-icon" aria-hidden="true">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"
+                ></path>
+              </svg>
+            </span>
+            <input
+              class="email-input"
+              type="tel"
+              inputmode="tel"
+              placeholder="010-0000-0000"
+              id="phoneInput"
+              name="phone"
+              autocomplete="tel-national"
+              pattern="01[016789]-?[0-9]{3,4}-?[0-9]{4}"
+              required
+            />
+          </div>
+          <button class="btn-beta" id="submitButton" type="submit">
+            <span data-submit-label>신청하기</span>
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </form>
+      </div>
       <p class="form-message" id="formMessage" aria-live="polite">
         전화번호 제출 시 베타 안내 연락 수신에 동의한 것으로 간주되며, 이외의
         용도로는 사용되지 않습니다.
       </p>
-
-      <div
-        class="brand-identity"
-        id="identity"
-        aria-label="랜디 브랜드 아이덴티티"
-      >
-        <div class="brand-identity-inner">
-          <div class="brand-identity-mark" aria-hidden="true">
-            <svg viewBox="0 0 200 200" focusable="false">
-              <rect
-                x="50"
-                y="50"
-                width="100"
-                height="100"
-                rx="8"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="10"
-              />
-              <circle cx="70" cy="70" r="6" fill="currentColor" opacity="0.9" />
-              <circle
-                cx="100"
-                cy="70"
-                r="6"
-                fill="currentColor"
-                opacity="0.9"
-              />
-              <circle
-                cx="130"
-                cy="70"
-                r="6"
-                fill="currentColor"
-                opacity="0.9"
-              />
-              <circle
-                cx="70"
-                cy="100"
-                r="6"
-                fill="currentColor"
-                opacity="0.9"
-              />
-              <circle cx="100" cy="100" r="9" fill="currentColor" />
-              <circle
-                cx="130"
-                cy="100"
-                r="6"
-                fill="currentColor"
-                opacity="0.9"
-              />
-              <circle
-                cx="100"
-                cy="130"
-                r="6"
-                fill="currentColor"
-                opacity="0.9"
-              />
-              <circle
-                cx="130"
-                cy="130"
-                r="6"
-                fill="currentColor"
-                opacity="0.9"
-              />
-            </svg>
-          </div>
-          <p class="brand-identity-name">Landy.</p>
-          <p class="brand-identity-tagline">소규모 임대인의 가장 작은 사무실</p>
-        </div>
-      </div>
     </section>
 
     <footer>
