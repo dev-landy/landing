@@ -7,37 +7,37 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://rentlog-landing.vercel.app/features/rent-collection.html</loc>
+    <loc>https://rentlog-landing.vercel.app/features/rent-collection</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://rentlog-landing.vercel.app/features/overdue-notice.html</loc>
+    <loc>https://rentlog-landing.vercel.app/features/overdue-notice</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://rentlog-landing.vercel.app/features/contract-expiry.html</loc>
+    <loc>https://rentlog-landing.vercel.app/features/contract-expiry</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://rentlog-landing.vercel.app/features/small-landlord-app.html</loc>
+    <loc>https://rentlog-landing.vercel.app/features/small-landlord-app</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://rentlog-landing.vercel.app/legal/privacy-policy.html</loc>
+    <loc>https://rentlog-landing.vercel.app/legal/privacy-policy</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://rentlog-landing.vercel.app/legal/data-deletion.html</loc>
+    <loc>https://rentlog-landing.vercel.app/legal/data-deletion</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
