@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://rentlog-landing.vercel.app/sitemap.xml
+Sitemap: https://landing.landy.co.kr/sitemap.xml
