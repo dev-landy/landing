@@ -73,7 +73,8 @@ nav {
   flex: 0 0 auto;
   color: #1e3a8a;
 }
-.logo-mark svg {
+.logo-mark img {
+  display: block;
   width: 32px;
   height: 32px;
 }
@@ -1119,55 +1120,6 @@ h2 {
   line-height: 1.14;
   letter-spacing: 0;
 }
-.inquiry-moment-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-}
-.inquiry-moment-card {
-  min-height: 250px;
-  padding: 24px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #fff;
-  box-shadow: 0 18px 34px rgba(15, 23, 42, 0.06);
-}
-.inquiry-moment-card span {
-  display: inline-flex;
-  margin-bottom: 46px;
-  color: var(--blue);
-  font-size: 13px;
-  font-weight: 800;
-}
-.inquiry-moment-card h3 {
-  color: var(--navy);
-  font-size: 24px;
-  font-weight: 800;
-  line-height: 1.25;
-  letter-spacing: 0;
-}
-.inquiry-moment-card p {
-  margin-top: 12px;
-  color: var(--text-muted);
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 1.65;
-}
-.inquiry-moment-card:nth-child(2) {
-  border-color: #bbf7d0;
-  background: #f7fef9;
-}
-.inquiry-moment-card:nth-child(3) {
-  border-color: #fde68a;
-  background: #fffbeb;
-}
-.inquiry-moment-card.is-alert {
-  border-color: #fecaca;
-  background: #fffafa;
-}
-.inquiry-moment-card.is-alert span {
-  color: var(--red);
-}
 .inquiry-story-section {
   padding: 92px 40px;
   background: #fff;
@@ -1796,9 +1748,11 @@ h2 {
   height: 112px;
   color: rgba(255, 255, 255, 0.96);
 }
-.brand-identity-mark svg {
+.brand-identity-mark img {
+  display: block;
   width: 104px;
   height: 104px;
+  filter: brightness(0) invert(1);
 }
 .brand-identity-name {
   margin-top: 8px;
@@ -1838,6 +1792,9 @@ footer .logo {
 }
 .footer-logo .logo-mark {
   color: #60a5fa;
+}
+.footer-logo .logo-mark img {
+  filter: brightness(0) invert(1);
 }
 .footer-logo .logo-word {
   color: #fff;
@@ -2668,7 +2625,7 @@ footer .logo {
     width: 88px;
     height: 88px;
   }
-  .brand-identity-mark svg {
+  .brand-identity-mark img {
     width: 84px;
     height: 84px;
   }
