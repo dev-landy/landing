@@ -107,7 +107,6 @@
               <span>/</span>
               <span>임차인 문의 대응</span>
             </div>
-            <p class="hero-eyebrow">임차인 문의 대응 자동화</p>
             <h1>같은 질문에<br />매번 답하고 있나요?</h1>
             <p class="hero-sub">
               반복되는 사소한 문의는 등록한 답변으로 자동으로
@@ -122,11 +121,44 @@
               >
             </div>
           </div>
-          <div class="inquiry-visual" aria-label="임차인 문의 대응 광고 이미지">
-            <img
-              src="../assets/tenant-inquiry-response.png"
-              alt="같은 질문을 반복해서 답하는 임대인을 위한 랜디 문의 대응 광고"
-            />
+          <div
+            class="inquiry-visual"
+            role="img"
+            aria-label="반복 문의 푸시알림 예시"
+          >
+            <div class="inquiry-push-stack" aria-hidden="true">
+              <article class="inquiry-push-card">
+                <span class="inquiry-push-icon inquiry-push-icon-talk">TALK</span>
+                <div class="inquiry-push-content">
+                  <strong>입금 계좌를 까먹었어요</strong>
+                  <span>오후 9:41</span>
+                </div>
+                <span class="inquiry-push-badge">3</span>
+              </article>
+              <article class="inquiry-push-card">
+                <span class="inquiry-push-icon inquiry-push-icon-chat"></span>
+                <div class="inquiry-push-content">
+                  <strong>와이파이 비번 뭐예요?</strong>
+                  <span>오후 9:41</span>
+                </div>
+                <span class="inquiry-push-badge">2</span>
+              </article>
+              <article class="inquiry-push-card">
+                <span class="inquiry-push-icon inquiry-push-icon-talk">TALK</span>
+                <div class="inquiry-push-content">
+                  <strong>입주 안내 부탁드려요</strong>
+                  <span>오후 9:41</span>
+                </div>
+                <span class="inquiry-push-badge">1</span>
+              </article>
+              <article class="inquiry-push-card">
+                <span class="inquiry-push-icon inquiry-push-icon-chat"></span>
+                <div class="inquiry-push-content">
+                  <strong>분리수거는 언제죠?</strong>
+                  <span>오후 9:41</span>
+                </div>
+              </article>
+            </div>
           </div>
         </div>
       </section>
@@ -175,22 +207,24 @@
             <p class="seo-kicker">호실별 안내</p>
             <h2>같은 건물도<br />답은 다를 수 있으니까</h2>
             <p>
-              와이파이, 현관 비밀번호, 주차 위치처럼 호실마다 달라지는 정보는
-              한 답변으로 뭉개지지 않게 구분합니다.
+              호실마다 다른 정보는 호실별로 구분해서 답합니다. 와이파이, 현관 비밀번호, 주차 위치처럼요.
             </p>
           </div>
           <div class="inquiry-room-card" aria-label="호실별 답변 예시">
             <div>
               <span>201호</span>
-              <strong>와이파이 A / 주차 2번</strong>
+              <strong>“와이파이 비밀번호 다시 알려주세요”</strong>
+              <p>201호 전용 와이파이 안내</p>
             </div>
             <div>
               <span>302호</span>
-              <strong>와이파이 B / 주차 없음</strong>
+              <strong>“주차 어디에 하면 돼요?”</strong>
+              <p>302호 지정 주차 위치 안내</p>
             </div>
             <div>
               <span>501호</span>
-              <strong>공용 현관 / 택배함 안내</strong>
+              <strong>“입주 당일 뭐부터 하면 되죠?”</strong>
+              <p>공동현관, 택배함, 분리수거 안내</p>
             </div>
           </div>
         </div>
@@ -274,11 +308,11 @@
         <a class="footer-contact" href="mailto:support.landy@gmail.com"
           >support.landy@gmail.com</a
         >
-        <nav class="footer-links" aria-label="약관 및 정책">
-          <a href="/legal/privacy-policy">개인정보처리방침</a>
-          <a href="/legal/data-deletion">데이터 삭제 안내</a>
-        </nav>
       </div>
+      <nav class="footer-links" aria-label="약관 및 정책">
+        <a href="/legal/privacy-policy">개인정보처리방침</a>
+        <a href="/legal/data-deletion">데이터 삭제 안내</a>
+      </nav>
     </footer>
   </body>
 </html>
