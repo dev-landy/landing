@@ -38,6 +38,11 @@ module.exports = async function handler(req, res) {
   }
 
   const phone = typeof body.phone === "string" ? body.phone.trim() : "";
+  const requestedSource =
+    typeof body.source === "string" ? body.source.trim() : "";
+  const source = ["rent", "inquery"].includes(requestedSource)
+    ? requestedSource
+    : "rent";
 
   if (!phone) {
     return sendJson(res, 400, { error: "전화번호를 입력해주세요." });
@@ -61,6 +66,7 @@ module.exports = async function handler(req, res) {
           {
             fields: {
               Phone: phone,
+              Source: source,
             },
           },
         ],

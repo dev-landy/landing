@@ -7,6 +7,7 @@ const floatingBetaCta = document.querySelector(".floating-beta-cta");
 const firstContentSection = document.querySelector(".hero + .section");
 const betaSection = document.getElementById("beta");
 const defaultMessage = formMessage.textContent;
+const signupSource = form.dataset.source || "rent";
 let phoneInputStarted = false;
 let phoneFormViewed = false;
 let pendingPhoneFormEntryPoint = "scroll";
@@ -21,6 +22,7 @@ function sendPhoneFormView(entryPoint = "scroll") {
   phoneFormViewed = true;
   sendAnalyticsEvent("beta_phone_form_view", {
     entry_point: entryPoint,
+    source: signupSource,
   });
 }
 
@@ -44,6 +46,7 @@ document.querySelectorAll('a[href="#beta"]').forEach((link) => {
     pendingPhoneFormEntryPoint = buttonLocation;
     sendAnalyticsEvent("beta_apply_click", {
       button_location: buttonLocation,
+      source: signupSource,
     });
   });
 });
@@ -83,6 +86,7 @@ form.addEventListener("submit", async (event) => {
   if (!phoneInput.validity.valid) {
     sendAnalyticsEvent("beta_apply_fail", {
       reason: "validation_error",
+      source: signupSource,
     });
     setFormMessage("error", "올바른 전화번호를 입력해주세요.");
     phoneInput.focus();
@@ -94,12 +98,13 @@ form.addEventListener("submit", async (event) => {
   setFormMessage("", "신청 정보를 전송하고 있습니다.");
   sendAnalyticsEvent("beta_apply_submit", {
     method: "phone",
+    source: signupSource,
   });
 
   try {
     const response = await fetch(form.action, {
       method: "POST",
-      body: JSON.stringify({ phone }),
+      body: JSON.stringify({ phone, source: signupSource }),
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -114,6 +119,7 @@ form.addEventListener("submit", async (event) => {
     submitButton.disabled = true;
     sendAnalyticsEvent("beta_apply_success", {
       method: "phone",
+      source: signupSource,
     });
     setFormMessage(
       "success",
@@ -122,6 +128,7 @@ form.addEventListener("submit", async (event) => {
   } catch (error) {
     sendAnalyticsEvent("beta_apply_fail", {
       reason: "api_error",
+      source: signupSource,
     });
     setFormMessage(
       "error",
@@ -140,6 +147,7 @@ phoneInput.addEventListener("input", () => {
     phoneInputStarted = true;
     sendAnalyticsEvent("beta_phone_input_start", {
       field_name: "phone",
+      source: signupSource,
     });
   }
 
