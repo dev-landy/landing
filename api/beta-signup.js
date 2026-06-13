@@ -40,7 +40,9 @@ module.exports = async function handler(req, res) {
   const phone = typeof body.phone === "string" ? body.phone.trim() : "";
   const requestedSource =
     typeof body.source === "string" ? body.source.trim() : "";
-  const source = ["rent", "inquery"].includes(requestedSource)
+  const source = ["rent", "inquery", "move_out_dispute"].includes(
+    requestedSource,
+  )
     ? requestedSource
     : "rent";
 

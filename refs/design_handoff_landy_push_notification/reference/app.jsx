@@ -28,7 +28,7 @@ function LandyCurrentNotification(){
         </div>
         <div style={{fontSize:14, fontWeight:700, marginTop:3}}>월세 입금 확인</div>
         <div style={{fontSize:12.5, lineHeight:1.4, marginTop:2, opacity:0.78}}>
-          102호실 임차인 홍길동님의 월세 입금을 확인했어요. 월세 수납 이력을 업데이트할게요.
+          102호실 세입자 홍길동님의 월세 입금을 확인했어요. 월세 수납 이력을 업데이트할게요.
         </div>
       </div>
       {/* "before" tag */}
@@ -135,7 +135,7 @@ function Intro(){
         {[
           ['브랜드 컬러', '#1E3A8A 네이비 — Landy 디자인 시스템 그대로'],
           ['로고', '3×3 호실 그리드 마크 (Landy 시그니처)'],
-          ['핵심 위계', '금액(헤드라인) → 호수·임차인 → 상태'],
+          ['핵심 위계', '금액(헤드라인) → 호수·세입자 → 상태'],
           ['모션 원칙', '0.4–0.6s · easeOutBack 계열 “착지감”'],
         ].map(([k,v]) => (
           <div key={k} style={{
@@ -163,7 +163,7 @@ function App(){
         <NotifBoard
           kicker="V1 · Color Pop"
           title="카드 전체를 Landy 네이비로"
-          blurb="다른 다크 알림들 사이에서 단 하나만 Landy 네이비로 떠오릅니다. 금액이 Pretendard tnum으로 크게, 호실·임차인은 칩으로 정리. 도착 시 카드가 살짝 튀어오르며 호실 그리드 로고가 스탬프처럼 찍히고 링 펄스가 퍼집니다."
+          blurb="다른 다크 알림들 사이에서 단 하나만 Landy 네이비로 떠오릅니다. 금액이 Pretendard tnum으로 크게, 호실·세입자은 칩으로 정리. 도착 시 카드가 살짝 튀어오르며 호실 그리드 로고가 스탬프처럼 찍히고 링 펄스가 퍼집니다."
         >
           <LandyV1_ColorPop/>
         </NotifBoard>

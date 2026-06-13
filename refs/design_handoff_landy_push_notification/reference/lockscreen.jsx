@@ -155,7 +155,7 @@ function GenericBankNotification() {
         <div style={{ fontSize: 14, fontWeight: 700, marginTop: 3 }}>입금 700,000원</div>
         <div style={{ fontSize: 12.5, lineHeight: 1.4, marginTop: 2, opacity: 0.92 }}>
           건물주님 05/17 15:00 933862-**-****21<br />
-          홍*동 FBS입금 700,000 잔액 20,900,000
+          홍길동 FBS입금 700,000 잔액 20,900,000
         </div>
       </div>
     </div>);

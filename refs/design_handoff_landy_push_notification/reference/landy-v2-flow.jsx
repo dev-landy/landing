@@ -66,7 +66,7 @@ function FlowBankNotification(){
         <div style={{fontSize:14, fontWeight:700, marginTop:3}}>입금 700,000원</div>
         <div style={{fontSize:12.5, lineHeight:1.4, marginTop:2, opacity:0.92}}>
           건물주님 05/17 15:00 933862-**-****21<br/>
-          홍*동 FBS입금 700,000 잔액 20,900,000
+          홍길동 FBS입금 700,000 잔액 20,900,000
         </div>
       </div>
     </div>
@@ -286,7 +286,7 @@ function Page(){
           maxWidth:680, color:'var(--ink-2)', lineHeight:1.6, fontSize:14.5, margin:0,
         }}>
           은행 알림은 ‘무슨 입금인지’를 알려주지 않습니다. Landy는 입금을 인식한 직후
-          자체 푸시를 보내 ‘어느 호실 · 어떤 임차인 · 이번 달 진행도’를 한 줄에 묶어줍니다.
+          자체 푸시를 보내 ‘어느 호실 · 어떤 세입자 · 이번 달 진행도’를 한 줄에 묶어줍니다.
           실제 모바일 OS에서 가능한 자연스러운 순차 알림 시퀀스로만 구성했어요.
         </p>
       </div>
