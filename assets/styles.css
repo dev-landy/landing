@@ -2016,7 +2016,7 @@ h2 {
 .form-wrap {
   position: relative;
   z-index: 1;
-  max-width: 520px;
+  max-width: 620px;
   margin: 0 auto 14px;
   padding: 22px;
   border: 1px solid rgba(147, 197, 253, 0.28);
@@ -2093,7 +2093,8 @@ h2 {
   position: relative;
   display: flex;
   align-items: center;
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
 }
 .email-input-wrap .mail-icon {
   position: absolute;

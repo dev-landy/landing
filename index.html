@@ -620,7 +620,8 @@
         대신합니다.
       </h2>
       <p class="section-desc">
-        다가구·다세대 관리하시는 임대인분이라면, 번호만 남기고 먼저 써보세요.
+        다가구·다세대 관리하시는 임대인분이라면, 전화번호나 이메일을 남기고
+        먼저 써보세요.
       </p>
 
       <div class="form-wrap">
@@ -631,9 +632,10 @@
           action="/api/beta-signup"
           method="POST"
           data-source="rent"
+          data-feature-interest="rent_collection"
           novalidate
         >
-          <label class="sr-only" for="phoneInput">전화번호</label>
+          <label class="sr-only" for="contactInput">전화번호 또는 이메일</label>
           <div class="email-input-wrap">
             <span class="mail-icon" aria-hidden="true">
               <svg
@@ -646,21 +648,20 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <path
-                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"
-                ></path>
+                <rect width="18" height="14" x="3" y="5" rx="2"></rect>
+                <path d="M7 9h4"></path>
+                <path d="M7 13h10"></path>
+                <circle cx="16" cy="9" r="1.5"></circle>
               </svg>
             </span>
             <input
               class="email-input"
-              type="tel"
-              inputmode="tel"
-              placeholder="010-0000-0000"
-              id="phoneInput"
-              name="phone"
-              autocomplete="tel-national"
-              pattern="01[016789]-?[0-9]{3,4}-?[0-9]{4}"
-              required
+              type="text"
+              inputmode="email"
+              placeholder="010-0000-0000 또는 name@example.com"
+              id="contactInput"
+              name="contact"
+              autocomplete="on"
             />
           </div>
           <button class="btn-beta" id="submitButton" type="submit">
@@ -682,8 +683,8 @@
         </form>
       </div>
       <p class="form-message" id="formMessage" aria-live="polite">
-        전화번호 제출 시 베타 안내 연락 수신에 동의한 것으로 간주되며, 이외의
-        용도로는 사용되지 않습니다.
+        전화번호 또는 이메일을 제출하면 베타 안내 연락 수신에 동의한 것으로
+        간주되며, 이외의 용도로는 사용되지 않습니다.
       </p>
 
       <div class="brand-identity" aria-label="랜디 브랜드">

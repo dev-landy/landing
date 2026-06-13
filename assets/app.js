@@ -1,5 +1,5 @@
 const form = document.getElementById("signupForm");
-const phoneInput = document.getElementById("phoneInput");
+const contactInput = document.getElementById("contactInput");
 const submitButton = document.getElementById("submitButton");
 const submitButtonLabel = submitButton.querySelector("[data-submit-label]");
 const formMessage = document.getElementById("formMessage");
@@ -8,20 +8,64 @@ const firstContentSection = document.querySelector(".hero + .section");
 const betaSection = document.getElementById("beta");
 const defaultMessage = formMessage.textContent;
 const signupSource = form.dataset.source || "rent";
-let phoneInputStarted = false;
-let phoneFormViewed = false;
-let pendingPhoneFormEntryPoint = "scroll";
+const campaignGoal = form.dataset.campaignGoal || "demand_validation";
+const phonePattern = /^01[016789]-?[0-9]{3,4}-?[0-9]{4}$/;
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const featureInterestAliases = {
+  collection: "rent_collection",
+  inquiry: "tenant_inquiry_automation",
+  inquery: "tenant_inquiry_automation",
+  move_out_dispute: "moveout_dispute_record",
+  moveout_dispute: "moveout_dispute_record",
+  rent: "rent_collection",
+  rent_collection: "rent_collection",
+  tenant_inquiry: "tenant_inquiry_automation",
+  tenant_inquiry_automation: "tenant_inquiry_automation",
+  tenant_inquiry_response: "tenant_inquiry_automation",
+};
+let contactInputStarted = false;
+let contactFormViewed = false;
+let pendingContactFormEntryPoint = "scroll";
 const notificationFlows = document.querySelectorAll("[data-notification-flow]");
+
+function normalizeFeatureInterest(value) {
+  const normalized = String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/-/g, "_");
+  return featureInterestAliases[normalized] || normalized;
+}
+
+function getSearchParam(...names) {
+  const searchParams = new URLSearchParams(window.location.search);
+  for (const name of names) {
+    const value = searchParams.get(name);
+    if (value) return value;
+  }
+  return "";
+}
+
+const featureInterest =
+  normalizeFeatureInterest(
+    getSearchParam("feature_interest", "feature", "use_case", "utm_content"),
+  ) ||
+  normalizeFeatureInterest(form.dataset.featureInterest) ||
+  normalizeFeatureInterest(signupSource) ||
+  "unknown";
 
 function sendAnalyticsEvent(eventName, params = {}) {
   if (typeof gtag !== "function") return;
-  gtag("event", eventName, params);
+  gtag("event", eventName, {
+    campaign_goal: campaignGoal,
+    feature_interest: featureInterest,
+    ...params,
+  });
 }
 
-function sendPhoneFormView(entryPoint = "scroll") {
-  if (phoneFormViewed) return;
-  phoneFormViewed = true;
-  sendAnalyticsEvent("beta_phone_form_view", {
+function sendContactFormView(entryPoint = "scroll") {
+  if (contactFormViewed) return;
+  contactFormViewed = true;
+  sendAnalyticsEvent("beta_contact_form_view", {
     entry_point: entryPoint,
     source: signupSource,
   });
@@ -39,6 +83,26 @@ function setSubmitButtonText(message) {
   } else {
     submitButton.textContent = message;
   }
+}
+
+function getContactPayload(contact) {
+  if (phonePattern.test(contact)) {
+    return {
+      method: "phone",
+      phone: contact,
+      email: "",
+    };
+  }
+
+  if (emailPattern.test(contact)) {
+    return {
+      method: "email",
+      phone: "",
+      email: contact,
+    };
+  }
+
+  return null;
 }
 
 function startNotificationFlow(flow) {
@@ -122,7 +186,7 @@ notificationFlows.forEach(setupNotificationFlowStart);
 document.querySelectorAll('a[href="#beta"]').forEach((link) => {
   link.addEventListener("click", () => {
     const buttonLocation = link.dataset.betaLocation || "unknown";
-    pendingPhoneFormEntryPoint = buttonLocation;
+    pendingContactFormEntryPoint = buttonLocation;
     sendAnalyticsEvent("beta_apply_click", {
       button_location: buttonLocation,
       source: signupSource,
@@ -146,7 +210,7 @@ if ("IntersectionObserver" in window) {
   const betaObserver = new IntersectionObserver(
     (entries) => {
       if (entries.some((entry) => entry.isIntersecting)) {
-        sendPhoneFormView(pendingPhoneFormEntryPoint);
+        sendContactFormView(pendingContactFormEntryPoint);
         betaObserver.disconnect();
       }
     },
@@ -154,21 +218,33 @@ if ("IntersectionObserver" in window) {
   );
   betaObserver.observe(form);
 } else {
-  sendPhoneFormView("fallback");
+  sendContactFormView("fallback");
 }
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  const phone = phoneInput.value.trim();
+  const contact = contactInput.value.trim();
 
-  if (!phoneInput.validity.valid) {
+  if (!contact) {
+    sendAnalyticsEvent("beta_apply_fail", {
+      reason: "missing_contact",
+      source: signupSource,
+    });
+    setFormMessage("error", "전화번호 또는 이메일을 입력해주세요.");
+    contactInput.focus();
+    return;
+  }
+
+  const contactPayload = getContactPayload(contact);
+
+  if (!contactPayload) {
     sendAnalyticsEvent("beta_apply_fail", {
       reason: "validation_error",
       source: signupSource,
     });
-    setFormMessage("error", "올바른 전화번호를 입력해주세요.");
-    phoneInput.focus();
+    setFormMessage("error", "전화번호 또는 이메일 형식을 확인해주세요.");
+    contactInput.focus();
     return;
   }
 
@@ -176,14 +252,18 @@ form.addEventListener("submit", async (event) => {
   setSubmitButtonText("신청 중");
   setFormMessage("", "신청 정보를 전송하고 있습니다.");
   sendAnalyticsEvent("beta_apply_submit", {
-    method: "phone",
+    method: contactPayload.method,
     source: signupSource,
   });
 
   try {
     const response = await fetch(form.action, {
       method: "POST",
-      body: JSON.stringify({ phone, source: signupSource }),
+      body: JSON.stringify({
+        phone: contactPayload.phone,
+        email: contactPayload.email,
+        source: signupSource,
+      }),
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -193,11 +273,15 @@ form.addEventListener("submit", async (event) => {
     if (!response.ok) throw new Error("Beta signup failed");
 
     form.reset();
-    phoneInputStarted = false;
-    phoneInput.disabled = true;
+    contactInputStarted = false;
+    contactInput.disabled = true;
     submitButton.disabled = true;
     sendAnalyticsEvent("beta_apply_success", {
-      method: "phone",
+      method: contactPayload.method,
+      source: signupSource,
+    });
+    sendAnalyticsEvent("generate_lead", {
+      method: contactPayload.method,
       source: signupSource,
     });
     setFormMessage(
@@ -221,11 +305,11 @@ form.addEventListener("submit", async (event) => {
   }
 });
 
-phoneInput.addEventListener("input", () => {
-  if (!phoneInputStarted) {
-    phoneInputStarted = true;
-    sendAnalyticsEvent("beta_phone_input_start", {
-      field_name: "phone",
+contactInput.addEventListener("input", () => {
+  if (!contactInputStarted) {
+    contactInputStarted = true;
+    sendAnalyticsEvent("beta_contact_input_start", {
+      field_name: "contact",
       source: signupSource,
     });
   }
