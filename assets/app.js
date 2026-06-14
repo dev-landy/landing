@@ -33,7 +33,7 @@ function normalizeFeatureInterest(value) {
     .trim()
     .toLowerCase()
     .replace(/-/g, "_");
-  return featureInterestAliases[normalized] || normalized;
+  return featureInterestAliases[normalized] || "";
 }
 
 function getSearchParam(...names) {
