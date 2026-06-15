@@ -282,7 +282,7 @@
               data-feature-interest="moveout_dispute_record"
               novalidate
             >
-              <label class="sr-only" for="contactInput">전화번호 또는 이메일</label>
+              <label class="sr-only" for="contactInput">전화번호</label>
               <div class="email-input-wrap">
                 <span class="mail-icon" aria-hidden="true">
                   <svg
@@ -303,12 +303,13 @@
                 </span>
                 <input
                   class="email-input"
-                  type="text"
-                  inputmode="email"
-                  placeholder="010-0000-0000 또는 name@example.com"
+                  type="tel"
+                  inputmode="tel"
+                  placeholder="010-0000-0000"
                   id="contactInput"
-                  name="contact"
-                  autocomplete="on"
+                  name="phone"
+                  autocomplete="tel-national"
+                  required
                 />
               </div>
               <button class="btn-beta" id="submitButton" type="submit">
@@ -330,8 +331,8 @@
             </form>
           </div>
           <p class="form-message" id="formMessage" aria-live="polite">
-            전화번호 또는 이메일을 제출하면 베타 안내 연락 수신에 동의한 것으로
-            간주되며, 이외의 용도로는 사용되지 않습니다.
+            전화번호를 제출하면 베타 안내 연락 수신에 동의한 것으로 간주되며,
+            이외의 용도로는 사용되지 않습니다.
           </p>
         </div>
       </section>

@@ -10,7 +10,6 @@ const defaultMessage = formMessage.textContent;
 const signupSource = form.dataset.source || "rent";
 const campaignGoal = form.dataset.campaignGoal || "demand_validation";
 const phonePattern = /^01[016789]-?[0-9]{3,4}-?[0-9]{4}$/;
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const featureInterestAliases = {
   collection: "rent_collection",
   inquiry: "tenant_inquiry_automation",
@@ -90,15 +89,6 @@ function getContactPayload(contact) {
     return {
       method: "phone",
       phone: contact,
-      email: "",
-    };
-  }
-
-  if (emailPattern.test(contact)) {
-    return {
-      method: "email",
-      phone: "",
-      email: contact,
     };
   }
 
@@ -231,7 +221,7 @@ form.addEventListener("submit", async (event) => {
       reason: "missing_contact",
       source: signupSource,
     });
-    setFormMessage("error", "전화번호 또는 이메일을 입력해주세요.");
+    setFormMessage("error", "전화번호를 입력해주세요.");
     contactInput.focus();
     return;
   }
@@ -243,7 +233,7 @@ form.addEventListener("submit", async (event) => {
       reason: "validation_error",
       source: signupSource,
     });
-    setFormMessage("error", "전화번호 또는 이메일 형식을 확인해주세요.");
+    setFormMessage("error", "전화번호 형식을 확인해주세요.");
     contactInput.focus();
     return;
   }
@@ -261,7 +251,6 @@ form.addEventListener("submit", async (event) => {
       method: "POST",
       body: JSON.stringify({
         phone: contactPayload.phone,
-        email: contactPayload.email,
         source: signupSource,
       }),
       headers: {
@@ -309,7 +298,7 @@ contactInput.addEventListener("input", () => {
   if (!contactInputStarted) {
     contactInputStarted = true;
     sendAnalyticsEvent("beta_contact_input_start", {
-      field_name: "contact",
+      field_name: "phone",
       source: signupSource,
     });
   }

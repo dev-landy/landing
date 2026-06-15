@@ -284,7 +284,7 @@
           대신합니다.
         </h2>
         <p class="section-desc">
-          다가구·다세대 관리하시는 임대인분이라면, 전화번호나 이메일을 남기고
+          다가구·다세대 관리하시는 임대인분이라면, 전화번호를 남기고
           먼저 써보세요.
         </p>
 
@@ -298,7 +298,7 @@
             data-feature-interest="tenant_inquiry_automation"
             novalidate
           >
-            <label class="sr-only" for="contactInput">전화번호 또는 이메일</label>
+            <label class="sr-only" for="contactInput">전화번호</label>
             <div class="email-input-wrap">
               <span class="mail-icon" aria-hidden="true">
                 <svg
@@ -319,12 +319,13 @@
               </span>
               <input
                 class="email-input"
-                type="text"
-                inputmode="email"
-                placeholder="010-0000-0000 또는 name@example.com"
+                type="tel"
+                inputmode="tel"
+                placeholder="010-0000-0000"
                 id="contactInput"
-                name="contact"
-                autocomplete="on"
+                name="phone"
+                autocomplete="tel-national"
+                required
               />
             </div>
             <button class="btn-beta" id="submitButton" type="submit">
@@ -346,8 +347,8 @@
           </form>
         </div>
         <p class="form-message" id="formMessage" aria-live="polite">
-          전화번호 또는 이메일을 제출하면 베타 안내 연락 수신에 동의한 것으로
-          간주되며, 이외의 용도로는 사용되지 않습니다.
+          전화번호를 제출하면 베타 안내 연락 수신에 동의한 것으로 간주되며,
+          이외의 용도로는 사용되지 않습니다.
         </p>
       </section>
     </main>

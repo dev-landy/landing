@@ -1,7 +1,6 @@
 const AIRTABLE_URL =
   "https://api.airtable.com/v0/appRAwoskx9Eea5Me/tblsNjJi1VZIuvIx3";
 const PHONE_PATTERN = /^01[016789]-?[0-9]{3,4}-?[0-9]{4}$/;
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function sendJson(res, statusCode, payload) {
   res.status(statusCode).json(payload);
@@ -39,9 +38,10 @@ module.exports = async function handler(req, res) {
     return sendJson(res, 400, { error: "요청 형식이 올바르지 않습니다." });
   }
 
-  let phone = typeof body.phone === "string" ? body.phone.trim() : "";
-  let email = typeof body.email === "string" ? body.email.trim() : "";
+  const requestedPhone =
+    typeof body.phone === "string" ? body.phone.trim() : "";
   const contact = typeof body.contact === "string" ? body.contact.trim() : "";
+  const phone = requestedPhone || contact;
   const requestedSource =
     typeof body.source === "string" ? body.source.trim() : "";
   const source = ["rent", "inquery", "move_out_dispute"].includes(
@@ -49,31 +49,13 @@ module.exports = async function handler(req, res) {
   )
     ? requestedSource
     : "rent";
-  if (!phone && !email && contact) {
-    if (PHONE_PATTERN.test(contact)) {
-      phone = contact;
-    } else if (EMAIL_PATTERN.test(contact)) {
-      email = contact;
-    }
+
+  if (!phone) {
+    return sendJson(res, 400, { error: "전화번호를 입력해주세요." });
   }
 
-  const hasPhone = phone.length > 0;
-  const hasEmail = email.length > 0;
-
-  if (!hasPhone && !hasEmail) {
-    return sendJson(res, 400, {
-      error: contact
-        ? "전화번호 또는 이메일 형식을 확인해주세요."
-        : "전화번호 또는 이메일을 입력해주세요.",
-    });
-  }
-
-  if (hasPhone && !PHONE_PATTERN.test(phone)) {
+  if (!PHONE_PATTERN.test(phone)) {
     return sendJson(res, 400, { error: "올바른 전화번호를 입력해주세요." });
-  }
-
-  if (hasEmail && !EMAIL_PATTERN.test(email)) {
-    return sendJson(res, 400, { error: "올바른 이메일 주소를 입력해주세요." });
   }
 
   const token = process.env.AIRTABLE_TOKEN;
@@ -84,9 +66,8 @@ module.exports = async function handler(req, res) {
 
   const fields = {
     Source: source,
+    Phone: phone,
   };
-  if (hasPhone) fields.Phone = phone;
-  if (hasEmail) fields.Email = email;
 
   try {
     const response = await fetch(AIRTABLE_URL, {
