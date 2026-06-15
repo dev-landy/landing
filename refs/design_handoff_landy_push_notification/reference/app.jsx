@@ -163,7 +163,7 @@ function App(){
         <NotifBoard
           kicker="V1 · Color Pop"
           title="카드 전체를 Landy 네이비로"
-          blurb="다른 다크 알림들 사이에서 단 하나만 Landy 네이비로 떠오릅니다. 금액이 Pretendard tnum으로 크게, 호실·세입자은 칩으로 정리. 도착 시 카드가 살짝 튀어오르며 호실 그리드 로고가 스탬프처럼 찍히고 링 펄스가 퍼집니다."
+          blurb="다른 다크 알림들 사이에서 단 하나만 Landy 네이비로 떠오릅니다. 금액이 Pretendard tnum으로 크게, 호실·세입자는 칩으로 정리. 도착 시 카드가 살짝 튀어오르며 호실 그리드 로고가 스탬프처럼 찍히고 링 펄스가 퍼집니다."
         >
           <LandyV1_ColorPop/>
         </NotifBoard>
