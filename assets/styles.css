@@ -1488,11 +1488,13 @@ h2 {
   line-height: 1;
   letter-spacing: 0;
 }
-.inquiry-push-icon-chat {
+.inquiry-push-icon-chat,
+.inquiry-app-icon.inquiry-message-icon-chat {
   position: relative;
   background: #4cd964;
 }
-.inquiry-push-icon-chat::before {
+.inquiry-push-icon-chat::before,
+.inquiry-app-icon.inquiry-message-icon-chat::before {
   content: "";
   position: absolute;
   top: 12px;
@@ -1502,7 +1504,8 @@ h2 {
   border-radius: 10px;
   background: #fff;
 }
-.inquiry-push-icon-chat::after {
+.inquiry-push-icon-chat::after,
+.inquiry-app-icon.inquiry-message-icon-chat::after {
   content: "";
   position: absolute;
   left: 15px;
@@ -1695,34 +1698,14 @@ h2 {
   font-weight: 800;
   line-height: 1;
 }
+.inquiry-app-icon.inquiry-message-icon-chat {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+}
 .inquiry-app-talk {
   background: #0b0b0b;
   color: #fee500;
-}
-.inquiry-app-chat {
-  position: relative;
-  background: #36d86a;
-}
-.inquiry-app-chat::before {
-  content: "";
-  position: absolute;
-  top: 14px;
-  left: 11px;
-  width: 26px;
-  height: 18px;
-  border-radius: 11px;
-  background: #fff;
-}
-.inquiry-app-chat::after {
-  content: "";
-  position: absolute;
-  left: 17px;
-  bottom: 12px;
-  width: 9px;
-  height: 9px;
-  background: #fff;
-  border-bottom-left-radius: 2px;
-  clip-path: polygon(0 0, 100% 0, 0 100%);
 }
 .inquiry-alert-card h3 {
   color: var(--navy);
