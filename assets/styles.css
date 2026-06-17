@@ -3,6 +3,15 @@
   padding: 0;
   box-sizing: border-box;
 }
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 45 920;
+  font-display: swap;
+  src:
+    url("fonts/PretendardVariable.woff2") format("woff2-variations"),
+    url("fonts/PretendardVariable.woff2") format("woff2");
+}
 :root {
   --navy: #0b1730;
   --navy-mid: #172845;
