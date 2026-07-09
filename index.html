@@ -42,7 +42,7 @@
       property="og:image:alt"
       content="랜디 월세 수납 자동화 앱 소개 이미지"
     />
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content="summary_large  _image" />
     <meta
       name="twitter:title"
       content="랜디 | 임대인을 위한 월세 수납 자동화 앱"
@@ -148,7 +148,6 @@
         </span>
         <span class="logo-word">랜디</span>
       </div>
-      <a class="nav-cta" href="#beta" data-beta-location="nav">베타 신청하기</a>
     </nav>
 
     <section class="hero">
@@ -159,9 +158,21 @@
         자동으로 확인하고, 연체가 발생하면 바로 알려드립니다.
       </p>
       <div class="hero-cta-group">
-        <a class="btn-primary" href="#beta" data-beta-location="hero"
-          >베타 신청하기</a
+        <a
+          class="store-badge hero-store-badge"
+          href="https://play.google.com/store/apps/details?id=com.landy.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-beta-location="hero"
+          aria-label="Google Play에서 랜디 다운로드"
         >
+          <img
+            src="/assets/google-play-badge.png"
+            alt="Google Play에서 다운로드"
+            width="200"
+            height="77"
+          />
+        </a>
         <a class="btn-ghost" href="#how">어떻게 작동하나요?</a>
       </div>
       <div class="hero-showcase" aria-label="랜디 알림 도착 흐름">
@@ -609,86 +620,32 @@
     </section>
 
     <section class="beta-section" id="beta">
-      <div
-        class="section-label beta-status-badge"
-        aria-label="베타 테스터 모집 중, 현재 신청 가능"
-      >
-        <span class="beta-status-copy">베타 테스터 모집 중</span>
-        <span class="beta-status-divider" aria-hidden="true"></span>
-        <span class="beta-status-state">현재 신청 가능</span>
-      </div>
       <h2>
         월세 입금 확인,<br />이제 <span class="brand-highlight">랜디</span>가
         대신합니다.
       </h2>
       <p class="section-desc">
-        다가구·다세대 관리하시는 임대인분이라면, 전화번호를 남기고
+        다가구·다세대 관리하시는 임대인분이라면, 지금 앱을 설치하고
         먼저 써보세요.
       </p>
 
-      <div class="form-wrap">
-
-        <form
-          class="email-form"
-          id="signupForm"
-          action="/api/beta-signup"
-          method="POST"
-          data-source="rent"
-          data-feature-interest="rent_collection"
-          novalidate
+      <div class="store-cta">
+        <a
+          class="store-badge"
+          href="https://play.google.com/store/apps/details?id=com.landy.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-beta-location="beta_section"
+          aria-label="Google Play에서 랜디 다운로드"
         >
-          <label class="sr-only" for="contactInput">전화번호</label>
-          <div class="email-input-wrap">
-            <span class="mail-icon" aria-hidden="true">
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <rect width="18" height="14" x="3" y="5" rx="2"></rect>
-                <path d="M7 9h4"></path>
-                <path d="M7 13h10"></path>
-                <circle cx="16" cy="9" r="1.5"></circle>
-              </svg>
-            </span>
-            <input
-              class="email-input"
-              type="tel"
-              inputmode="tel"
-              placeholder="010-0000-0000"
-              id="contactInput"
-              name="phone"
-              autocomplete="tel-national"
-              required
-            />
-          </div>
-          <button class="btn-beta" id="submitButton" type="submit">
-            <span data-submit-label>신청하기</span>
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </button>
-        </form>
+          <img
+            src="/assets/google-play-badge.png"
+            alt="Google Play에서 다운로드"
+            width="220"
+            height="85"
+          />
+        </a>
       </div>
-      <p class="form-message" id="formMessage" aria-live="polite">
-        전화번호를 제출하면 베타 안내 연락 수신에 동의한 것으로 간주되며,
-        이외의 용도로는 사용되지 않습니다.
-      </p>
 
       <div class="brand-identity" aria-label="랜디 브랜드">
         <div class="brand-identity-inner">
@@ -734,11 +691,20 @@
     </footer>
 
     <a
-      class="floating-beta-cta"
-      href="#beta"
+      class="floating-beta-cta floating-store-badge"
+      href="https://play.google.com/store/apps/details?id=com.landy.app"
+      target="_blank"
+      rel="noopener noreferrer"
       data-beta-location="floating_bottom"
-      >베타 신청하기</a
+      aria-label="Google Play에서 랜디 다운로드"
     >
+      <img
+        src="/assets/google-play-badge.png"
+        alt="Google Play에서 다운로드"
+        width="168"
+        height="65"
+      />
+    </a>
 
     <script src="assets/app.js" defer></script>
   </body>

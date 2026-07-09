@@ -1,14 +1,16 @@
 const form = document.getElementById("signupForm");
 const contactInput = document.getElementById("contactInput");
 const submitButton = document.getElementById("submitButton");
-const submitButtonLabel = submitButton.querySelector("[data-submit-label]");
+const submitButtonLabel = submitButton
+  ? submitButton.querySelector("[data-submit-label]")
+  : null;
 const formMessage = document.getElementById("formMessage");
 const floatingBetaCta = document.querySelector(".floating-beta-cta");
 const firstContentSection = document.querySelector(".hero + .section");
 const betaSection = document.getElementById("beta");
-const defaultMessage = formMessage.textContent;
-const signupSource = form.dataset.source || "rent";
-const campaignGoal = form.dataset.campaignGoal || "demand_validation";
+const defaultMessage = formMessage ? formMessage.textContent : "";
+const signupSource = (form && form.dataset.source) || "rent";
+const campaignGoal = (form && form.dataset.campaignGoal) || "demand_validation";
 const phonePattern = /^01[016789]-?[0-9]{3,4}-?[0-9]{4}$/;
 const featureInterestAliases = {
   collection: "rent_collection",
@@ -48,7 +50,7 @@ const featureInterest =
   normalizeFeatureInterest(
     getSearchParam("feature_interest", "feature", "use_case", "utm_content"),
   ) ||
-  normalizeFeatureInterest(form.dataset.featureInterest) ||
+  normalizeFeatureInterest(form ? form.dataset.featureInterest : "") ||
   normalizeFeatureInterest(signupSource) ||
   "unknown";
 
@@ -71,6 +73,7 @@ function sendContactFormView(entryPoint = "scroll") {
 }
 
 function setFormMessage(type, message) {
+  if (!formMessage) return;
   formMessage.className = "form-message";
   if (type) formMessage.classList.add(type);
   formMessage.textContent = message;
@@ -79,7 +82,7 @@ function setFormMessage(type, message) {
 function setSubmitButtonText(message) {
   if (submitButtonLabel) {
     submitButtonLabel.textContent = message;
-  } else {
+  } else if (submitButton) {
     submitButton.textContent = message;
   }
 }
@@ -173,7 +176,7 @@ function setupNotificationFlowStart(flow) {
 
 notificationFlows.forEach(setupNotificationFlowStart);
 
-document.querySelectorAll('a[href="#beta"]').forEach((link) => {
+document.querySelectorAll("[data-beta-location]").forEach((link) => {
   link.addEventListener("click", () => {
     const buttonLocation = link.dataset.betaLocation || "unknown";
     pendingContactFormEntryPoint = buttonLocation;
@@ -196,114 +199,118 @@ updateFloatingCta();
 window.addEventListener("scroll", updateFloatingCta, { passive: true });
 window.addEventListener("resize", updateFloatingCta);
 
-if ("IntersectionObserver" in window) {
-  const betaObserver = new IntersectionObserver(
-    (entries) => {
-      if (entries.some((entry) => entry.isIntersecting)) {
-        sendContactFormView(pendingContactFormEntryPoint);
-        betaObserver.disconnect();
-      }
-    },
-    { threshold: 0.35 },
-  );
-  betaObserver.observe(form);
-} else {
-  sendContactFormView("fallback");
+if (form) {
+  if ("IntersectionObserver" in window) {
+    const betaObserver = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          sendContactFormView(pendingContactFormEntryPoint);
+          betaObserver.disconnect();
+        }
+      },
+      { threshold: 0.35 },
+    );
+    betaObserver.observe(form);
+  } else {
+    sendContactFormView("fallback");
+  }
 }
 
-form.addEventListener("submit", async (event) => {
-  event.preventDefault();
+if (form) {
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-  const contact = contactInput.value.trim();
+    const contact = contactInput.value.trim();
 
-  if (!contact) {
-    sendAnalyticsEvent("beta_apply_fail", {
-      reason: "missing_contact",
+    if (!contact) {
+      sendAnalyticsEvent("beta_apply_fail", {
+        reason: "missing_contact",
+        source: signupSource,
+      });
+      setFormMessage("error", "전화번호를 입력해주세요.");
+      contactInput.focus();
+      return;
+    }
+
+    const contactPayload = getContactPayload(contact);
+
+    if (!contactPayload) {
+      sendAnalyticsEvent("beta_apply_fail", {
+        reason: "validation_error",
+        source: signupSource,
+      });
+      setFormMessage("error", "전화번호 형식을 확인해주세요.");
+      contactInput.focus();
+      return;
+    }
+
+    submitButton.disabled = true;
+    setSubmitButtonText("신청 중");
+    setFormMessage("", "신청 정보를 전송하고 있습니다.");
+    sendAnalyticsEvent("beta_apply_submit", {
+      method: contactPayload.method,
       source: signupSource,
     });
-    setFormMessage("error", "전화번호를 입력해주세요.");
-    contactInput.focus();
-    return;
-  }
 
-  const contactPayload = getContactPayload(contact);
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: JSON.stringify({
+          phone: contactPayload.phone,
+          source: signupSource,
+        }),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
 
-  if (!contactPayload) {
-    sendAnalyticsEvent("beta_apply_fail", {
-      reason: "validation_error",
-      source: signupSource,
-    });
-    setFormMessage("error", "전화번호 형식을 확인해주세요.");
-    contactInput.focus();
-    return;
-  }
+      if (!response.ok) throw new Error("Beta signup failed");
 
-  submitButton.disabled = true;
-  setSubmitButtonText("신청 중");
-  setFormMessage("", "신청 정보를 전송하고 있습니다.");
-  sendAnalyticsEvent("beta_apply_submit", {
-    method: contactPayload.method,
-    source: signupSource,
+      form.reset();
+      contactInputStarted = false;
+      contactInput.disabled = true;
+      submitButton.disabled = true;
+      sendAnalyticsEvent("beta_apply_success", {
+        method: contactPayload.method,
+        source: signupSource,
+      });
+      sendAnalyticsEvent("generate_lead", {
+        method: contactPayload.method,
+        source: signupSource,
+      });
+      setFormMessage(
+        "success",
+        "베타 신청이 완료되었습니다. 안내 연락을 드리겠습니다.",
+      );
+    } catch (error) {
+      sendAnalyticsEvent("beta_apply_fail", {
+        reason: "api_error",
+        source: signupSource,
+      });
+      setFormMessage(
+        "error",
+        "신청을 완료하지 못했습니다. 잠시 후 다시 시도해주세요.",
+      );
+    } finally {
+      if (!formMessage.classList.contains("success")) {
+        submitButton.disabled = false;
+        setSubmitButtonText("신청하기");
+      }
+    }
   });
 
-  try {
-    const response = await fetch(form.action, {
-      method: "POST",
-      body: JSON.stringify({
-        phone: contactPayload.phone,
+  contactInput.addEventListener("input", () => {
+    if (!contactInputStarted) {
+      contactInputStarted = true;
+      sendAnalyticsEvent("beta_contact_input_start", {
+        field_name: "phone",
         source: signupSource,
-      }),
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (!response.ok) throw new Error("Beta signup failed");
-
-    form.reset();
-    contactInputStarted = false;
-    contactInput.disabled = true;
-    submitButton.disabled = true;
-    sendAnalyticsEvent("beta_apply_success", {
-      method: contactPayload.method,
-      source: signupSource,
-    });
-    sendAnalyticsEvent("generate_lead", {
-      method: contactPayload.method,
-      source: signupSource,
-    });
-    setFormMessage(
-      "success",
-      "베타 신청이 완료되었습니다. 안내 연락을 드리겠습니다.",
-    );
-  } catch (error) {
-    sendAnalyticsEvent("beta_apply_fail", {
-      reason: "api_error",
-      source: signupSource,
-    });
-    setFormMessage(
-      "error",
-      "신청을 완료하지 못했습니다. 잠시 후 다시 시도해주세요.",
-    );
-  } finally {
-    if (!formMessage.classList.contains("success")) {
-      submitButton.disabled = false;
-      setSubmitButtonText("신청하기");
+      });
     }
-  }
-});
 
-contactInput.addEventListener("input", () => {
-  if (!contactInputStarted) {
-    contactInputStarted = true;
-    sendAnalyticsEvent("beta_contact_input_start", {
-      field_name: "phone",
-      source: signupSource,
-    });
-  }
-
-  if (!formMessage.classList.contains("success")) {
-    setFormMessage("", defaultMessage);
-  }
-});
+    if (!formMessage.classList.contains("success")) {
+      setFormMessage("", defaultMessage);
+    }
+  });
+}
