@@ -184,6 +184,17 @@ document.querySelectorAll("[data-beta-location]").forEach((link) => {
       button_location: buttonLocation,
       source: signupSource,
     });
+
+    // Amplitude 퍼널 종점: Google Play 배지 클릭만 (피처 페이지 nav 링크는 제외).
+    const isStoreBadge =
+      link.classList.contains("store-badge") ||
+      (link.getAttribute("href") || "").includes("play.google.com");
+    if (isStoreBadge && typeof window.trackAmplitude === "function") {
+      window.trackAmplitude("google_play_click", {
+        button_location: buttonLocation,
+        source: signupSource,
+      });
+    }
   });
 });
 
