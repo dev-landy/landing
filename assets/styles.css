@@ -2198,28 +2198,96 @@ h2 {
   max-width: 100%;
   height: auto;
 }
-.hero-store-badge img {
-  width: 200px;
+.google-play-button,
+.hero-cta-group .btn-ghost {
+  width: 220px;
+  height: 66px;
+  border-radius: 14px;
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s,
+    opacity 0.24s,
+    transform 0.2s;
+}
+.google-play-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+}
+.google-play-button:not(.floating-store-badge) {
+  position: relative;
+}
+.google-play-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+.google-play-button:focus-visible {
+  border-radius: 14px;
+}
+.google-play-button img {
+  display: block;
+  width: 220px;
+  max-width: none;
+  height: auto;
+  flex: 0 0 auto;
+  border-radius: inherit;
+}
+.hero-cta-group .btn-ghost {
+  padding: 0 20px;
+}
+.google-play-button:hover,
+.hero-cta-group .btn-ghost:hover {
+  border-color: #fff;
+  box-shadow: 0 10px 24px rgba(2, 6, 23, 0.28);
+  transform: translateY(-2px);
+}
+.google-play-button:hover::after {
+  opacity: 1;
+}
+.nav-store-badge {
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 136px;
+  height: 41px;
+  flex: 0 0 auto;
+  border-radius: 8px;
+}
+.nav-store-badge:focus-visible {
+  border-radius: 8px;
+}
+.nav-store-badge img {
+  width: 136px;
+  max-width: none;
+  flex: 0 0 auto;
 }
 .floating-store-badge {
+  position: fixed;
+  width: 168px;
+  height: 50px;
   min-height: 0;
   padding: 0;
-  border: none;
   background: none;
   box-shadow: none;
-  border-radius: 12px;
 }
 .floating-store-badge:hover {
   background: none;
-  border-color: transparent;
-  box-shadow: none;
+  transform: translate(-50%, -2px);
 }
 .floating-store-badge img {
   display: block;
   width: 168px;
   height: auto;
   margin: 0 auto;
-  filter: drop-shadow(0 12px 26px rgba(2, 6, 23, 0.4));
 }
 .privacy-note {
   max-width: 560px;
@@ -3355,20 +3423,7 @@ footer .logo {
     font-size: 14px;
   }
   .floating-beta-cta {
-    right: 18px;
-    left: 18px;
     bottom: calc(14px + env(safe-area-inset-bottom));
-    width: auto;
-    min-height: 52px;
-    padding: 0 20px;
-    font-size: 15px;
-    transform: translateY(18px);
-  }
-  .floating-beta-cta.is-visible {
-    transform: none;
-  }
-  .floating-beta-cta:hover {
-    transform: translateY(-2px);
   }
   footer {
     padding: 28px 18px;
