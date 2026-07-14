@@ -2604,6 +2604,9 @@ footer .logo {
   margin-top: 0;
 }
 .footer-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
   color: #93c5fd;
   font-size: 13px;
   font-weight: 600;
