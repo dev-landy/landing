@@ -725,18 +725,6 @@ h1 em {
   overflow: hidden;
   box-shadow: 0 30px 70px rgba(0, 0, 0, 0.32);
 }
-.phone-frame::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 12px;
-  width: 92px;
-  height: 24px;
-  transform: translateX(-50%);
-  background: #111827;
-  border-radius: 0 0 16px 16px;
-  z-index: 2;
-}
 .phone-video {
   width: 100%;
   height: 100%;
