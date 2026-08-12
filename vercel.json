@@ -4,6 +4,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/index.php",
+      "destination": "https://www.landy.co.kr/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [
         {

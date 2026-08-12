@@ -28,6 +28,7 @@ let contactInputStarted = false;
 let contactFormViewed = false;
 let pendingContactFormEntryPoint = "scroll";
 const notificationFlows = document.querySelectorAll("[data-notification-flow]");
+const previewVideos = document.querySelectorAll("video[data-lazy-video]");
 
 function normalizeFeatureInterest(value) {
   const normalized = String(value || "")
@@ -175,6 +176,45 @@ function setupNotificationFlowStart(flow) {
 }
 
 notificationFlows.forEach(setupNotificationFlowStart);
+
+function loadPreviewVideo(video) {
+  if (video.dataset.videoLoaded === "true") return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const sources = video.querySelectorAll("source[data-src]");
+  if (!sources.length) return;
+
+  sources.forEach((source) => {
+    source.src = source.dataset.src;
+    source.removeAttribute("data-src");
+  });
+  video.dataset.videoLoaded = "true";
+  video.load();
+
+  const playAttempt = video.play();
+  if (playAttempt && typeof playAttempt.catch === "function") {
+    playAttempt.catch(() => {});
+  }
+}
+
+if (previewVideos.length) {
+  if ("IntersectionObserver" in window) {
+    const videoObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          loadPreviewVideo(entry.target);
+          observer.unobserve(entry.target);
+        });
+      },
+      { rootMargin: "320px 0px", threshold: 0.01 },
+    );
+
+    previewVideos.forEach((video) => videoObserver.observe(video));
+  } else {
+    previewVideos.forEach(loadPreviewVideo);
+  }
+}
 
 document.querySelectorAll("[data-beta-location]").forEach((link) => {
   link.addEventListener("click", () => {

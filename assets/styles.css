@@ -7,7 +7,8 @@
   font-family: "Pretendard";
   font-style: normal;
   font-weight: 45 920;
-  font-display: swap;
+  /* Avoid a late 2 MB webfont swap from becoming the page's LCP. */
+  font-display: optional;
   src:
     url("fonts/PretendardVariable.woff2") format("woff2-variations"),
     url("fonts/PretendardVariable.woff2") format("woff2");
@@ -529,7 +530,7 @@ h1 em {
   font-size: 14px;
   line-height: 1;
 }
-.flow-notification h2 {
+.flow-notification .notification-title {
   margin: 3px 0 0;
   color: #fff;
   font-size: 14px;
@@ -601,6 +602,7 @@ h1 em {
 }
 .flow-notification .landy-title {
   margin-top: 4px;
+  color: #fff;
   font-size: 16px;
   font-weight: 800;
   line-height: 1.2;
