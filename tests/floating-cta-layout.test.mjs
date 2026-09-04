@@ -4,55 +4,36 @@ import { dirname, resolve } from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
 
-const stylesPath = resolve(
-  dirname(fileURLToPath(import.meta.url)),
-  "../assets/styles.css",
-);
-const styles = readFileSync(stylesPath, "utf8");
+const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const styles = readFileSync(resolve(root, "assets/styles.css"), "utf8");
+const html = readFileSync(resolve(root, "index.html"), "utf8");
 
-function getRuleBodies(selector) {
-  const escapedSelector = selector.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const matches = [
-    ...styles.matchAll(
-      new RegExp(`${escapedSelector}\\s*\\{([^}]*)\\}`, "gs"),
-    ),
-  ];
-
-  assert.ok(matches.length > 0, `expected ${selector} rule`);
-  return matches.map((match) => match[1]);
-}
-
-function getRuleBody(selector) {
-  return getRuleBodies(selector)[0];
-}
-
-test("floating Google Play button remains fixed to the viewport", () => {
-  assert.doesNotMatch(getRuleBody(".google-play-button"), /position:/);
-  assert.match(getRuleBody(".floating-store-badge"), /position:\s*fixed;/);
+test("both floating store links stay inside one viewport-fixed container", () => {
+  const floating = html.match(/<aside\b[^>]*class="floating-beta-cta"[^>]*>([\s\S]*?)<\/aside>/)?.[1];
+  assert.ok(floating);
+  assert.equal([...floating.matchAll(/<a\b/g)].length, 2);
+  assert.match(floating, /data-store="app-store"/);
+  assert.match(floating, /data-store="google-play"/);
+  const containerRule = styles.match(/\.floating-beta-cta\s*\{([^}]*)\}/)?.[1];
+  assert.match(containerRule, /position:\s*fixed;/);
+  assert.match(containerRule, /env\(safe-area-inset-bottom\)/);
 });
 
-test("Google Play badge image keeps rounded corners in the mobile layout", () => {
-  assert.match(
-    getRuleBody(".google-play-button img"),
-    /border-radius:\s*inherit;/,
-  );
+test("hidden floating links are hidden from keyboard navigation as well", () => {
+  const hiddenRule = styles.match(/\.floating-beta-cta\s*\{([^}]*)\}/)?.[1];
+  const visibleRule = styles.match(/\.floating-beta-cta\.is-visible\s*\{([^}]*)\}/)?.[1];
+  assert.match(hiddenRule, /visibility:\s*hidden;/);
+  assert.match(visibleRule, /visibility:\s*visible;/);
 });
 
-test("mobile floating button preserves the badge-sized component layout", () => {
-  const floatingCtaRules = getRuleBodies(".floating-beta-cta");
-  const floatingBadgeRule = getRuleBody(".floating-store-badge");
-  const mobileRule = floatingCtaRules.at(-1);
-
-  assert.match(floatingBadgeRule, /width:\s*168px;/);
-  assert.match(floatingBadgeRule, /height:\s*50px;/);
-  assert.match(
-    mobileRule,
-    /bottom:\s*calc\(14px \+ env\(safe-area-inset-bottom\)\);/,
-  );
-  assert.doesNotMatch(
-    mobileRule,
-    /(?:right|left|width|min-height|padding|font-size|transform):/,
-  );
-  assert.equal(getRuleBodies(".floating-beta-cta.is-visible").length, 1);
-  assert.equal(getRuleBodies(".floating-beta-cta:hover").length, 1);
+test("pre-release App Store CTAs lead to a real launch notice without a fake download URL", () => {
+  const appleLinks = [...html.matchAll(/<a\b[^>]*data-store="app-store"[^>]*>/g)].map(match => match[0]);
+  assert.equal(appleLinks.length, 3);
+  for (const link of appleLinks) {
+    assert.match(link, /href="#app-store-release"/);
+    assert.match(link, /data-store-status="coming-soon"/);
+    assert.match(link, /aria-describedby="app-store-release"/);
+    assert.doesNotMatch(link, /target="_blank"/);
+  }
+  assert.match(html, /id="app-store-release"[^>]*>[\s\S]*?iPhone 앱은 출시 준비 중입니다\./);
 });

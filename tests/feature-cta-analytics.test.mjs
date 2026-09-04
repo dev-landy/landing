@@ -33,17 +33,14 @@ test("released feature pages wire hero and bottom store CTAs to analytics", () =
   }
 });
 
-test("shared click handler emits GA and Amplitude store events", () => {
+function clickTrackedLink({ href, dataset = {}, isStoreBadge = false }) {
   let clickHandler;
   const gtagCalls = [];
   const amplitudeCalls = [];
   const link = {
-    dataset: { betaLocation: "hero" },
-    classList: { contains: () => false },
-    getAttribute: (name) =>
-      name === "href"
-        ? "https://play.google.com/store/apps/details?id=com.landy.app"
-        : null,
+    dataset: { betaLocation: "hero", ...dataset },
+    classList: { contains: (name) => name === "store-badge" && isStoreBadge },
+    getAttribute: (name) => (name === "href" ? href : null),
     addEventListener: (name, handler) => {
       if (name === "click") clickHandler = handler;
     },
@@ -81,13 +78,60 @@ test("shared click handler emits GA and Amplitude store events", () => {
   );
   clickHandler();
 
-  assert.ok(
-    gtagCalls.some(
-      ([command, eventName]) =>
-        command === "event" && eventName === "beta_apply_click",
-    ),
-  );
-  assert.deepEqual(JSON.parse(JSON.stringify(amplitudeCalls)), [
-    ["google_play_click", { button_location: "hero", source: "rent" }],
+  return JSON.parse(JSON.stringify({ gtagCalls, amplitudeCalls }));
+}
+
+function assertClickEvents(result, storeEvent) {
+  const baseParams = { button_location: "hero", source: "rent" };
+  const gaParams = {
+    campaign_goal: "demand_validation",
+    feature_interest: "rent_collection",
+    ...baseParams,
+  };
+  assert.deepEqual(result.gtagCalls, [
+    ["event", "beta_apply_click", gaParams],
+    ...(storeEvent ? [["event", storeEvent, gaParams]] : []),
   ]);
+  assert.deepEqual(
+    result.amplitudeCalls,
+    storeEvent ? [[storeEvent, baseParams]] : [],
+  );
+}
+
+test("legacy Google Play links preserve their funnel event and emit a GA store event", () => {
+  assertClickEvents(
+    clickTrackedLink({
+      href: "https://play.google.com/store/apps/details?id=com.landy.app",
+    }),
+    "google_play_click",
+  );
+});
+
+test("ready App Store badges are tracked separately from Google Play", () => {
+  assertClickEvents(
+    clickTrackedLink({
+      href: "https://apps.apple.com/kr/app/id1234567890",
+      dataset: { store: "app-store" },
+      isStoreBadge: true,
+    }),
+    "app_store_click",
+  );
+});
+
+test("pending App Store badges record release interest without a download event", () => {
+  assertClickEvents(
+    clickTrackedLink({
+      href: "#app-store-release",
+      dataset: { store: "app-store", storeStatus: "coming-soon" },
+      isStoreBadge: true,
+    }),
+    "app_store_coming_soon_click",
+  );
+});
+
+test("non-store beta CTAs keep their existing GA event without a store event", () => {
+  assertClickEvents(
+    clickTrackedLink({ href: "#beta", isStoreBadge: true }),
+    null,
+  );
 });

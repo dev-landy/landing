@@ -225,15 +225,32 @@ document.querySelectorAll("[data-beta-location]").forEach((link) => {
       source: signupSource,
     });
 
-    // Amplitude 퍼널 종점: Google Play 배지 클릭만 (피처 페이지 nav 링크는 제외).
-    const isStoreBadge =
-      link.classList.contains("store-badge") ||
-      (link.getAttribute("href") || "").includes("play.google.com");
-    if (isStoreBadge && typeof window.trackAmplitude === "function") {
-      window.trackAmplitude("google_play_click", {
-        button_location: buttonLocation,
-        source: signupSource,
-      });
+    // 기존 피처 페이지는 URL로 판별하고, 신규 배지는 명시된 스토어를 우선합니다.
+    const href = link.getAttribute("href") || "";
+    const store =
+      link.dataset.store ||
+      (/^https:\/\/play\.google\.com(?:\/|$)/.test(href)
+        ? "google-play"
+        : /^https:\/\/apps\.apple\.com(?:\/|$)/.test(href)
+          ? "app-store"
+          : "");
+    const storeEvent =
+      store === "google-play"
+        ? "google_play_click"
+        : store === "app-store"
+          ? link.dataset.storeStatus === "coming-soon"
+            ? "app_store_coming_soon_click"
+            : "app_store_click"
+          : null;
+    if (!storeEvent) return;
+
+    const storeParams = {
+      button_location: buttonLocation,
+      source: signupSource,
+    };
+    sendAnalyticsEvent(storeEvent, storeParams);
+    if (typeof window.trackAmplitude === "function") {
+      window.trackAmplitude(storeEvent, storeParams);
     }
   });
 });

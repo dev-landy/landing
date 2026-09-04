@@ -142,7 +142,7 @@
       }
     </script>
   </head>
-  <body>
+  <body class="home-page">
     <nav aria-label="메인 메뉴">
       <div class="logo" aria-label="랜디">
         <span class="logo-mark" aria-hidden="true">
@@ -157,28 +157,40 @@
       <p class="hero-eyebrow">임대인의 시간을 아껴주는 월세관리 자동화 앱</p>
       <h1>매달 월세 입금 확인,<br /><em>직접 하고 계신가요?</em></h1>
       <p class="hero-sub">
-        이제 은행 입금 알림과 호실 정보를 일일이 대조하지 않아도 됩니다. 랜디가
-        Android 은행 입금 알림을 기기에서 분석해 월세 납부 후보를 정리하고,
-        사용자가 앱에서 확인할 수 있게 돕습니다.
+        호실별 월세와 납입일을 한눈에 확인하고,<br />
+        납부 내역을 간편하게 관리하세요.
       </p>
       <div class="hero-cta-group">
-        <a
-          class="store-badge google-play-button"
-          href="https://play.google.com/store/apps/details?id=com.landy.app"
-          target="_blank"
-          rel="noopener noreferrer"
-          data-beta-location="hero"
-          aria-label="Google Play에서 랜디 다운로드"
-        >
-          <img
-            src="/assets/google-play-badge.png"
-            alt="Google Play에서 다운로드"
-            width="220"
-            height="66"
-          />
-        </a>
-        <a class="btn-ghost" href="#how">어떻게 작동하나요?</a>
+        <div class="store-badge-pair">
+          <a
+            class="store-badge download-store-badge"
+            href="#app-store-release"
+            data-store="app-store"
+            data-store-status="coming-soon"
+            data-beta-location="hero"
+            aria-label="App Store에서 랜디 다운로드 — 출시 준비 중"
+            aria-describedby="app-store-release"
+          >
+            <img src="/assets/app-store-badge.svg" alt="App Store에서 다운로드" width="135" height="40" />
+          </a>
+          <a
+            class="store-badge download-store-badge"
+            href="https://play.google.com/store/apps/details?id=com.landy.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-store="google-play"
+            data-beta-location="hero"
+            aria-label="Google Play에서 랜디 다운로드"
+          >
+            <img src="/assets/google-play-badge.svg" alt="Google Play에서 다운로드" width="135" height="40" />
+          </a>
+        </div>
+        <a class="how-link" href="#how">어떻게 작동하나요? <span aria-hidden="true">→</span></a>
       </div>
+      <p class="platform-note">
+        은행 입금 알림 분석은 Android에서 제공됩니다.<br class="mobile-break" />
+        iPhone에서는 납부 내역을 직접 등록해 관리할 수 있어요.
+      </p>
       <div class="hero-showcase" aria-label="랜디 알림 도착 흐름">
         <div
           class="hero-lockscreen"
@@ -664,7 +676,7 @@
 
     <section class="beta-section" id="beta">
       <h2>
-        월세 납부 후보 확인,<br />이제 <span class="brand-highlight">랜디</span>와
+        매달 월세 관리,<br />이제 <span class="brand-highlight">랜디</span>와
         더 간단하게.
       </h2>
       <p class="section-desc">
@@ -672,22 +684,34 @@
       </p>
 
       <div class="store-cta">
-        <a
-          class="store-badge google-play-button"
-          href="https://play.google.com/store/apps/details?id=com.landy.app"
-          target="_blank"
-          rel="noopener noreferrer"
-          data-beta-location="beta_section"
-          aria-label="Google Play에서 랜디 다운로드"
-        >
-          <img
-            src="/assets/google-play-badge.png"
-            alt="Google Play에서 다운로드"
-            width="220"
-            height="66"
-          />
-        </a>
+        <div class="store-badge-pair">
+          <a
+            class="store-badge download-store-badge"
+            href="#app-store-release"
+            data-store="app-store"
+            data-store-status="coming-soon"
+            data-beta-location="beta_section"
+            aria-label="App Store에서 랜디 다운로드 — 출시 준비 중"
+            aria-describedby="app-store-release"
+          >
+            <img src="/assets/app-store-badge.svg" alt="App Store에서 다운로드" width="135" height="40" />
+          </a>
+          <a
+            class="store-badge download-store-badge"
+            href="https://play.google.com/store/apps/details?id=com.landy.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-store="google-play"
+            data-beta-location="beta_section"
+            aria-label="Google Play에서 랜디 다운로드"
+          >
+            <img src="/assets/google-play-badge.svg" alt="Google Play에서 다운로드" width="135" height="40" />
+          </a>
+        </div>
       </div>
+      <p class="store-availability" id="app-store-release" tabindex="-1">
+        iPhone 앱은 출시 준비 중입니다.<br />출시 후 App Store에서 다운로드할 수 있어요.
+      </p>
 
       <div class="brand-identity" aria-label="랜디 브랜드">
         <div class="brand-identity-inner">
@@ -734,21 +758,32 @@
       </div>
     </footer>
 
-    <a
-      class="floating-beta-cta floating-store-badge google-play-button"
-      href="https://play.google.com/store/apps/details?id=com.landy.app"
-      target="_blank"
-      rel="noopener noreferrer"
-      data-beta-location="floating_bottom"
-      aria-label="Google Play에서 랜디 다운로드"
-    >
-      <img
-        src="/assets/google-play-badge.png"
-        alt="Google Play에서 다운로드"
-        width="168"
-        height="50"
-      />
-    </a>
+    <aside class="floating-beta-cta" aria-label="앱 다운로드">
+      <div class="store-badge-pair">
+        <a
+          class="store-badge download-store-badge"
+          href="#app-store-release"
+          data-store="app-store"
+          data-store-status="coming-soon"
+          data-beta-location="floating_bottom"
+          aria-label="App Store에서 랜디 다운로드 — 출시 준비 중"
+          aria-describedby="app-store-release"
+        >
+          <img src="/assets/app-store-badge.svg" alt="App Store에서 다운로드" width="135" height="40" />
+        </a>
+        <a
+          class="store-badge download-store-badge"
+          href="https://play.google.com/store/apps/details?id=com.landy.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-store="google-play"
+          data-beta-location="floating_bottom"
+          aria-label="Google Play에서 랜디 다운로드"
+        >
+          <img src="/assets/google-play-badge.svg" alt="Google Play에서 다운로드" width="135" height="40" />
+        </a>
+      </div>
+    </aside>
 
     <script src="assets/app.js" defer></script>
   </body>
