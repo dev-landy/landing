@@ -2231,6 +2231,7 @@ h2 {
   outline-offset: 5px;
 }
 .how-link {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2239,8 +2240,16 @@ h2 {
   margin-top: 5px;
   color: #c6d3e6;
   font-size: 15px;
-  text-underline-offset: 5px;
-  text-decoration-color: #63728c;
+  text-decoration: none;
+}
+.how-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(50% - 0.8em);
+  height: 1px;
+  background: #63728c;
 }
 .how-link:hover {
   color: #fff;
