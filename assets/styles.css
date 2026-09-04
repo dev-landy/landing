@@ -893,27 +893,46 @@ h2 {
 .preview-panel .section-desc {
   margin-bottom: 0;
 }
+.platform-note-marker {
+  margin-left: 2px;
+  color: #7c8798;
+  font-size: 0.7em;
+  line-height: 0;
+}
+.platform-footnote {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-top: 8px;
+  color: #7c8798;
+  font-size: 12px;
+  line-height: 1.6;
+}
 .mobile-preview-list {
   grid-area: mobile;
   display: grid;
   gap: 56px;
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
 }
 .mobile-preview-item {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 322px;
-  gap: 56px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(128px, calc(100vw - 780px), 256px);
   align-items: center;
-}
-.mobile-preview-item:nth-child(2) {
-  grid-template-columns: 322px minmax(0, 1fr);
 }
 .mobile-preview-item:nth-child(2) .phone-shell {
   order: -1;
+  justify-self: start;
+}
+.mobile-preview-item:nth-child(2) .mobile-preview-copy {
   justify-self: end;
 }
 .mobile-preview-copy {
   width: 100%;
-  max-width: 460px;
+  max-width: 360px;
+  justify-self: start;
   padding-left: 18px;
   border-left: 2px solid var(--line-strong);
 }
@@ -939,6 +958,7 @@ h2 {
 }
 .mobile-preview-item .phone-shell {
   width: 322px;
+  justify-self: end;
 }
 
 .feature-head {
@@ -2971,13 +2991,6 @@ footer .logo {
   .how-layout {
     gap: 42px;
   }
-  .mobile-preview-item {
-    grid-template-columns: minmax(0, 1fr) 306px;
-    gap: 42px;
-  }
-  .mobile-preview-item:nth-child(2) {
-    grid-template-columns: 306px minmax(0, 1fr);
-  }
   .mobile-preview-item .phone-shell {
     width: 306px;
   }
@@ -3024,8 +3037,11 @@ footer .logo {
   }
   .mobile-preview-list {
     gap: 46px;
-    width: min(100%, 390px);
-    margin: 0 auto;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
   }
   .mobile-preview-item {
     display: flex;
@@ -3039,9 +3055,10 @@ footer .logo {
     justify-self: auto;
   }
   .mobile-preview-copy {
-    width: min(100%, 306px);
+    width: 100%;
     max-width: none;
-    padding-left: 16px;
+    padding-left: 0;
+    border-left: 0;
   }
   .mobile-preview-label {
     margin-bottom: 4px;
