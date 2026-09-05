@@ -238,9 +238,7 @@ document.querySelectorAll("[data-beta-location]").forEach((link) => {
       store === "google-play"
         ? "google_play_click"
         : store === "app-store"
-          ? link.dataset.storeStatus === "coming-soon"
-            ? "app_store_coming_soon_click"
-            : "app_store_click"
+          ? "app_store_click"
           : null;
     if (!storeEvent) return;
 

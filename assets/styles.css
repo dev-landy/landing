@@ -2269,22 +2269,6 @@ h2 {
 .home-page .hero-showcase {
   margin-top: 36px;
 }
-.store-availability {
-  position: relative;
-  z-index: 1;
-  margin: 0 auto;
-  color: #b9c9e1;
-  font-size: 14px;
-  line-height: 1.7;
-  scroll-margin-top: 100px;
-}
-.store-availability:focus {
-  outline: 2px solid #93c5fd;
-  outline-offset: 8px;
-  border-radius: 4px;
-  width: fit-content;
-  max-width: 100%;
-}
 .floating-beta-cta .store-badge-pair {
   gap: 24px;
   padding: 13px;

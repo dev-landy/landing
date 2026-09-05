@@ -26,14 +26,15 @@ test("hidden floating links are hidden from keyboard navigation as well", () => 
   assert.match(visibleRule, /visibility:\s*visible;/);
 });
 
-test("pre-release App Store CTAs lead to a real launch notice without a fake download URL", () => {
+test("released App Store CTAs open the published product page", () => {
   const appleLinks = [...html.matchAll(/<a\b[^>]*data-store="app-store"[^>]*>/g)].map(match => match[0]);
   assert.equal(appleLinks.length, 3);
   for (const link of appleLinks) {
-    assert.match(link, /href="#app-store-release"/);
-    assert.match(link, /data-store-status="coming-soon"/);
-    assert.match(link, /aria-describedby="app-store-release"/);
-    assert.doesNotMatch(link, /target="_blank"/);
+    assert.match(link, /href="https:\/\/apps\.apple\.com\/kr\/app\/id6804934479"/);
+    assert.match(link, /target="_blank"/);
+    assert.match(link, /rel="noopener noreferrer"/);
+    assert.doesNotMatch(link, /data-store-status/);
+    assert.doesNotMatch(link, /aria-describedby/);
   }
-  assert.match(html, /id="app-store-release"[^>]*>[\s\S]*?iPhone 앱은 출시 준비 중입니다\./);
+  assert.doesNotMatch(html, /app-store-release|출시 준비 중/);
 });

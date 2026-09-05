@@ -110,22 +110,11 @@ test("legacy Google Play links preserve their funnel event and emit a GA store e
 test("ready App Store badges are tracked separately from Google Play", () => {
   assertClickEvents(
     clickTrackedLink({
-      href: "https://apps.apple.com/kr/app/id1234567890",
+      href: "https://apps.apple.com/kr/app/id6804934479",
       dataset: { store: "app-store" },
       isStoreBadge: true,
     }),
     "app_store_click",
-  );
-});
-
-test("pending App Store badges record release interest without a download event", () => {
-  assertClickEvents(
-    clickTrackedLink({
-      href: "#app-store-release",
-      dataset: { store: "app-store", storeStatus: "coming-soon" },
-      isStoreBadge: true,
-    }),
-    "app_store_coming_soon_click",
   );
 });
 
