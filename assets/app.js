@@ -103,48 +103,17 @@ function startNotificationFlow(flow) {
   if (flow.dataset.flowStarted === "true") return;
   flow.dataset.flowStarted = "true";
 
-  const amountEl = flow.querySelector("[data-countup]");
-  if (!amountEl) return;
-
-  const target = Number(amountEl.dataset.countup || 0);
   const reduceMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",
   ).matches;
-  let countFrame = 0;
-  let countTimer = 0;
-  let replayTimer = 0;
-
-  function setAmount(value) {
-    amountEl.textContent = Math.round(value).toLocaleString("ko-KR");
-  }
-
-  function animateAmount() {
-    cancelAnimationFrame(countFrame);
-    const startedAt = performance.now();
-    const duration = 700;
-
-    function tick(now) {
-      const progress = Math.min(1, (now - startedAt) / duration);
-      const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-      setAmount(target * eased);
-      if (progress < 1) countFrame = requestAnimationFrame(tick);
-    }
-
-    countFrame = requestAnimationFrame(tick);
-  }
 
   function replay() {
-    clearTimeout(countTimer);
-    clearTimeout(replayTimer);
-    cancelAnimationFrame(countFrame);
-    setAmount(reduceMotion ? target : 0);
     flow.classList.remove("flow-running");
     void flow.offsetWidth;
     flow.classList.add("flow-running");
 
     if (!reduceMotion) {
-      countTimer = setTimeout(animateAmount, 1000);
-      replayTimer = setTimeout(replay, 3700);
+      setTimeout(replay, 3700);
     }
   }
 
@@ -152,9 +121,6 @@ function startNotificationFlow(flow) {
 }
 
 function setupNotificationFlowStart(flow) {
-  const amountEl = flow.querySelector("[data-countup]");
-  if (amountEl) amountEl.textContent = "0";
-
   if (!("IntersectionObserver" in window)) {
     startNotificationFlow(flow);
     return;

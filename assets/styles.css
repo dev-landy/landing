@@ -499,50 +499,15 @@ h1 em {
   opacity: 0;
   transform: translateX(-6px);
 }
-.landy-amount {
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
-  margin-top: 8px;
-  font-feature-settings: "tnum";
-  letter-spacing: 0;
+.flow-notification .landy-message {
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  word-break: keep-all;
   opacity: 0;
   transform: translateX(-6px);
-}
-.landy-amount span {
-  color: #fff;
-  font-size: 26px;
-  font-weight: 800;
-  line-height: 1;
-}
-.landy-amount small {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 13px;
-  font-weight: 600;
-}
-.flow-notification .landy-meta {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 10px;
-  color: rgba(255, 255, 255, 0.82);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.4;
-  opacity: 0;
-  transform: translateX(-6px);
-}
-.landy-meta span {
-  width: 6px;
-  height: 6px;
-  flex: 0 0 auto;
-  border-radius: 50%;
-  background: #52d97f;
-  box-shadow: 0 0 6px rgba(82, 217, 127, 0.7);
-}
-.landy-meta strong {
-  min-width: 0;
-  font-weight: 500;
 }
 .flow-running .landy-rail {
   animation: landy-rail-in 0.5s cubic-bezier(0.2, 0.9, 0.25, 1.1) 0.85s both;
@@ -553,11 +518,8 @@ h1 em {
 .flow-running .landy-title {
   animation: landy-content-in 0.45s cubic-bezier(0.2, 0.9, 0.25, 1) 0.87s both;
 }
-.flow-running .landy-amount {
+.flow-running .landy-message {
   animation: landy-content-in 0.45s cubic-bezier(0.2, 0.9, 0.25, 1) 0.97s both;
-}
-.flow-running .landy-meta {
-  animation: landy-content-in 0.45s ease 1.17s both;
 }
 @keyframes notification-slide-in {
   from {
@@ -3161,9 +3123,6 @@ footer .logo {
   .flow-notification .landy-title {
     font-size: 15px;
   }
-  .landy-amount span {
-    font-size: 24px;
-  }
   .section {
     padding: 62px 24px;
   }
@@ -3849,9 +3808,8 @@ main[id],
   .flow-notification,
   .landy-rail,
   .landy-icon,
-  .landy-title,
-  .landy-amount,
-  .landy-meta {
+  .flow-notification .landy-title,
+  .flow-notification .landy-message {
     animation: none !important;
     opacity: 1;
     transform: none;
