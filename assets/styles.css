@@ -312,63 +312,30 @@ h1 em {
   padding: 15px 24px 6px;
   color: #fff;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1;
 }
 .hero-status-icons {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  height: 14px;
 }
 .hero-status-icons svg {
-  width: 16px;
+  display: block;
+  flex: 0 0 auto;
   height: 12px;
-}
-.hero-status-icons svg rect,
-.hero-status-icons svg circle {
   fill: currentColor;
 }
-.hero-status-icons svg path {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linecap: round;
+.hero-cellular {
+  width: 18px;
 }
-.hero-battery {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  padding: 2px 5px 2px 6px;
-  border-radius: 5px;
-  background: rgba(255, 255, 255, 0.95);
-  color: #000;
-  font-size: 10px;
-  font-weight: 800;
+.hero-wifi {
+  width: 16.782px;
 }
-.hero-battery i {
-  position: relative;
-  width: 14px;
-  height: 7px;
-  border: 1.2px solid #000;
-  border-radius: 2px;
-}
-.hero-battery i::before {
-  content: "";
-  position: absolute;
-  inset: 1px auto 1px 1px;
-  width: 10px;
-  border-radius: 1px;
-  background: #000;
-}
-.hero-battery i::after {
-  content: "";
-  position: absolute;
-  top: 1.6px;
-  right: -3px;
-  width: 1.4px;
-  height: 3px;
-  border-radius: 1px;
-  background: #000;
+.hero-status-icons .hero-battery {
+  width: 25.667px;
+  height: 14px;
 }
 .hero-lock-time {
   display: grid;

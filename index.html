@@ -257,22 +257,24 @@
           <div class="hero-statusbar" aria-hidden="true">
             <span>KT</span>
             <span class="hero-status-icons">
-              <svg viewBox="0 0 24 24" focusable="false">
-                <rect x="2" y="10" width="3" height="7" rx="0.6" />
-                <rect x="7" y="7" width="3" height="10" rx="0.6" />
-                <rect x="12" y="4" width="3" height="13" rx="0.6" />
-                <rect x="17" y="2" width="3" height="15" rx="0.6" />
+              <svg class="hero-cellular" viewBox="0 0 18 12" focusable="false">
+                <rect x="0" y="8" width="3" height="4" rx="0.8" />
+                <rect x="5" y="5.5" width="3" height="6.5" rx="0.8" />
+                <rect x="10" y="3" width="3" height="9" rx="0.8" />
+                <rect x="15" y="0" width="3" height="12" rx="0.8" />
               </svg>
-              <svg viewBox="0 0 24 24" focusable="false">
-                <path d="M2 8a18 18 0 0 1 20 0" />
-                <path d="M5.5 11a13 13 0 0 1 13 0" />
-                <path d="M9 14a8 8 0 0 1 6 0" />
-                <circle cx="12" cy="17.2" r="1.4" />
+              <!-- Status glyphs (Wi-Fi weight reduced): https://codepen.io/enipx/pen/BaoQaeB
+                   Verified against Apple's status icons: https://support.apple.com/guide/iphone/iphef7bb57dc/ios -->
+              <svg class="hero-wifi" viewBox="0 0 8.391 6" focusable="false" fill-rule="evenodd" clip-rule="evenodd">
+                <path d="M.86 2.51.122 1.801C2.264-.373 6.017-.455 8.269 1.804L7.54 2.53C6.59 1.65 5.48 1.21 4.202 1.208 2.92 1.206 1.81 1.64.86 2.51Z" />
+                <path d="m2.359 4.027-.735-.709C2.961 1.947 5.368 1.908 6.745 3.304l-.713.729C4.81 3.13 3.58 3.13 2.359 4.027Z" />
+                <path d="m4.999 4.895-.805.813-.811-.805c.351-.385 1.153-.453 1.616-.008Z" />
               </svg>
-              <span class="hero-battery">
-                <span>100</span>
-                <i></i>
-              </span>
+              <svg class="hero-battery" viewBox="0 0 11 6" focusable="false">
+                <path opacity="0.4" d="M8.738.448H1.214c-.605 0-1.096.489-1.096 1.091v2.923c0 .601.491 1.091 1.096 1.091h7.524c.604 0 1.096-.489 1.096-1.091V1.539c0-.602-.492-1.091-1.096-1.091Zm.658 4.013c0 .361-.295.655-.658.655H1.214c-.363 0-.658-.294-.658-.655V1.539c0-.361.295-.655.658-.655h7.524c.363 0 .658.294.658.655v2.922Z" />
+                <path d="M8.959 4.461c0 .121-.099.22-.221.22H1.214c-.122 0-.221-.098-.221-.22V1.539c0-.121.099-.22.221-.22h7.524c.122 0 .221.098.221.22v2.922Z" />
+                <path d="M10.882 3c0 .325-.264.588-.59.588V2.412c.326 0 .59.263.59.588Z" />
+              </svg>
             </span>
           </div>
           <div class="hero-lock-time" aria-hidden="true">
