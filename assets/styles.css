@@ -3815,3 +3815,13 @@ main[id],
     transform: none;
   }
 }
+
+/* Improve touch targets and keyboard focus without changing copy hierarchy. */
+.feature-link {
+  min-height: 44px;
+  align-items: center;
+}
+.legal-table-wrap:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 4px;
+}
