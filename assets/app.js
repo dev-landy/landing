@@ -103,21 +103,7 @@ function startNotificationFlow(flow) {
   if (flow.dataset.flowStarted === "true") return;
   flow.dataset.flowStarted = "true";
 
-  const reduceMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)",
-  ).matches;
-
-  function replay() {
-    flow.classList.remove("flow-running");
-    void flow.offsetWidth;
-    flow.classList.add("flow-running");
-
-    if (!reduceMotion) {
-      setTimeout(replay, 3700);
-    }
-  }
-
-  replay();
+  flow.classList.add("flow-running");
 }
 
 function setupNotificationFlowStart(flow) {
