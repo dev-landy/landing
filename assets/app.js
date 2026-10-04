@@ -131,7 +131,7 @@ notificationFlows.forEach(setupNotificationFlowStart);
 
 function loadPreviewVideo(video) {
   if (video.dataset.videoLoaded === "true") return;
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const sources = video.querySelectorAll("source[data-src]");
   if (!sources.length) return;
@@ -142,6 +142,9 @@ function loadPreviewVideo(video) {
   });
   video.dataset.videoLoaded = "true";
   video.load();
+
+  // Native controls let users choose playback even when motion is reduced.
+  if (reduceMotion) return;
 
   const playAttempt = video.play();
   if (playAttempt && typeof playAttempt.catch === "function") {
