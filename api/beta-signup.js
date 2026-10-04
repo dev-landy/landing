@@ -38,6 +38,10 @@ module.exports = async function handler(req, res) {
     return sendJson(res, 400, { error: "요청 형식이 올바르지 않습니다." });
   }
 
+  if (body === null || typeof body !== "object" || Array.isArray(body)) {
+    return sendJson(res, 400, { error: "요청 형식이 올바르지 않습니다." });
+  }
+
   const requestedPhone =
     typeof body.phone === "string" ? body.phone.trim() : "";
   const contact = typeof body.contact === "string" ? body.contact.trim() : "";
