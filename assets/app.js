@@ -174,12 +174,6 @@ if (previewVideos.length) {
 document.querySelectorAll("[data-beta-location]").forEach((link) => {
   link.addEventListener("click", () => {
     const buttonLocation = link.dataset.betaLocation || "unknown";
-    pendingContactFormEntryPoint = buttonLocation;
-    sendAnalyticsEvent("beta_apply_click", {
-      button_location: buttonLocation,
-      source: signupSource,
-    });
-
     // 기존 피처 페이지는 URL로 판별하고, 신규 배지는 명시된 스토어를 우선합니다.
     const href = link.getAttribute("href") || "";
     const store =
@@ -195,11 +189,23 @@ document.querySelectorAll("[data-beta-location]").forEach((link) => {
         : store === "app-store"
           ? "app_store_click"
           : null;
-    if (!storeEvent) return;
+    if (!storeEvent) {
+      pendingContactFormEntryPoint = buttonLocation;
+      sendAnalyticsEvent("beta_apply_click", {
+        button_location: buttonLocation,
+        source: signupSource,
+      });
+      return;
+    }
 
+    // GA4 attributes this event to the session's landing-page UTM parameters.
+    // This measures store intent (including the Play prompt), not installation.
     const storeParams = {
       button_location: buttonLocation,
       source: signupSource,
+      store,
+      link_url: href,
+      campaign_goal: "app_acquisition",
     };
     sendAnalyticsEvent(storeEvent, storeParams);
     if (typeof window.trackAmplitude === "function") {
