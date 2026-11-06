@@ -21,5 +21,5 @@ test("privacy policy discloses PostHog processing and overseas transfer", () => 
   assert.match(privacyPolicyHtml, /앱 화면 이용 흐름 기록/);
   assert.match(privacyPolicyHtml, /PostHog Inc\./);
   assert.match(privacyPolicyHtml, /미국\(PostHog Cloud US 리전\)/);
-  assert.match(privacyPolicyHtml, /2026년 9월 3일부터 시행됩니다/);
+  assert.match(privacyPolicyHtml, /2026년 11월 8일부터 시행됩니다/);
 });
