@@ -9,6 +9,17 @@ const privacyPolicyHtml = readFileSync(
   resolve(root, "legal/privacy-policy.html"),
   "utf8",
 );
+const dataDeletionHtml = readFileSync(
+  resolve(root, "legal/data-deletion.html"),
+  "utf8",
+);
+const datePattern = "(\\d{4}년 \\d{1,2}월 \\d{1,2}일)";
+const section = (html, start, end) => {
+  const from = html.indexOf(start);
+  const to = html.indexOf(end, from);
+  assert.ok(from >= 0 && to > from, `expected a section between ${start} and ${end}`);
+  return html.slice(from, to);
+};
 
 test("privacy policy discloses PostHog processing and overseas transfer", () => {
   const postHogMentions = privacyPolicyHtml.match(/PostHog/g) ?? [];
@@ -22,4 +33,72 @@ test("privacy policy discloses PostHog processing and overseas transfer", () => 
   assert.match(privacyPolicyHtml, /PostHog Inc\./);
   assert.match(privacyPolicyHtml, /미국\(PostHog Cloud US 리전\)/);
   assert.match(privacyPolicyHtml, /2026년 11월 8일부터 시행됩니다/);
+});
+
+test("privacy policy hero effective date matches the 부칙 enforcement date", () => {
+  const effective = privacyPolicyHtml.match(
+    new RegExp(`<p class="legal-effective">본 방침은 ${datePattern}부터 적용됩니다\\.</p>`),
+  );
+  const enforced = privacyPolicyHtml.match(
+    new RegExp(`본 개인정보처리방침은 ${datePattern}부터 시행됩니다\\.`),
+  );
+  const history = [
+    ...privacyPolicyHtml.matchAll(new RegExp(`<li>\\s*${datePattern}:`, "g")),
+  ].map((match) => match[1]);
+
+  assert.ok(effective, "expected a legal-effective date in the hero");
+  assert.ok(enforced, "expected an enforcement date in the 부칙");
+  assert.equal(effective[1], enforced[1]);
+  assert.equal(
+    history.at(-1),
+    enforced[1],
+    "newest 개정 이력 entry should carry the enforcement date",
+  );
+});
+
+test("privacy policy discloses RevenueCat subscription processing and overseas transfer", () => {
+  const revenueCatMentions = privacyPolicyHtml.match(/RevenueCat, Inc\./g) ?? [];
+
+  assert.ok(
+    revenueCatMentions.length >= 5,
+    "expected RevenueCat disclosures across the policy",
+  );
+
+  const items = section(
+    privacyPolicyHtml,
+    'id="privacy-policy-table-heading-1"',
+    "<h2>3. 개인정보의 수집 방법</h2>",
+  );
+  assert.match(items, /<th scope="row">구독·결제 정보<\/th>/);
+  assert.match(items, /서비스 내부 회원 식별자\(UUID\)/);
+
+  const outsourcing = section(
+    privacyPolicyHtml,
+    'id="privacy-policy-table-heading-4"',
+    'id="privacy-policy-table-heading-5"',
+  );
+  assert.match(
+    outsourcing,
+    /<th scope="row">RevenueCat, Inc\.<\/th>\s*<td>인앱 구독 결제 확인 및 구독 상태 관리<\/td>/,
+  );
+
+  const transfer = section(
+    privacyPolicyHtml,
+    'id="privacy-policy-table-heading-5"',
+    "<h2>11. 개인정보의 파기 절차 및 방법</h2>",
+  );
+  assert.match(transfer, /<th scope="row">RevenueCat, Inc\.<\/th>\s*<td>미국<\/td>/);
+  assert.match(transfer, /랜디 Pro를 구독하지 않는 방법으로/);
+
+  assert.match(privacyPolicyHtml, /탈퇴 계정의 무료 제공 횟수 이용 기록/);
+  assert.match(privacyPolicyHtml, /탈퇴 계정의 구독 기록/);
+});
+
+test("data deletion guide keeps the retention exceptions and points to store subscription management", () => {
+  assert.match(dataDeletionHtml, /보관 예외를 제외하고/);
+  assert.match(dataDeletionHtml, /<th scope="row">무료 제공 횟수 이용 기록<\/th>/);
+  assert.match(dataDeletionHtml, /<th scope="row">구독 기록<\/th>/);
+  assert.match(dataDeletionHtml, /자동 갱신이 해지되지 않/);
+  assert.match(dataDeletionHtml, /https:\/\/apps\.apple\.com\/account\/subscriptions/);
+  assert.match(dataDeletionHtml, /https:\/\/play\.google\.com\/store\/account\/subscriptions/);
 });
