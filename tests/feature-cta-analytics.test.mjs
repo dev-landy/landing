@@ -83,22 +83,29 @@ function clickTrackedLink({ href, dataset = {}, isStoreBadge = false }) {
 
 function assertClickEvents(result, storeEvent) {
   const baseParams = { button_location: "hero", source: "rent" };
+  const storeParams = storeEvent ? {
+    ...baseParams,
+    store: storeEvent === "google_play_click" ? "google-play" : "app-store",
+    link_url: storeEvent === "google_play_click"
+      ? "https://play.google.com/store/apps/details?id=com.landy.app"
+      : "https://apps.apple.com/kr/app/id6804934479",
+    campaign_goal: "app_acquisition",
+  } : null;
   const gaParams = {
     campaign_goal: "demand_validation",
     feature_interest: "rent_collection",
-    ...baseParams,
+    ...(storeParams || baseParams),
   };
   assert.deepEqual(result.gtagCalls, [
-    ["event", "beta_apply_click", gaParams],
-    ...(storeEvent ? [["event", storeEvent, gaParams]] : []),
+    ["event", storeEvent || "beta_apply_click", gaParams],
   ]);
   assert.deepEqual(
     result.amplitudeCalls,
-    storeEvent ? [[storeEvent, baseParams]] : [],
+    storeEvent ? [[storeEvent, storeParams]] : [],
   );
 }
 
-test("legacy Google Play links preserve their funnel event and emit a GA store event", () => {
+test("Google Play clicks emit one store event without a beta application event", () => {
   assertClickEvents(
     clickTrackedLink({
       href: "https://play.google.com/store/apps/details?id=com.landy.app",
