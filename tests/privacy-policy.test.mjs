@@ -32,7 +32,6 @@ test("privacy policy discloses PostHog processing and overseas transfer", () => 
   assert.match(privacyPolicyHtml, /앱 화면 이용 흐름 기록/);
   assert.match(privacyPolicyHtml, /PostHog Inc\./);
   assert.match(privacyPolicyHtml, /미국\(PostHog Cloud US 리전\)/);
-  assert.match(privacyPolicyHtml, /2026년 11월 8일부터 시행됩니다/);
 });
 
 test("privacy policy hero effective date matches the 부칙 enforcement date", () => {
@@ -88,16 +87,24 @@ test("privacy policy discloses RevenueCat subscription processing and overseas t
     "<h2>11. 개인정보의 파기 절차 및 방법</h2>",
   );
   assert.match(transfer, /<th scope="row">RevenueCat, Inc\.<\/th>\s*<td>미국<\/td>/);
-  assert.match(transfer, /랜디 Pro를 구독하지 않는 방법으로/);
+  assert.match(transfer, /무료 회원에게도 구독 상태 확인을 위해/);
+  assert.match(transfer, /구독을 해지하는 것만으로 이 전송이\s*중단되지는 않습니다/);
+  assert.match(transfer, /개인정보 처리정지 또는 삭제/);
+  assert.doesNotMatch(transfer, /Pro를 구독하지 않는 방법으로/);
 
   assert.match(privacyPolicyHtml, /탈퇴 계정의 무료 제공 횟수 이용 기록/);
   assert.match(privacyPolicyHtml, /탈퇴 계정의 구독 기록/);
+  assert.match(privacyPolicyHtml, /구독 처리 안정성 기록/);
+  assert.match(privacyPolicyHtml, /최종 처리 후 2년/);
+  assert.match(privacyPolicyHtml, /진행 중이거나 재시도·복구가 필요한 기록/);
 });
 
 test("data deletion guide keeps the retention exceptions and points to store subscription management", () => {
   assert.match(dataDeletionHtml, /보관 예외를 제외하고/);
   assert.match(dataDeletionHtml, /<th scope="row">무료 제공 횟수 이용 기록<\/th>/);
   assert.match(dataDeletionHtml, /<th scope="row">구독 기록<\/th>/);
+  assert.match(dataDeletionHtml, /<th scope="row">구독 처리 안정성 기록<\/th>/);
+  assert.match(dataDeletionHtml, /최종 처리 후 2년간 보관 후 파기/);
   assert.match(dataDeletionHtml, /자동 갱신이 해지되지 않/);
   assert.match(dataDeletionHtml, /https:\/\/apps\.apple\.com\/account\/subscriptions/);
   assert.match(dataDeletionHtml, /https:\/\/play\.google\.com\/store\/account\/subscriptions/);
