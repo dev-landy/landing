@@ -25,6 +25,18 @@ test("/download serves manual links and loads the redirect after parsing the pag
   assert.deepEqual([...links.values()].map((link) => link.href).sort(), [appStore, googlePlay, homepage].sort());
 });
 
+test("the download screen embeds the original Korean store badges without image requests", () => {
+  const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)[1];
+  assert.doesNotMatch(main, /<(?:img|image|use)\b[^>]*(?:src|href)="(?!#|data:)[^"]+"/i);
+  for (const [id, name] of [["app-store", "App Store"], ["google-play", "Google Play"]]) {
+    const link = main.match(new RegExp(`<a\\b[^>]*\\bid="${id}"[^>]*>[\\s\\S]*?</a>`))?.[0];
+    assert.ok(link, name);
+    const asset = readFileSync(new URL(`../assets/${id}-badge.svg`, import.meta.url), "utf8");
+    assert.ok(link.includes(asset.trimEnd()), `Expected the original ${id}-badge.svg inside the link`);
+    assert.ok(link.includes(`aria-label="${name}에서 랜디 다운로드"`), name);
+  }
+});
+
 const macUA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15";
 const desktopChromeUA = "Mozilla/5.0 (X11; CrOS x86_64 14541.0.0) AppleWebKit/537.36 Chrome/148.0.0.0";
 const linuxUA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36";
