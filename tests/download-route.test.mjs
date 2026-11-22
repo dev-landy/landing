@@ -8,7 +8,8 @@ const homepage = new URL("/", pageUrl).href;
 const appStore = "https://apps.apple.com/kr/app/id6804934479";
 const googlePlay = "https://play.google.com/store/apps/details?id=com.landy.app";
 const html = readFileSync(new URL("../download.html", import.meta.url), "utf8");
-const script = readFileSync(new URL("../assets/download.js", import.meta.url), "utf8");
+const scripts = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)];
+const script = scripts[0]?.[2];
 
 // Resolve the actual fallback anchors the way the browser resolves link.href.
 const links = new Map();
@@ -18,11 +19,28 @@ for (const [tag] of html.matchAll(/<a\b[^>]*>/gi)) {
   if (id && href) links.set(id, { href: new URL(href, pageUrl).href });
 }
 
-test("/download serves manual links and loads the redirect after parsing the page", () => {
+test("/download can redirect as soon as the HTML provides all manual links", () => {
   const config = JSON.parse(readFileSync(new URL("../vercel.json", import.meta.url), "utf8"));
   assert.equal(config.cleanUrls, true);
-  assert.match(html, /<script src="\/assets\/download\.js" defer><\/script>/);
+  assert.equal(scripts.length, 1);
+  assert.doesNotMatch(scripts[0][1], /\bsrc\s*=/i);
+  assert.ok(script.trim());
+  const lastLink = html.lastIndexOf("</a>");
+  assert.ok(lastLink >= 0 && lastLink < scripts[0].index);
   assert.deepEqual([...links.values()].map((link) => link.href).sort(), [appStore, googlePlay, homepage].sort());
+});
+
+test("/download embeds the Landy favicon so the fallback needs no icon request", () => {
+  const icon = readFileSync(new URL("../assets/icon.svg", import.meta.url), "utf8").trim();
+  const favicon = html.match(/<link\b[^>]*rel="icon"[^>]*href="data:image\/svg\+xml,([^"]+)"/i);
+  assert.ok(favicon);
+  assert.equal(decodeURIComponent(favicon[1]), icon);
+});
+
+test("a file preview stays on the download screen", () => {
+  vm.runInNewContext(script, {
+    window: { location: { protocol: "file:", replace: () => assert.fail("unexpected navigation") } },
+  });
 });
 
 test("the download screen embeds the original Korean store badges without image requests", () => {
@@ -69,7 +87,7 @@ for (const [device, userAgent, maxTouchPoints, destination, userAgentData] of [
     vm.runInNewContext(script, {
       navigator: { userAgent, maxTouchPoints, userAgentData },
       document: { getElementById: (id) => links.get(id) },
-      window: { location: { replace: (url) => navigations.push(url) } },
+      window: { location: { protocol: "https:", replace: (url) => navigations.push(url) } },
     });
     assert.deepEqual(navigations, [destination]);
   });

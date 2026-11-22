@@ -6,8 +6,7 @@
     <title>랜디 앱 다운로드</title>
     <meta name="description" content="iPhone, iPad와 Android에서 랜디 앱을 다운로드하세요." />
     <link rel="canonical" href="https://www.landy.co.kr/download" />
-    <link rel="icon" href="/assets/icon.svg" type="image/svg+xml" />
-    <script src="/assets/download.js" defer></script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20width=%2235%22%20height=%2235%22%20viewBox=%220%200%2035%2035%22%20fill=%22none%22%20xmlns=%22http://www.w3.org/2000/svg%22%3E%0A%3Cg%20clip-path=%22url%28%23clip0_967_880%29%22%3E%0A%3Cmask%20id=%22mask0_967_880%22%20style=%22mask-type:luminance%22%20maskUnits=%22userSpaceOnUse%22%20x=%220%22%20y=%220%22%20width=%2235%22%20height=%2235%22%3E%0A%3Cpath%20d=%22M35%200H0V35H35V0Z%22%20fill=%22white%22/%3E%0A%3C/mask%3E%0A%3Cg%20mask=%22url%28%23mask0_967_880%29%22%3E%0A%3Cpath%20d=%22M5.67383%2028.0273C5.67383%2028.6198%205.97005%2028.916%206.5625%2028.916H12.0996C12.6921%2028.916%2012.9883%2028.6198%2012.9883%2028.0273V18.3887C12.9883%2017.7734%2013.2161%2017.2607%2013.6719%2016.8506L17.2266%2013.6377C17.7734%2013.1364%2018.3203%2013.1364%2018.8672%2013.6377L22.4219%2016.8506C22.8776%2017.2607%2023.1055%2017.7734%2023.1055%2018.3887V28.0273C23.1055%2028.6198%2023.4017%2028.916%2023.9941%2028.916H29.5312C30.1237%2028.916%2030.4199%2028.6198%2030.4199%2028.0273V15.3125C30.4199%2014.6745%2030.1807%2014.1504%2029.7021%2013.7402L19.0381%204.13574C18.3773%203.54329%2017.7165%203.54329%2017.0557%204.13574L6.3916%2013.7402C5.91309%2014.1504%205.67383%2014.6745%205.67383%2015.3125V28.0273Z%22%20fill=%22%23082567%22/%3E%0A%3C/g%3E%0A%3Cpath%20d=%22M21%2021.5C21%2020.5%2020.5%2019.2773%2019%2019.2773H18H17C15.5%2019.2773%2015%2020.4806%2015%2021.5V28.0273C15%2028.6198%2015.2962%2028.916%2015.8887%2028.916H20.1113C20.7038%2028.916%2021%2028.6198%2021%2028.0273V21.5Z%22%20fill=%22%23082567%22/%3E%0A%3C/g%3E%0A%3Cdefs%3E%0A%3CclipPath%20id=%22clip0_967_880%22%3E%0A%3Crect%20width=%2235%22%20height=%2235%22%20fill=%22white%22/%3E%0A%3C/clipPath%3E%0A%3C/defs%3E%0A%3C/svg%3E" type="image/svg+xml" />
     <style>
       body {
         margin: 0;
@@ -158,5 +157,30 @@
         </a>
       </nav>
     </main>
+    <!-- Inline routing avoids a request; older pages still use assets/download.js. -->
+    <script>
+      (() => {
+        // Allow opening download.html directly to preview the fallback.
+        if (window.location.protocol === "file:") return;
+
+        function getDownloadLinkId({ userAgent, maxTouchPoints, userAgentData }) {
+          // Both iPhone and iPad Safari can request desktop sites with a Mac UA.
+          const isIOSInDesktopMode = /Macintosh/i.test(userAgent) && maxTouchPoints > 1;
+          if (/iPhone|iPad|iPod/i.test(userAgent) || isIOSInDesktopMode) return "app-store";
+          if (/Android/i.test(userAgent)) return "google-play";
+
+          // Use explicit mobile identifiers when the UA otherwise looks like a desktop.
+          const platform = userAgentData && userAgentData.platform;
+          if (/(?:^|\s)CriOS\/\d/i.test(userAgent)) {
+            return !platform || platform === "iOS" ? "app-store" : "homepage";
+          }
+          if (platform === "Android") return "google-play";
+          return "homepage";
+        }
+
+        const link = document.getElementById(getDownloadLinkId(navigator));
+        window.location.replace(link.href);
+      })();
+    </script>
   </body>
 </html>
