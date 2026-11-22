@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>랜디 앱 다운로드</title>
+    <meta name="description" content="iPhone, iPad와 Android에서 랜디 앱을 다운로드하세요." />
+    <link rel="canonical" href="https://www.landy.co.kr/download" />
+    <link rel="icon" href="/assets/icon.svg" type="image/svg+xml" />
+    <script src="/assets/download.js" defer></script>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        min-height: 100svh;
+        display: grid;
+        place-items: center;
+        font-family: system-ui, sans-serif;
+        color: #0b1730;
+        text-align: center;
+        word-break: keep-all;
+      }
+      main { padding: 24px; }
+      h1 { margin: 16px 0 8px; font-size: 1.5rem; }
+      p { margin: 0 0 24px; color: #475467; line-height: 1.6; }
+      .stores { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+      .stores img { display: block; }
+      #homepage { display: inline-block; margin-top: 16px; padding: 8px; color: #1e3a8a; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <img src="/assets/icon.svg" width="48" height="48" alt="" />
+      <h1>랜디로 이동 중입니다</h1>
+      <p>자동으로 이동하지 않으면 아래에서 선택해 주세요.</p>
+      <nav aria-label="랜디 다운로드 및 홈페이지">
+        <div class="stores">
+          <a id="app-store" href="https://apps.apple.com/kr/app/id6804934479">
+            <img src="/assets/app-store-badge.svg" alt="App Store에서 랜디 다운로드" width="135" height="40" />
+          </a>
+          <a id="google-play" href="https://play.google.com/store/apps/details?id=com.landy.app">
+            <img src="/assets/google-play-badge.svg" alt="Google Play에서 랜디 다운로드" width="135" height="40" />
+          </a>
+        </div>
+        <a id="homepage" href="/">랜디 홈페이지</a>
+      </nav>
+    </main>
+  </body>
+</html>
