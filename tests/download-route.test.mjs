@@ -25,15 +25,28 @@ test("/download serves manual links and loads the redirect after parsing the pag
   assert.deepEqual([...links.values()].map((link) => link.href).sort(), [appStore, googlePlay, homepage].sort());
 });
 
-for (const [device, userAgent, maxTouchPoints, destination] of [
+const macUA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15";
+const desktopChromeUA = "Mozilla/5.0 (X11; CrOS x86_64 14541.0.0) AppleWebKit/537.36 Chrome/148.0.0.0";
+const linuxUA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36";
+
+for (const [device, userAgent, maxTouchPoints, destination, userAgentData] of [
   ["iPhone", "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X)", 5, appStore],
   ["iPad", "Mozilla/5.0 (iPad; CPU OS 18_0 like Mac OS X)", 5, appStore],
   ["iPod touch", "Mozilla/5.0 (iPod touch; CPU iPhone OS 15_0 like Mac OS X)", 5, appStore],
   ["iPad in desktop mode", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15)", 5, appStore],
+  ["iPhone Safari in desktop mode", macUA + " Version/27.0 Safari/605.1.15", 5, appStore],
+  ["iOS Chrome in desktop mode without touch data", macUA + " CriOS/148 Safari/605.1.15", undefined, appStore],
   ["Mac at the single-touch boundary", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15)", 1, homepage],
   ["Mac", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15)", 0, homepage],
+  ["Chrome on macOS", macUA + " Chrome/148.0.0.0 Safari/537.36", 0, homepage],
+  ["unrelated token ending in CriOS", macUA + " Not-CriOS/148", 0, homepage],
   ["Android phone", "Mozilla/5.0 (Linux; Android 15; Pixel 9) Mobile", 5, googlePlay],
   ["Android tablet", "Mozilla/5.0 (Linux; Android 14; SM-X710)", 5, googlePlay],
+  ["desktop UA with an explicit Android platform", desktopChromeUA, 0, googlePlay, { platform: "Android" }],
+  ["the same UA on ChromeOS", desktopChromeUA, 5, homepage, { platform: "Chrome OS" }],
+  ["Linux desktop UA with touch", linuxUA + " Chrome/148.0.0.0", 5, homepage, { platform: "Linux" }],
+  ["Samsung desktop UA reporting Linux", linuxUA + " SamsungBrowser/31.0 Chrome/148.0.0.0", 5, homepage, { platform: "Linux" }],
+  ["conflicting iOS Chrome and Android signals", macUA + " CriOS/148", 0, homepage, { platform: "Android" }],
   ["touch-enabled Windows PC", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)", 10, homepage],
   ["Linux", "Mozilla/5.0 (X11; Linux x86_64)", 0, homepage],
   ["unknown device", "", 0, homepage],
@@ -42,7 +55,7 @@ for (const [device, userAgent, maxTouchPoints, destination] of [
   test(`/download replaces the current history entry for ${device}`, () => {
     const navigations = [];
     vm.runInNewContext(script, {
-      navigator: { userAgent, maxTouchPoints },
+      navigator: { userAgent, maxTouchPoints, userAgentData },
       document: { getElementById: (id) => links.get(id) },
       window: { location: { replace: (url) => navigations.push(url) } },
     });
