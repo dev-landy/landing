@@ -20,12 +20,42 @@
         text-align: center;
         word-break: keep-all;
       }
-      main { padding: 24px; }
+      main { min-width: 0; padding: 24px 16px; }
       h1 { margin: 16px 0 8px; font-size: 1.5rem; }
       p { margin: 0 0 24px; color: #475467; line-height: 1.6; }
-      .stores { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
-      .stores svg { display: block; }
-      #homepage { display: inline-block; margin-top: 16px; padding: 8px; color: #1e3a8a; }
+      nav { max-width: 282px; margin-inline: auto; }
+      .stores {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(8em, 100%), 1fr));
+        gap: 12px;
+      }
+      .stores a {
+        display: grid;
+        place-items: center;
+        min-height: 44px;
+      }
+      .stores span { width: 100%; max-width: 135px; }
+      .stores svg { display: block; width: 100%; height: auto; }
+      nav a:focus-visible { outline: 3px solid #1e3a8a; outline-offset: 3px; }
+      #homepage {
+        display: block;
+        min-height: 44px;
+        margin-top: 8px; /* Plus the 2px below the visible store badges. */
+        color: #17254a;
+        text-decoration: none;
+      }
+      #homepage span {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 36px;
+        border: 1px solid #aeb8c6;
+        border-radius: 6px;
+        font-size: 0.9375rem;
+        font-weight: 600;
+      }
     </style>
   </head>
   <body>
@@ -116,7 +146,16 @@
             </span>
           </a>
         </div>
-        <a id="homepage" href="/">랜디 홈페이지</a>
+        <a id="homepage" href="/">
+          <span>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="10"/>
+              <ellipse cx="12" cy="12" rx="4" ry="10"/>
+              <path d="M2 12h20"/>
+            </svg>
+            랜디 홈페이지
+          </span>
+        </a>
       </nav>
     </main>
   </body>
