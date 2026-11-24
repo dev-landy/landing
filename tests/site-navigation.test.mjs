@@ -36,9 +36,13 @@ test("every marketing navigation link resolves to a real page and section", () =
 });
 
 test("beta pages identify their status before the first heading and link to their form", () => {
-  for (const page of pages.slice(-2)) {
+  for (const [page, feature] of [
+    ["features/move-out-dispute.html", "입실 전 방 상태 기록"],
+    ["features/tenant-inquiry-response.html", "세입자 문의 자동 답변"],
+  ]) {
     const html = readFileSync(resolve(root, page), "utf8");
-    assert.ok(html.indexOf('class="beta-hero-label"') < html.indexOf("<h1>"), page);
+    assert.match(html, /class="beta-hero-label">[^<]*개발 중[^<]*베타[^<]*모집[^<]*<\/p>\s*<h1>/, page);
+    assert.ok(html.includes(`<title>${feature} 베타 | 랜디</title>`), page);
     assert.match(html, /href="#beta" data-beta-location="nav">베타 신청<\/a>/);
     assert.match(html, /id="signupForm"/);
     assert.match(html, /action="\/api\/beta-signup"/);
