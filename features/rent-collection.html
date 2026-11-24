@@ -11,10 +11,10 @@
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>월세 수납 관리 앱 | 랜디</title>
+    <title>호실별 월세 수납과 미납 잔액 확인 | 랜디</title>
     <meta
       name="description"
-      content="호실별 월세 수납 현황과 미납 내역을 확인하고, 세입자별 납부 내역을 관리하세요. 직접 받은 월세도 앱에 등록할 수 있습니다."
+      content="랜디에서 호실별 월세 수납과 미납 잔액을 확인하세요. 일부만 입금된 월세도 받은 만큼 기록하고, 월별 임대수입과 지출을 함께 살펴볼 수 있습니다."
     />
     <meta name="robots" content="index,follow" />
     <meta name="theme-color" content="#0b1730" />
@@ -30,10 +30,10 @@
     <meta property="og:type" content="article" />
     <meta property="og:locale" content="ko_KR" />
     <meta property="og:site_name" content="랜디" />
-    <meta property="og:title" content="월세 수납 관리 앱 | 랜디" />
+    <meta property="og:title" content="호실별 월세 수납과 미납 잔액 확인 | 랜디" />
     <meta
       property="og:description"
-      content="호실별 월세 납입 상태와 임대료 수납 이력을 한 화면에서 확인하세요."
+      content="랜디에서 호실별 월세 수납과 미납 잔액을 확인하세요. 일부만 입금된 월세도 받은 만큼 기록하고, 월별 임대수입과 지출을 함께 살펴볼 수 있습니다."
     />
     <meta
       property="og:url"
@@ -47,10 +47,10 @@
     <meta property="og:image:height" content="1890" />
     <meta property="og:image:alt" content="랜디 월세 수납 관리 소개 이미지" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="월세 수납 관리 앱 | 랜디" />
+    <meta name="twitter:title" content="호실별 월세 수납과 미납 잔액 확인 | 랜디" />
     <meta
       name="twitter:description"
-      content="호실별 월세 납입 상태와 임대료 수납 이력을 한 화면에서 확인하세요."
+      content="랜디에서 호실별 월세 수납과 미납 잔액을 확인하세요. 일부만 입금된 월세도 받은 만큼 기록하고, 월별 임대수입과 지출을 함께 살펴볼 수 있습니다."
     />
     <meta
       name="twitter:image"
@@ -65,8 +65,8 @@
             "@type": "WebPage",
             "@id": "https://www.landy.co.kr/features/rent-collection",
             "url": "https://www.landy.co.kr/features/rent-collection",
-            "name": "월세 수납 관리 앱",
-            "description": "Android 입금 알림 기반 자동 기록과 직접 납부 등록으로 월세 수납 현황을 관리하는 랜디 기능 소개 페이지입니다.",
+            "name": "호실별 월세 수납과 미납 잔액 확인",
+            "description": "호실별 월세 수납과 미납 잔액, 월별 수입·지출을 확인할 수 있습니다. 직접 받은 금액을 기록하거나 안드로이드에서 지원 은행의 입금 알림으로 일치하는 납부 내역을 자동 기록할 수 있습니다.",
             "inLanguage": "ko-KR"
           },
           {
@@ -77,7 +77,7 @@
                 "name": "랜디는 은행 계좌를 직접 연결하나요?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "은행 계좌를 직접 연결하지 않습니다. Android 기기에 도착한 지원 은행 앱의 입금 알림을 분석하며, 은행 앱의 입금 알림과 랜디의 알림 접근 권한이 필요합니다. iOS에서는 납부 내역을 직접 등록합니다."
+                  "text": "은행 계좌는 연결하지 않습니다. 안드로이드에서 지원 은행 앱의 입금 알림을 켜고 랜디에 알림 접근 권한을 허용하면, 랜디가 휴대폰에 온 알림에서 입금 정보를 읽습니다. 아이폰에서는 계좌에 월세가 들어왔는지 확인한 뒤 받은 금액을 해당 호실에 직접 입력하세요."
                 }
               },
               {
@@ -85,7 +85,7 @@
                 "name": "월세 납부 내역이 자동으로 기록되나요?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Android에서는 입금자·금액·납부월이 등록 정보와 일치하는 내역을 자동으로 기록합니다. 자동으로 연결되지 않는 입금이나 현금 납부는 내역을 확인한 뒤 직접 등록할 수 있습니다. 등록된 납부 내역은 앱에서 확인하고 수정할 수 있습니다."
+                  "text": "안드로이드에서는 은행 알림의 입금자명과 금액이 등록한 정보와 맞고 어느 호실의 몇 월분 월세인지 확인될 때 자동으로 기록합니다. 현금으로 받았거나 입금 알림으로 기록되지 않은 월세는 해당 호실을 열어 받은 금액을 직접 입력하세요. 잘못 입력한 금액도 장부에서 수정할 수 있습니다."
                 }
               },
               {
@@ -93,7 +93,15 @@
                 "name": "입금자명이 다르면 어떻게 확인하나요?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "입금자명이나 금액이 달라 자동으로 연결되지 않는 경우, 실제 입금 내역을 확인한 뒤 해당 호실에 납부 내역을 직접 등록해주세요."
+                  "text": "세입자 대신 가족이 월세를 보내면 자동으로 기록되지 않을 수 있습니다. 세입자가 알려준 입금일과 금액을 계좌 내역과 대조하세요. 어느 호실의 월세인지 확인한 뒤, 장부에 빠져 있다면 해당 호실에 받은 금액을 입력하세요."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "아직 못 받은 월세도 이번 달 순수익에 포함되나요?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "아니요. 그달 받기로 한 임대료와 관리비 중 실제로 받은 금액만 그달 수입으로 계산합니다. 이번 달 수입이 102호에서 받은 월세 30만 원이고 지출이 수리비 5만 원이라면 순수익은 25만 원입니다. 약속한 월세 50만 원 중 아직 못 받은 20만 원은 미납 잔액으로 남습니다."
                 }
               }
             ]
@@ -134,8 +142,8 @@
           <p class="hero-eyebrow">월세 수납 관리</p>
           <h1>호실별 월세 수납 현황을<br />한눈에 확인하세요</h1>
           <p class="hero-sub">
-            이번 달 수납 현황과 미납 호실을 확인하고,
-            세입자별 납부 내역을 한곳에서 관리하세요.
+            이번 달 월세가 들어온 호실과 아직 받을 금액이 남은 호실을 확인하세요.
+            어느 달에 얼마를 받았는지도 세입자별로 찾아볼 수 있습니다.
           </p>
           <div class="seo-hero-actions">
             <div class="store-badge-pair" aria-label="앱 다운로드">
@@ -164,52 +172,52 @@
             <p class="seo-kicker">수납 현황과 이력</p>
             <h2>이번 달 수납부터<br />지난 납부 내역까지</h2>
             <p>
-              건물별 수납 현황을 살펴보고, 확인할 호실을 선택하세요.
-              해당 세입자의 납부 금액과 지난 내역을 이어서 확인할 수 있습니다.
+              장부에서 건물을 고르면 해당 건물의 수납 현황이 보입니다. 월을 바꿔 지난달 내역을 살펴보거나, 호실을 열어 세입자별 납부 기록을 확인하세요.
             </p>
           </div>
           <div class="seo-panel">
             <div class="seo-panel-row">
               <strong>이번 달 수납</strong>
-              <span>건물별로 등록된 월세 납부 현황을 확인합니다.</span>
+              <span>호실별로 월세를 받았는지, 언제 받기로 했는지 확인합니다.</span>
             </div>
             <div class="seo-panel-row">
               <strong>미납 호실</strong>
-              <span>납부일이 지나도 월세가 남아 있는 호실을 살펴봅니다.</span>
+              <span>납부일이 지났는데 아직 받을 금액이 남은 호실을 찾습니다.</span>
             </div>
             <div class="seo-panel-row">
               <strong>납부 이력</strong>
-              <span>세입자별로 지난 납부 내역을 조회하고 금액을 확인합니다.</span>
+              <span>세입자가 이전 달에 낸 금액을 확인합니다.</span>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="seo-section seo-section-alt">
+      <section class="seo-section seo-section-alt" id="partial-payment">
         <div class="section-inner">
           <div class="seo-section-head">
             <div>
               <p class="seo-kicker">납부 내역 직접 등록</p>
-              <h2>직접 받은 월세도 기록해두세요</h2>
+              <h2>월세가 일부만 들어왔을 때</h2>
             </div>
             <p class="section-desc">
-              현금으로 받았거나 따로 확인한 월세도 해당 호실에 등록해 수납 현황에 반영할 수 있습니다.
+              102호의 월세 50만 원 중 30만 원이 입금됐다면, 받은 금액을 직접 기록하고 남은 금액을 확인하세요. 현금으로 받은 월세도 같은 방법으로 기록할 수 있습니다.
             </p>
           </div>
           <ol class="feature-steps">
             <li>
               <h3>호실 선택</h3>
-              <p>월세를 받은 호실에서 납부 내역 등록을 시작합니다.</p>
+              <p>102호에서 해당 월의 납부 내역을 엽니다.</p>
             </li>
             <li>
-              <h3>납부 정보 입력</h3>
-              <p>실제 받은 금액과 납부 정보를 확인해 입력합니다.</p>
+              <h3>받은 금액 기록</h3>
+              <p>입금 내역을 확인하고 납부 금액에 30만 원을 입력합니다.</p>
             </li>
             <li>
-              <h3>내역 확인</h3>
-              <p>등록한 내역을 확인하고, 잘못 입력한 내용은 수정합니다.</p>
+              <h3>남은 금액 확인</h3>
+              <p>남은 월세는 20만 원입니다. 나중에 이 금액도 받으면 장부를 확인하세요. 여전히 30만 원으로 표시되면 그달 받은 총액인 50만 원으로 수정하세요.</p>
             </li>
           </ol>
+          <a class="feature-link" href="/features/overdue-notice#text-message">남은 20만 원을 안내하는 문자 예문 보기</a>
         </div>
       </section>
 
@@ -217,28 +225,34 @@
         <div class="section-inner">
           <div class="faq-head">
             <p class="seo-kicker">자주 묻는 질문</p>
-            <h2>자동 기록은 어떻게 이루어지나요?</h2>
+            <h2>월세 장부가 궁금할 때</h2>
             <p class="section-desc">
-              입금 알림으로 기록되는 내역과 직접 확인이 필요한 경우를 안내합니다.
+              자동 기록은 안드로이드에서 지원합니다. 아이폰에서는 실제 입금을 확인하고 직접 기록하세요.
             </p>
           </div>
           <div class="faq-list">
             <details class="faq-item" open>
               <summary>랜디는 은행 계좌를 직접 연결하나요?</summary>
               <p>
-                은행 계좌를 직접 연결하지 않습니다. Android 기기에 도착한 지원 은행 앱의 입금 알림을 분석하며, 은행 앱의 입금 알림과 랜디의 알림 접근 권한이 필요합니다. iOS에서는 납부 내역을 직접 등록합니다.
+                은행 계좌는 연결하지 않습니다. 안드로이드에서 지원 은행 앱의 입금 알림을 켜고 랜디에 알림 접근 권한을 허용하면, 랜디가 휴대폰에 온 알림에서 입금 정보를 읽습니다. 아이폰에서는 계좌에 월세가 들어왔는지 확인한 뒤 받은 금액을 해당 호실에 직접 입력하세요.
               </p>
             </details>
             <details class="faq-item">
               <summary>월세 납부 내역이 자동으로 기록되나요?</summary>
               <p>
-                Android에서는 입금자·금액·납부월이 등록 정보와 일치하는 내역을 자동으로 기록합니다. 자동으로 연결되지 않는 입금이나 현금 납부는 내역을 확인한 뒤 직접 등록할 수 있습니다. 등록된 납부 내역은 앱에서 확인하고 수정할 수 있습니다.
+                안드로이드에서는 은행 알림의 입금자명과 금액이 등록한 정보와 맞고 어느 호실의 몇 월분 월세인지 확인될 때 자동으로 기록합니다. 현금으로 받았거나 입금 알림으로 기록되지 않은 월세는 해당 호실을 열어 받은 금액을 직접 입력하세요. 잘못 입력한 금액도 장부에서 수정할 수 있습니다.
               </p>
             </details>
             <details class="faq-item">
               <summary>입금자명이 다르면 어떻게 확인하나요?</summary>
               <p>
-                입금자명이나 금액이 달라 자동으로 연결되지 않는 경우, 실제 입금 내역을 확인한 뒤 해당 호실에 납부 내역을 직접 등록해주세요.
+                세입자 대신 가족이 월세를 보내면 자동으로 기록되지 않을 수 있습니다. 세입자가 알려준 입금일과 금액을 계좌 내역과 대조하세요. 어느 호실의 월세인지 확인한 뒤, 장부에 빠져 있다면 해당 호실에 받은 금액을 입력하세요.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>아직 못 받은 월세도 이번 달 순수익에 포함되나요?</summary>
+              <p id="net-income-example" class="section-anchor">
+                아니요. 그달 받기로 한 임대료와 관리비 중 실제로 받은 금액만 그달 수입으로 계산합니다. 이번 달 수입이 102호에서 받은 월세 30만 원이고 지출이 수리비 5만 원이라면 순수익은 25만 원입니다. 약속한 월세 50만 원 중 아직 못 받은 20만 원은 미납 잔액으로 남습니다.
               </p>
             </details>
           </div>
@@ -247,11 +261,10 @@
 
       <section class="beta-section download-section" id="download">
         <h2>
-          반복되는 관리 업무,<br />이제 <span class="brand-highlight">랜디</span>로 간편하게
+          <span class="brand-highlight">랜디</span>에서 월세 수납을 시작하세요
         </h2>
         <p class="section-desc">
-          지금 다운로드하고<br />
-          무료로 시작해보세요!
+          호실 등록과 월세 수납 기록은 무료입니다.
         </p>
 
         <div class="store-cta">
