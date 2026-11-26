@@ -121,10 +121,10 @@
             "mainEntity": [
               {
                 "@type": "Question",
-                "name": "건물이 여러 채여도 한 계정에서 관리할 수 있나요?",
+                "name": "랜디는 어떤 임대인에게 적합한가요?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "한 계정에 원룸 건물과 상가를 함께 등록할 수 있습니다. 건물을 고르면 그 건물의 호실별 월세와 계약 만기일, 세입자 연락처를 확인할 수 있습니다."
+                  "text": "원룸·오피스텔·상가의 월세를 직접 챙기는 임대인에게 잘 맞습니다. 건물이 여러 채여도 한 계정에서 호실별 월세와 계약 만기일, 세입자 연락처를 확인할 수 있습니다."
                 }
               },
               {
@@ -354,11 +354,13 @@
     <section class="section">
       <div class="section-inner">
         <div class="pain-header">
-          <h2>건물을 직접 관리할 때<br />챙기는 일</h2>
+          <div class="section-label">임대인의 일상</div>
+          <h2>임대하다 보면<br />한 번쯤 겪는 일</h2>
         </div>
         <div class="pain-cards">
           <div class="pain-card">
             <div class="pain-top">
+              <span class="pain-index">01</span>
               <span class="pain-icon" aria-hidden="true">
                 <svg
                   viewBox="0 0 24 24"
@@ -376,13 +378,14 @@
             </div>
             <h3>월세가 일부만 들어왔을 때</h3>
             <p>
-              해당 호실에 받은 금액만 입력하세요. 장부에 남은 금액이 표시돼
-              세입자에게 납부를 안내할 때 바로 확인할 수 있습니다.
+              월세를 나눠 받으면 얼마가 남았는지 헷갈리기 쉽습니다.
+              받은 금액만 적어 두면 그 호실에서 더 받을 월세가 장부에 남습니다.
             </p>
           </div>
 
           <div class="pain-card">
             <div class="pain-top">
+              <span class="pain-index">02</span>
               <span class="pain-icon" aria-hidden="true">
                 <svg
                   viewBox="0 0 24 24"
@@ -400,13 +403,14 @@
             </div>
             <h3>수리비와 공과금이 나갔을 때</h3>
             <p>
-              보일러 수리비는 ‘수리·유지보수’, 건물 전기료는 ‘공과금’으로
-              기록하세요. 한 달 동안 어떤 항목에 얼마를 썼는지 확인할 수 있습니다.
+              보일러 수리비나 공용 전기요금을 낼 때마다 적어 두면,
+              월말에 어디에 얼마를 썼는지 쉽게 확인할 수 있습니다.
             </p>
           </div>
 
           <div class="pain-card">
             <div class="pain-top">
+              <span class="pain-index">03</span>
               <span class="pain-icon" aria-hidden="true">
                 <svg
                   viewBox="0 0 24 24"
@@ -422,10 +426,10 @@
                 </svg>
               </span>
             </div>
-            <h3>재계약을 상의할 때</h3>
+            <h3>계약 만기가 다가올 때</h3>
             <p>
               곧 계약이 끝나는 호실을 확인하고 세입자에게 연락하세요.
-              자주 쓰는 안내 문구를 저장해 두면 다음번에도 꺼내 쓸 수 있습니다.
+              재계약을 할지, 퇴실 일정을 잡을지 미리 이야기할 수 있습니다.
             </p>
           </div>
         </div>
@@ -439,11 +443,15 @@
             <div class="section-label">주요 기능</div>
             <h2>랜디가 줄여주는<br />반복 업무</h2>
           </div>
+          <p class="section-desc">
+            월세 수납과 계약 일정, 세입자 안내를<br />
+            한곳에서 관리하세요.
+          </p>
         </div>
-        <div class="feature-flow" aria-label="안드로이드에서 월세가 자동으로 기록되는 과정">
+        <div class="feature-flow" aria-label="안드로이드 은행 입금 알림 처리 흐름">
           <div class="feature-flow-step">
             <span class="feature-flow-dot">01</span>
-            <span>은행 입금 알림</span>
+            <span>입금 알림 분석</span>
           </div>
           <div class="feature-flow-step">
             <span class="feature-flow-dot">02</span>
@@ -451,14 +459,14 @@
           </div>
           <div class="feature-flow-step">
             <span class="feature-flow-dot">03</span>
-            <span>납부 내역 기록</span>
+            <span>일치한 내역 기록</span>
           </div>
           <div class="feature-flow-step">
             <span class="feature-flow-dot">04</span>
             <span>수납 현황 확인</span>
           </div>
         </div>
-        <p class="feature-flow-note">안드로이드에서 알림 접근을 허용하면 입금자와 금액, 납부월이 맞는 월세만 자동으로 기록합니다.</p>
+        <p class="feature-flow-note">안드로이드에서는 은행 앱의 입금 알림이 등록 정보와 맞으면 월세를 자동으로 기록합니다.</p>
         <div class="feature-grid">
           <div class="feature-card">
             <div class="feature-top">
@@ -479,13 +487,13 @@
                 </svg>
               </span>
             </div>
-            <h3>월세 수납과 수입·지출</h3>
+            <h3>월세 수납 현황</h3>
             <p>
-              어느 호실이 얼마를 냈는지 월별로 확인하세요. 수리비나 공과금을
-              지출로 기록하면 임대수입에서 얼마가 남았는지도 볼 수 있습니다.
+              이번 달 월세가 들어온 호실과 아직 받을 금액을 확인하세요.
+              수리비와 공과금도 지출로 기록할 수 있습니다.
             </p>
             <a class="feature-link" href="/features/rent-collection"
-              >월세와 지출 기록 방법</a
+              >월세 수납 관리 보기</a
             >
           </div>
           <div class="feature-card">
@@ -507,13 +515,13 @@
                 </svg>
               </span>
             </div>
-            <h3>호실별 계약과 연락처</h3>
+            <h3>호실·세입자 관리</h3>
             <p>
-              원룸의 월세 계약부터 상가 계약까지 건물별로 모아 두세요.
-              호실을 열면 보증금, 납부일, 세입자 연락처를 찾을 수 있습니다.
+              건물별로 호실을 나누고 세입자, 월세, 납부일, 계약 정보를
+              등록합니다. 여러 건물의 관리 정보도 한곳에서 확인하세요.
             </p>
             <a class="feature-link" href="/features/room-management"
-              >계약 등록 방법</a
+              >호실 관리 살펴보기</a
             >
           </div>
           <div class="feature-card">
@@ -532,13 +540,13 @@
                 </svg>
               </span>
             </div>
-            <h3>계약 만기 알림</h3>
+            <h3>계약 만기 일정 관리</h3>
             <p>
-              계약 종료일을 등록하고 만기 알림을 켜 두세요. 계약이 끝나기 전에
-              세입자와 재계약이나 퇴실 일정을 상의할 수 있습니다.
+              월세 납부일과 계약 만기일을 함께 살펴 갱신·퇴실 준비 일정을 놓치지
+              않게 돕습니다.
             </p>
             <a class="feature-link" href="/features/contract-expiry"
-              >만기 알림 설정 방법</a
+              >계약 만기 알림 보기</a
             >
           </div>
           <div class="feature-card">
@@ -560,13 +568,13 @@
                 </svg>
               </span>
             </div>
-            <h3>안내 문자와 미납 고지서</h3>
+            <h3>세입자 안내 발송</h3>
             <p>
-              공지는 휴대폰 문자 앱에서 직접 보내세요. 밀린 월세를 안내할 때는
-              월별 미납액을 담은 고지서를 확인하고 카카오 알림톡으로 보낼 수 있습니다.
+              납부 안내는 휴대폰 문자 앱에서 직접 보내세요. 밀린 월세는
+              미납 내역을 담은 카카오 알림톡 고지서로도 안내할 수 있습니다.
             </p>
             <a class="feature-link" href="/features/overdue-notice"
-              >미납 문자와 고지서 보내는 방법</a
+              >월세 미납 안내 보기</a
             >
           </div>
         </div>
@@ -579,17 +587,17 @@
           <div class="section-label">사용 화면</div>
           <h2>앱에서 이렇게 관리합니다</h2>
           <p class="section-desc">
-            건물을 고르고, 이번 달 월세를 확인하고, 새 세입자를 등록하는 실제 앱 화면입니다.
+            전체 현황부터 납부 내역, 세입자 등록까지. 실제 앱 화면을 차례로 살펴보세요.
           </p>
         </div>
         <div class="mobile-preview-list" aria-label="랜디 앱 기능 영상 목록">
           <article class="mobile-preview-item" id="preview-panel-home">
             <div class="mobile-preview-copy">
               <span class="mobile-preview-label">전체 현황</span>
-              <h3>먼저 살펴볼 층 찾기</h3>
+              <h3>내 건물의 층별 현황을 한눈에</h3>
               <p>
-                건물을 고르면 층마다 호실 수와 상태가 표시됩니다.
-                주의나 경고 표시가 뜬 층부터 살펴보세요.
+                건물 그림에 층별 호실 수와 상태가 표시됩니다.<br />
+                먼저 살펴볼 층을 바로 찾을 수 있습니다.
               </p>
             </div>
             <div class="phone-shell">
@@ -612,10 +620,10 @@
           <article class="mobile-preview-item" id="preview-panel-payment">
             <div class="mobile-preview-copy">
               <span class="mobile-preview-label">입금 확인</span>
-              <h3>이번 달 미납 호실 찾기</h3>
+              <h3>이번 달 월세가 들어온 호실은?</h3>
               <p>
-                월을 선택하면 납부가 끝난 호실과 아직 월세가 남은 호실이 나뉘어 보입니다.
-                호실을 눌러 납부 내역을 확인하세요.
+                납부 상태를 색상으로 구분해 보여줍니다.<br />어느 호실의
+                월세가 남았는지 바로 보입니다.
               </p>
             </div>
             <div class="phone-shell">
@@ -638,12 +646,11 @@
           <article class="mobile-preview-item" id="preview-panel-tenant">
             <div class="mobile-preview-copy">
               <span class="mobile-preview-label">세입자 등록</span>
-              <h3>첫 계약을 등록하려면</h3>
+              <h3>한 번 등록하면, 매달 한눈에</h3>
               <p>
-                건물과 호실을 선택하고 임대료, 납부일, 계약 기간을 입력하세요.
-                등록한 계약을 기준으로 매달 호실별 납부 현황을 확인할 수 있습니다.
+                호실마다 세입자와 계약 정보를 등록해 두세요.<br />
+                매달 받을 월세와 납부일을 함께 확인할 수 있습니다.
               </p>
-              <a class="feature-link" href="/features/room-management">계약 등록 방법 보기</a>
             </div>
             <div class="phone-shell">
               <div class="phone-frame" aria-label="세입자 등록 앱 화면 영상">
@@ -668,34 +675,37 @@
 
     <section class="section beta-features-section" id="beta-features">
       <div class="section-inner">
-        <h2>베타 참여자를 모집합니다</h2>
-        <p class="section-desc">새 기능을 먼저 써보고 싶다면 관심 있는 기능을 골라 신청해 주세요.</p>
+        <div class="section-label">베타 기능</div>
+        <h2>준비 중인 새 기능</h2>
+        <p class="section-desc">입실 전 방 상태 기록과 세입자 문의 자동 답변을 먼저 써 볼 임대인을 모집합니다.</p>
         <div class="feature-extension">
           <div>
-            <h3>입실 전 방 상태 기록</h3>
+            <span class="feature-extension-label">입실 전 방 상태 기록</span>
+            <h3>퇴실할 때 다시 보는 입실 전 사진</h3>
             <p>
-              입실 전에 남긴 사진과 메모를 호실별로 모아 두고
-              퇴실할 때 같은 위치를 다시 확인하는 기능을 준비하고 있습니다.
+              입실 전 사진과 메모를 호실별로 남기고, 퇴실할 때 같은 위치를
+              다시 확인할 수 있도록 준비하고 있습니다.
             </p>
           </div>
           <a
             class="feature-extension-link"
             href="/features/move-out-dispute"
-            >입실 전 방 상태 기록 베타 안내</a
+            >입실 기록 기능 살펴보기</a
           >
         </div>
         <div class="feature-extension">
           <div>
-            <h3>세입자 문의 자동 답변</h3>
+            <span class="feature-extension-label">세입자 문의 자동 답변</span>
+            <h3>자주 묻는 질문에는 미리 적어 둔 답변으로</h3>
             <p>
               주차 위치나 분리수거 요일은 미리 적어 둔 답변으로 안내하고,
-              누수처럼 직접 살펴봐야 하는 문의는 임대인에게 전하는 기능을 준비하고 있습니다.
+              누수처럼 직접 살펴볼 문의는 임대인에게 전하는 기능을 개발 중입니다.
             </p>
           </div>
           <a
             class="feature-extension-link"
             href="/features/tenant-inquiry-response"
-            >세입자 문의 자동 답변 베타 안내</a
+            >자동 답변 살펴보기</a
           >
         </div>
       </div>
@@ -706,12 +716,13 @@
         <div class="faq-head">
           <div class="section-label">자주 묻는 질문</div>
           <h2>랜디에 대해 궁금한 점</h2>
+          <p class="section-desc">휴대폰별 월세 기록 방법과 무료로 쓸 수 있는 기능을 확인하세요.</p>
         </div>
         <div class="faq-list">
           <details class="faq-item" open>
-            <summary>건물이 여러 채여도 한 계정에서 관리할 수 있나요?</summary>
+            <summary>랜디는 어떤 임대인에게 적합한가요?</summary>
             <p>
-              한 계정에 원룸 건물과 상가를 함께 등록할 수 있습니다. 건물을 고르면 그 건물의 호실별 월세와 계약 만기일, 세입자 연락처를 확인할 수 있습니다.
+              원룸·오피스텔·상가의 월세를 직접 챙기는 임대인에게 잘 맞습니다. 건물이 여러 채여도 한 계정에서 호실별 월세와 계약 만기일, 세입자 연락처를 확인할 수 있습니다.
             </p>
           </details>
           <details class="faq-item">
@@ -782,10 +793,11 @@
     <section class="beta-section download-section" id="download">
       <span id="beta" class="section-anchor" aria-hidden="true"></span>
       <h2>
-        이번 달 월세부터<br /><span class="brand-highlight">랜디</span>에 기록해 보세요
+        반복되는 관리 업무,<br />이제 <span class="brand-highlight">랜디</span>로 간편하게
       </h2>
       <p class="section-desc">
-        건물과 호실을 등록하고 월세 장부를 무료로 시작하세요.
+        지금 다운로드하고<br />
+        무료로 시작해보세요!
       </p>
 
       <div class="store-cta">
